@@ -1,4 +1,4 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 function PublicRoute({
   children,
@@ -7,10 +7,10 @@ function PublicRoute({
   ...routeProps
 }) {
   // const isLoggedIn  = если пользователь  залогинен
-  const shouldRedirect = isLoggedIn && restricted;
+  // const shouldRedirect = isLoggedIn && restricted;
   return (
     <Route {...routeProps}>
-      {shouldRedirect ? <Redirect to={redirectTo} /> : children}
+      {/* {shouldRedirect ? <Redirect to={redirectTo} /> : children} */}
     </Route>
   );
 }
