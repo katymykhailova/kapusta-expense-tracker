@@ -40,7 +40,6 @@
     justify-content: center;
     flex-direction: column;
     width: auto;
-    padding-right: 0;
     padding-right: 165px;
     margin-top: 90px;
     margin-left: 0;
@@ -81,6 +80,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-left: 0px;
     margin-top: 0px;
     margin-left: 0px;
   }
