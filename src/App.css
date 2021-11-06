@@ -1,0 +1,21 @@
+.bg-container {
+  background: url('./images/bg/cabbage-mobile.png') no-repeat 270px 112px,
+    url('./images/bg/single-cabbage.png') no-repeat 0px 600px,
+    url('./images/bg/bg-mobile.png') no-repeat;
+}
+
+@media screen and (min-width: 321px) {
+  .bg-container {
+    background: url('./images/bg/cabbage-decktop.png') no-repeat 11px 50px,
+      url('./images/bg/double-cabbage.png') no-repeat 100px 800px,
+      url('./images/bg/bg-desktop.png') no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bg-container {
+    background: url('./images/bg/cabbage-decktop.png') no-repeat 11px 70px,
+      url('./images/bg/double-cabbage.png') no-repeat 250px 700px,
+      url('./images/bg/bg-desktop.png') no-repeat;
+  }
+}
