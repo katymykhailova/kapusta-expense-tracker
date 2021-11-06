@@ -14,6 +14,8 @@
 
 @media screen and (min-width: 1280px) {
   .bgContainer {
+    max-width: 1280px;
+    margin: 0 auto;
     background: url('../../images/bg/cabbage-desktop.png') no-repeat 11px 70px,
       url('../../images/bg/double-cabbage.png') no-repeat 250px 700px,
       url('../../images/bg/bg-desktop.png') no-repeat;
