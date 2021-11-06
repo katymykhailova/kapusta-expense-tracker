@@ -1,9 +1,12 @@
 import { /*lazy,*/ Suspense } from 'react';
 import { Switch } from 'react-router-dom';
-import Container from './components/Container/Container';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRout';
-
+import MainContainer from './components/MainContainer/MainContainer';
+import Container from './components/Container/Container';
+import NavBar from 'components/NavBar/NavBar';
+import RegisterPage from './views/RegisterPage/RegisterPage';
+import LoginPage from './views/LoginPage/LoginPage';
 import './App.css';
 
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
@@ -22,26 +25,28 @@ import './App.css';
 export default function App() {
   return (
     <>
-      {/* </NavBar> */}
+      <NavBar />
 
       <Suspense fallback={<div>loading</div>}>
-        <Container>
-          <Switch>
-            <PublicRoute path="/signup" exact restricted>
-              {/* <СТРАНИЦА РЕГИСТРАЦИИ /> */}
-            </PublicRoute>
+        <MainContainer>
+          <Container>
+            <Switch>
+              <PublicRoute path="/signup" exact restricted>
+                <RegisterPage />
+              </PublicRoute>
 
-            <PublicRoute path="/login" redirectTo="/report" restricted>
-              {/* <СТРАНИЦА ЛОГИНИЗАЦИИ /> */}
-            </PublicRoute>
+              <PublicRoute path="/login" redirectTo="/report" restricted>
+                <LoginPage />
+              </PublicRoute>
 
-            <PrivateRoute path="/report">
-              {/* <КАБИНЕТ ПОЛЬЗОВАТЕЛЯ /> */}
-            </PrivateRoute>
+              <PrivateRoute path="/report">
+                {/* <КАБИНЕТ ПОЛЬЗОВАТЕЛЯ /> */}
+              </PrivateRoute>
 
-            {/* <Redirect to="/" /> */}
-          </Switch>
-        </Container>
+              {/* <Redirect to="/" /> */}
+            </Switch>
+          </Container>
+        </MainContainer>
       </Suspense>
     </>
   );
