@@ -7,6 +7,7 @@ import Container from './components/Container/Container';
 import NavBar from 'components/NavBar/NavBar';
 import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
+import ReportPage from './views/ReportPage/ReportPage';
 import './App.css';
 
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
@@ -40,7 +41,7 @@ export default function App() {
               </PublicRoute>
 
               <PrivateRoute path="/report">
-                {/* <КАБИНЕТ ПОЛЬЗОВАТЕЛЯ /> */}
+                <ReportPage />
               </PrivateRoute>
 
               {/* <Redirect to="/" /> */}
