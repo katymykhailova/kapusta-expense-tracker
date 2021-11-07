@@ -1,5 +1,5 @@
 import { /*lazy,*/ Suspense } from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRout';
 import MainContainer from './components/MainContainer/MainContainer';
@@ -14,15 +14,6 @@ import './App.css';
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
 
-/**
- * 1. добавить BrowserRouter в index.js
- * 2. продумать редиректы
- *
- * 3. реристрация path="/signup"
- * 4. логин path="/login"
- * 5. кабинет пользователя path="/report"
- */
-
 export default function App() {
   return (
     <>
@@ -32,6 +23,10 @@ export default function App() {
         <MainContainer>
           <Container>
             <Switch>
+              <PublicRoute path="/" exact>
+                <Redirect to="/signup" />
+              </PublicRoute>
+
               <PublicRoute path="/signup" exact restricted>
                 <RegisterPage />
               </PublicRoute>
