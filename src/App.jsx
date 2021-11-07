@@ -4,6 +4,8 @@ import Container from './components/Container/Container';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRout';
 
+import ListProduct from './components/ListProduct/ListProduct';
+
 import './App.css';
 
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
@@ -26,6 +28,7 @@ export default function App() {
 
       <Suspense fallback={<div>loading</div>}>
         <Container>
+          <ListProduct />
           <Switch>
             <PublicRoute path="/signup" exact restricted>
               {/* <СТРАНИЦА РЕГИСТРАЦИИ /> */}

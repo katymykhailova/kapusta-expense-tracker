@@ -1,0 +1,97 @@
+/* #demo-simple-select-standard {
+  border-bottom: none;
+  background-color: #f5f6fb;
+  color: green;
+
+}
+
+#demo-simple-select-standard::before {
+  border-bottom: none;
+} */
+
+/* .categoriesProduct {
+  width: 601px;
+  height: 44px;
+  border-color: #f5f6fb;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+} */
+
+/* .borderNone {
+  border: none;
+} */
+
+.inputProductName {
+  /* width: 268px; */
+  width: 240px;
+  padding: 13px;
+  border-radius: 16px 0 0 0;
+  border-right: none;
+  outline: none;
+  border: 2px solid#f5f6fb;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputСategoryName {
+  /* width: 168px; */
+  width: 188px;
+  padding: 13px;
+  /* border-radius: 16px 0 0 0; */
+  /* border-right: none; */
+  outline: none;
+  border: 2px solid#f5f6fb;
+  border-left: none;
+}
+
+.inputValueProduct {
+  width: 98px;
+  /* width: 126px; */
+  padding: 13px;
+  border-radius: 0 16px 16px 0;
+  /* border-right: none; */
+  outline: none;
+  border: 2px solid#f5f6fb;
+  border-left: none;
+}
+select > option {
+  background: #ffffff;
+  /* background-color: F5F6FB; */
+  border-radius: 40px;
+  border: 2px solid#f5f6fb;
+  outline: none;
+  box-shadow: rgba(170, 178, 197, 0.4);
+  color: #c7ccdc;
+}
+
+option {
+  border-radius: 40px;
+}
+
+option:hover {
+  background: olive linear-gradient(olive, olive);
+  color: red;
+}
+
+/* option:checked {
+  background: olive linear-gradient(olive, olive);
+  color: red;
+} */
+
+/* .decorated option:hover {
+  box-shadow: 0 0 10px 100px red inset;
+} */
+
+/* select.decorated option:hover {
+  box-shadow: 0 0 10px 100px #1882a8 inset;
+} */
+
+/* select option:hover {
+  background: #ff9500 -webkit-linear-gradient(bottom, #ff9500 0%, #ff9500 100%);
+  color: #fff;
+} */
