@@ -57,27 +57,36 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import s from './ListProduct.module.css';
+import Container from '../Container/Container';
 
 export default function App() {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <input {...register('date')} type="date" /> */}
-
-      <input
-        {...register('name')}
-        className={s.inputProductName}
-        placeholder="Описание товара"
-      />
-      <input
-        {...register('categories')}
-        className={s.inputСategoryName}
-        placeholder="Категория товара"
-        disabled
-      />
-      {/* <select
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)} className={s.formStyles}>
+        <div className={s.productInfo}>
+          <div className={s.datePosition}>
+            <input
+              {...register('date')}
+              type="date"
+              className={s.dateProduct}
+            />
+          </div>
+          <div className={s.productPosition}>
+            <input
+              {...register('name')}
+              className={s.inputProductName}
+              placeholder="Описание товара"
+            />
+            <input
+              {...register('categories')}
+              className={s.inputСategoryName}
+              placeholder="Категория товара"
+              disabled
+            />
+            {/* <select
         {...register('categories')}
         defaultValue="Категория товара"
         className={s.inputСategoryName}
@@ -89,10 +98,18 @@ export default function App() {
         <option value="male">Здоровье</option>
         <option value="other">Алкоголь</option>
       </select> */}
-      <input {...register('sum')} className={s.inputValueProduct} />
-
-      {/* <input type="submit" />
-      <input type="reset" /> */}
-    </form>
+            <input
+              {...register('sum')}
+              className={s.inputValueProduct}
+              placeholder="00,0"
+            />
+          </div>
+        </div>
+        <div className={s.btnPosition}>
+          <input type="submit" />
+          <input type="reset" />
+        </div>
+      </form>
+    </Container>
   );
 }
