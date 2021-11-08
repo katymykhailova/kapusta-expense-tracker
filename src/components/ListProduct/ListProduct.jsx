@@ -58,6 +58,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import s from './ListProduct.module.css';
 import Container from '../Container/Container';
+import calculator from './calculator.svg';
 
 export default function App() {
   const { register, handleSubmit } = useForm();
@@ -101,8 +102,11 @@ export default function App() {
             <input
               {...register('sum')}
               className={s.inputValueProduct}
-              placeholder="00,0"
+              placeholder="0,00"
             />
+            <div className={s.calculatorPos}>
+              <img src={calculator} alt="React Logo" />
+            </div>
           </div>
         </div>
         <div className={s.btnPosition}>
