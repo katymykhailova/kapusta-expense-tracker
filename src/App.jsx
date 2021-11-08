@@ -31,15 +31,17 @@ export default function App() {
                 <RegisterPage />
               </PublicRoute>
 
-              <PublicRoute path="/login" redirectTo="/report" restricted>
+              <PublicRoute path="/login" redirectTo="/home" restricted>
                 <LoginPage />
               </PublicRoute>
 
-              <PrivateRoute path="/report">
+              <PrivateRoute path="/home">
                 <ReportPage />
               </PrivateRoute>
 
-              {/* <Redirect to="/" /> */}
+              <PrivateRoute path="/report">{/* <HomePage /> */}</PrivateRoute>
+
+              <Redirect to="/" />
             </Switch>
           </Container>
         </MainContainer>
