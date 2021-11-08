@@ -1,0 +1,92 @@
+td,
+th,
+table {
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .table {
+    width: 605px;
+    height: 384px;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+
+  .tableRow {
+    background: var(--bg-color);
+    border-radius: 20px 20px 0 0;
+    height: 40px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000;
+    padding: 0 26px 0 21px;
+  }
+
+  .tableHead {
+    width: 100%;
+    display: flex;
+    border-radius: 20px 20px 0 0;
+    background: var(--bg-color);
+  }
+
+  .tableDate {
+    width: 106px;
+    text-align: start;
+  }
+
+  .tableDesc {
+    width: 168px;
+    text-align: start;
+  }
+
+  .tableCat {
+    width: 124px;
+    text-align: center;
+  }
+
+  .tableSum {
+    width: 104px;
+    text-align: end;
+  }
+
+  .tableDelet {
+    width: 60px;
+    text-align: end;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .table {
+    width: 760px;
+    height: 384px;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+  .tableRow {
+    padding: 0 46px 0 20px;
+  }
+
+  .tableDate {
+    width: 105px;
+  }
+  .tableDesc {
+    width: 202px;
+  }
+  .tableCat {
+    width: 172px;
+  }
+  .tableSum {
+    width: 130px;
+  }
+  .tableDelet {
+    width: 85px;
+  }
+}
