@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import 'yup-phone';
 import { FcGoogle } from 'react-icons/fc';
 import s from 'components/Forms/Forms.module.css';
+import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
 const registerSchema = Yup.object().shape({
   name: Yup.string().max(50, 'Too Long').required('Required'),
@@ -82,8 +83,16 @@ export default function RegisterForm() {
             )}
           </div>
           {/* change buttons */}
-          <button type="submit"> Войти </button>
-          <button type="button"> Регистрация </button>
+          {/* <button type="submit"> Войти </button>
+          <button type="button"> Регистрация </button> */}
+          <ButtonBlock
+            firstButtonText={'Войти'}
+            secondButtonText={'Регистрация'}
+            firstButtonHandler={() => console.log('firstButtonHandler')}
+            secondButtonHandler={() => console.log('secondButtonHandler')}
+            firstButtonType={'submit'}
+            secondButtonType={'button'}
+          ></ButtonBlock>
         </div>
       </form>
     </div>
