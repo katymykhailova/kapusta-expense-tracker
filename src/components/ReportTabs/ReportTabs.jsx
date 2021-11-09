@@ -2,6 +2,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import s from './ReportTabs.module.css';
 import ReportTable from 'components/ReportTable/ReportTable';
+import Summary from 'components/Summary/Summary';
 
 const DEFAULT_CLASS = 'react-tabs__tab';
 const DEFAULT_SELECTED_CLASS = `${DEFAULT_CLASS}--selected`;
@@ -25,6 +26,7 @@ const ReportTabs = () => (
     <div className={s.tabsWrap}>
       <TabPanel>
         <ReportTable></ReportTable>
+        <Summary></Summary>
       </TabPanel>
       <TabPanel>
         <ReportTable></ReportTable>

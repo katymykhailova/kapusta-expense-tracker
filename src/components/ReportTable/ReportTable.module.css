@@ -4,10 +4,22 @@ table {
   padding: 0;
   margin: 0;
 }
+@media screen and (min-width: 320px) {
+  .table {
+    width: 282px;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+  .tableHead {
+    display: none;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .table {
-    width: 605px;
+    width: 601px;
     height: 384px;
     margin: 0 auto;
     font-size: 12px;
@@ -36,7 +48,7 @@ table {
   }
 
   .tableDate {
-    width: 106px;
+    width: 105px;
     text-align: start;
   }
 
@@ -56,7 +68,7 @@ table {
   }
 
   .tableDelet {
-    width: 60px;
+    width: 57px;
     text-align: end;
   }
 }

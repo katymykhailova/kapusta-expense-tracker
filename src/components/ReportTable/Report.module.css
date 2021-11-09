@@ -1,19 +1,67 @@
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 320px) {
   .tableTr {
     width: 100%;
     height: 40px;
     border-bottom: 2px solid var(--bg-color);
     display: flex;
-    align-items: center;
+    align-items: baseline;
     color: var(--text-color-main);
-    padding: 0 26px 0 21px;
-  }
-  .scrollDiv {
-    overflow: scroll;
-    height: 346px;
+    padding: 0;
   }
 
+  .tableSum {
+    font-weight: 700;
+  }
+
+  .tableDelet {
+    width: 40px;
+    text-align: end;
+    align-self: center;
+  }
+  .deleteBtn {
+    border: none;
+    border-color: transparent;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .divWrap {
+    width: 66px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+  .divWrap > .tableDate {
+    font-size: 8px;
+  }
+  .divWrap > .tableDesc {
+    font-weight: 700;
+  }
+  .tableCat {
+    width: 86px;
+    font-size: 8px;
+  }
+  .tableSum {
+    width: 90px;
+    font-weight: 700;
+    align-self: center;
+  }
+}
+@media screen and (min-width: 768px) {
+  .tableTr {
+    align-items: center;
+    padding: 0 26px 0 21px;
+  }
+  /* .scrollDiv {
+    overflow: scroll;
+    height: 346px;
+  } */
+
   .tableBody {
+    display: block;
     height: 346px;
     border-collapse: collapse;
     width: 100%;
@@ -21,28 +69,62 @@
     overflow: scroll;
   }
 
-  .scrollDiv::-webkit-scrollbar {
+  .tableBody::-webkit-scrollbar {
     width: 6px;
     border-radius: 2px;
     background: transparent;
   }
 
-  .scrollDiv::-webkit-scrollbar-thumb {
-    height: 120px;
+  .tableBody::-webkit-scrollbar-thumb {
+    height: 10px;
     background-color: var(--accent-color-primary);
     border-radius: 2px;
   }
 
-  .deleteBtn {
-    border: none;
-    border-color: transparent;
-    background-color: transparent;
-    cursor: pointer;
+  .tableDate {
+    width: 105px;
+    text-align: start;
+  }
+
+  .tableDesc {
+    width: 168px;
+    text-align: start;
+  }
+
+  .tableCat {
+    width: 124px;
+    text-align: center;
+  }
+
+  .tableSum {
+    width: 113px;
+    text-align: end;
+  }
+
+  .tableDelet {
+    width: 48px;
+    text-align: end;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .tableTr {
     padding: 0 46px 0 20px;
+  }
+  .tableRow {
+    padding: 0 46px 0 20px;
+  }
+
+  .tableDesc {
+    width: 202px;
+  }
+  .tableCat {
+    width: 172px;
+  }
+  .tableSum {
+    width: 140px;
+  }
+  .tableDelet {
+    width: 75px;
   }
 }

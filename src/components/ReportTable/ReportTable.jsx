@@ -4,7 +4,7 @@ import Report from './Report';
 
 function ReportTable() {
   return (
-    <table className={s.table}>
+    <table className={s.table} cellpadding="0" cellspacing="0">
       <thead className={s.tableHead}>
         <tr className={s.tableRow}>
           <th className={`${s.tableHeadName}, ${s.tableDate}`}>Дата</th>

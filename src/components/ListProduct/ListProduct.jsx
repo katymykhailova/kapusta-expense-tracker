@@ -4,7 +4,7 @@ import s from './ListProduct.module.css';
 import Container from '../Container/Container';
 import calculator from './calculator.svg';
 
-export default function App() {
+export default function ListProduct() {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
 
