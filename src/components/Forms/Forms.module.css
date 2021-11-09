@@ -55,6 +55,10 @@
   border: 1px solid var(--accent-color-primary);
 }
 
+.fieldWrap {
+  margin-bottom: 40px;
+}
+
 .errors {
   font-weight: 400;
   font-size: 10px;
@@ -88,6 +92,11 @@
   margin-right: 10px;
 }
 
+.googleBtn:hover,
+.googleBtn:focus {
+  transform: scale(1.1);
+}
+
 @media screen and (min-width: 768px) {
   .wrap {
     width: 436px;
@@ -109,5 +118,6 @@
 
   .field {
     width: 265px;
+    font-size: 14px;
   }
 }
