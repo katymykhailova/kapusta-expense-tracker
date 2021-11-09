@@ -1,3 +1,7 @@
+.formStyles {
+  position: relative;
+}
+
 .productPosition {
   display: flex;
 }
@@ -156,6 +160,8 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
+
+    position: relative;
   }
 
   /* .calculatorPos {

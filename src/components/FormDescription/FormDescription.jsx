@@ -41,6 +41,7 @@ export default function FormDescription() {
         <input type="submit" />
         <input type="reset" />
       </div>
+      <DropDownCategory />
     </form>
   );
 }
