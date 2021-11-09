@@ -1,0 +1,90 @@
+.headerTab {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  margin-bottom: 30px;
+}
+
+.linkTitle {
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-right: 15px;
+}
+.linkTitle.report {
+  margin-left: 15px;
+}
+
+.linkIcon {
+  width: 24px;
+  height: 24px;
+}
+.linkBox {
+  display: flex;
+  align-items: center;
+}
+.headData {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerTabReport {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+}
+@media screen and (max-width: 767px) {
+  .headerTab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .headerTabReport {
+    flex-direction: column;
+  }
+  .linkTitle.report {
+    visibility: hidden;
+  }
+  .linkBox {
+    margin-right: 125px;
+  }
+  .headData {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .headerTabReport {
+    padding-top: 15px;
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .headerTab {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .balance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 110px;
+  }
+  .navigation {
+    margin-left: auto;
+    margin-bottom: 0;
+  }
+  .title {
+    margin-right: 21px;
+  }
+  .balanceInput {
+    margin-right: 15px;
+  }
+}

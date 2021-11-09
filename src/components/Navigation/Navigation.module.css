@@ -1,0 +1,46 @@
+.navigationMonth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.navigationMonthName {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000000;
+}
+.navigationMonthTab {
+  margin: 10px auto 30px auto;
+}
+.navigationMonthPeriod {
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-bottom: 5px;
+}
+@media screen and (max-width: 767px) {
+  .navigation.line {
+    margin-right: 125px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navigation {
+    margin-left: auto;
+    margin-bottom: 0;
+  }
+  .navigationMonthTab {
+    margin: 0;
+  }
+}

@@ -26,7 +26,7 @@ const incomes = [
 
 export default function CurrentMonthReport() {
   return (
-    <div className={`${s.sectionReport} ${typeTrans}`}>
+    <div className={s.sectionReport}>
       <div className={s.sectionTitle}>
         <ArrowBackIosIcon
           style={{ color: '#FF751D', cursor: 'pointer' }}
