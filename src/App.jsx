@@ -31,8 +31,8 @@ export default function App() {
               <PublicRoute path="/signup" restricted>
                 <RegisterPage />
               </PublicRoute>
+
               <PublicRoute path="/login" restricted>
-                {/* <PublicRoute path="/login" redirectTo="/home" restricted> */}
                 <LoginPage />
               </PublicRoute>
 
