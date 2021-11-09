@@ -71,6 +71,26 @@ table {
     width: 57px;
     text-align: end;
   }
+  .tableBody {
+    display: block;
+    height: 346px;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid var(--bg-color);
+    overflow: scroll;
+  }
+
+  .tableBody::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 2px;
+    background: transparent;
+  }
+
+  .tableBody::-webkit-scrollbar-thumb {
+    height: 10px;
+    background-color: var(--accent-color-primary);
+    border-radius: 2px;
+  }
 }
 
 @media screen and (min-width: 1280px) {

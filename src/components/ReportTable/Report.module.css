@@ -60,27 +60,6 @@
     height: 346px;
   } */
 
-  .tableBody {
-    display: block;
-    height: 346px;
-    border-collapse: collapse;
-    width: 100%;
-    border: 2px solid var(--bg-color);
-    overflow: scroll;
-  }
-
-  .tableBody::-webkit-scrollbar {
-    width: 6px;
-    border-radius: 2px;
-    background: transparent;
-  }
-
-  .tableBody::-webkit-scrollbar-thumb {
-    height: 10px;
-    background-color: var(--accent-color-primary);
-    border-radius: 2px;
-  }
-
   .tableDate {
     width: 105px;
     text-align: start;
@@ -122,9 +101,9 @@
     width: 172px;
   }
   .tableSum {
-    width: 140px;
+    width: 130px;
   }
   .tableDelet {
-    width: 75px;
+    width: 85px;
   }
 }
