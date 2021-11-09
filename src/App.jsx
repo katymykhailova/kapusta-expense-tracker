@@ -10,6 +10,8 @@ import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
 import './App.css';
 
+import FormDescription from './components/FormDescription/FormDescription';
+
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
@@ -28,6 +30,9 @@ export default function App() {
               </PublicRoute>
               <PublicRoute path="/signup" exact restricted>
                 <RegisterPage />
+              </PublicRoute>
+              <PublicRoute path="/test" exact restricted>
+                <FormDescription />
               </PublicRoute>
 
               <PublicRoute path="/login" redirectTo="/home" restricted>

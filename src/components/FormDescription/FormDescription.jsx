@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import s from './FormProduct.module.css';
+import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
 
-import DropDownProduct from '../DropDownProduct/DropDownProduct';
+import DropDownCategory from '../DropDownCategory/DropDownCategory';
 
-export default function FormProduct() {
+export default function FormDescription() {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
 

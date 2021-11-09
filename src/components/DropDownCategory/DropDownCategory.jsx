@@ -1,6 +1,6 @@
-import s from './DropDownProduct.module.css';
+import s from './DropDownCategory.module.css';
 
-export default function App() {
+export default function DropDownCategory() {
   return (
     <div>
       <ul>
