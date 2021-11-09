@@ -1,12 +1,14 @@
 // import { Link } from 'react-router-dom';
-import s from './NavBar.module.css';
+import { useSelector } from 'react-redux';
+import { getUserIsLoggedIn } from '../../redux/auth';
 import logo from '../../images/logo.jpg';
 import UserNav from 'components/UserNav/UserNav';
+import s from './NavBar.module.css';
 
 // заменить <a> на Link
 
 function NavBar() {
-  // const isLoggedIn = если пользователь залогинен;
+  const isLoggedIn = useSelector(getUserIsLoggedIn);
 
   return (
     <header className={s.header}>
@@ -21,8 +23,7 @@ function NavBar() {
           />
         </a>
 
-        {/* {isLoggenIn && } */}
-        <UserNav></UserNav>
+        {isLoggedIn && <UserNav />}
       </div>
     </header>
   );
