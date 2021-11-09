@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, logIn, logOut, getCurrentUser } from 'redux/auth';
+import { signUp, logIn, logOut, getCurrentUser } from './index';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { username: null, email: null, avatar: null, balance: null },
   token: null,
   error: null,
+  isSignedUp: false,
   isLoggedIn: false,
   isFetchCurrentUser: false,
   isLoading: false,
@@ -20,9 +21,8 @@ const authSlice = createSlice({
     },
 
     [signUp.fulfilled]: (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
+      state.user = payload;
+      state.isSignedUp = true;
       state.isLoading = false;
     },
 
@@ -37,7 +37,6 @@ const authSlice = createSlice({
     },
 
     [logIn.fulfilled]: (state, { payload }) => {
-      state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
@@ -54,7 +53,7 @@ const authSlice = createSlice({
     },
 
     [logOut.fulfilled]: (state, _) => {
-      state.user = { name: null, email: null };
+      state.user = { username: null, email: null, avatar: null, balance: null };
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;

@@ -1,4 +1,4 @@
-import LoginForm from 'components/Forms/RegisterForm';
+import LoginForm from 'components/Forms/LoginForm';
 import s from 'views/RegisterPage/RegisterPage.module.css';
 
 export default function RegisterPage() {
