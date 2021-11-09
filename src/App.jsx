@@ -26,7 +26,6 @@ export default function App() {
               <PublicRoute path="/" exact>
                 <Redirect to="/signup" />
               </PublicRoute>
-
               <PublicRoute path="/signup" exact restricted>
                 <RegisterPage />
               </PublicRoute>
