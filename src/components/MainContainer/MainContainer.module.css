@@ -33,7 +33,7 @@
   .bgPrivate {
     max-width: 1280px;
     margin: 0 auto;
-    background: url('../../images/bg/cabbage-desktop.png') no-repeat 11px 840px,
+    background: url('../../images/bg/cabbage-desktop.png') no-repeat 11px 670px,
       url('../../images/bg/bg-desktop.png') no-repeat;
   }
 }

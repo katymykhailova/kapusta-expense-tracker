@@ -8,6 +8,7 @@ import NavBar from 'components/NavBar/NavBar';
 import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
+import HomePage from './views/HomePage/HomePage';
 import './App.css';
 
 import FormDescription from './components/FormDescription/FormDescription';
@@ -26,9 +27,10 @@ export default function App() {
           <Container>
             <Switch>
               <PublicRoute path="/" exact>
-                <Redirect to="/signup" />
+                <Redirect to="/login" />
               </PublicRoute>
-              <PublicRoute path="/signup" exact restricted>
+
+              <PublicRoute path="/signup" restricted>
                 <RegisterPage />
               </PublicRoute>
 
@@ -40,7 +42,9 @@ export default function App() {
                 <LoginPage />
               </PublicRoute>
 
-              <PrivateRoute path="/home">{/* <HomePage /> */}</PrivateRoute>
+              <PrivateRoute path="/home">
+                <HomePage />
+              </PrivateRoute>
 
               <PrivateRoute path="/report">
                 <ReportPage />
