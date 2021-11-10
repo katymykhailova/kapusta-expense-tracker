@@ -10,7 +10,7 @@ import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
 import HomePage from './views/HomePage/HomePage';
 import './App.css';
-import HomePage from 'views/HomePage/HomePage';
+
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
