@@ -1,17 +1,22 @@
 import s from './DropDownCategory.module.css';
 
-export default function DropDownCategory() {
+export default function DropDownCategory({ changerDescription }) {
+  // const test = e => console.log(e.target.innerText);
   return (
-    <div
-      className={s.categoryPosition}
-      menuPortalTarget={document.body}
-      styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
-    >
+    <div className={s.categoryPosition}>
       <ul>
-        <li className={s.categoryName}>Транспорт</li>
-        <li className={s.categoryName}>Продукты</li>
-        <li className={s.categoryName}>Здоровье</li>
-        <li className={s.categoryName}>Алкоголь</li>
+        <li className={s.categoryName} onClick={changerDescription}>
+          Транспорт
+        </li>
+        <li className={s.categoryName} onClick={changerDescription}>
+          Продукты
+        </li>
+        <li className={s.categoryName} onClick={changerDescription}>
+          Здоровье
+        </li>
+        <li className={s.categoryName} onClick={changerDescription}>
+          Алкоголь
+        </li>
       </ul>
     </div>
   );

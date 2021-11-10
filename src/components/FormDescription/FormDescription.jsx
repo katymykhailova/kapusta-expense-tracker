@@ -3,11 +3,23 @@ import { useForm } from 'react-hook-form';
 import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
 
+import { useState } from 'react';
+
 import DropDownCategory from '../DropDownCategory/DropDownCategory';
 
 export default function FormDescription() {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
+
+  const [open, setOpen] = useState(false);
+  const [placeholder, setPlaceholder] = useState('Категория товара');
+
+  const changerPlaceholder = e => {
+    setPlaceholder(e.target.innerText);
+    setOpen(false);
+  };
+
+  // const onSubmit2 = data => console.log('+');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.formStyles}>
@@ -24,8 +36,11 @@ export default function FormDescription() {
           <input
             {...register('categories')}
             className={s.inputСategoryName}
-            placeholder="Категория товара"
-            disabled
+            // onClick={handleSubmit(onSubmit2)}
+            placeholder={placeholder}
+            // value="Категория товара"
+            onClick={() => setOpen(!open)}
+            readOnly
           />
           <input
             {...register('sum')}
@@ -41,7 +56,8 @@ export default function FormDescription() {
         <input type="submit" />
         <input type="reset" />
       </div>
-      <DropDownCategory />
+      {open && <DropDownCategory changerDescription={changerPlaceholder} />}
+      {/* <DropDownCategory /> */}
     </form>
   );
 }
