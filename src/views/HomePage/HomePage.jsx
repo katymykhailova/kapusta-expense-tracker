@@ -1,8 +1,11 @@
-import React from 'react';
+import ReportTabs from 'components/ReportTabs/ReportTabs';
+import ListProduct from 'components/ListProduct/ListProduct';
+
 export default function HomePage() {
   return (
     <>
-      <div style={{ height: '100vh' }}>HOME PAGE</div>
+      <ListProduct></ListProduct>
+      <ReportTabs></ReportTabs>
     </>
   );
 }
