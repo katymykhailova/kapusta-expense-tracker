@@ -1,10 +1,13 @@
-import React from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import 'yup-phone';
 import { FcGoogle } from 'react-icons/fc';
 import s from 'components/Forms/Forms.module.css';
+import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
 const LogInSchema = Yup.object().shape({
   email: Yup.string().email().required('Required'),
@@ -14,6 +17,9 @@ const LogInSchema = Yup.object().shape({
 });
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const {
     register,
     handleSubmit,
@@ -21,8 +27,13 @@ export default function LoginForm() {
   } = useForm({
     resolver: yupResolver(LogInSchema),
   });
-  const onSubmit = data => {
-    alert(JSON.stringify(data));
+
+  const onSubmit = newUser => {
+    dispatch(logIn(newUser));
+  };
+
+  const onSignUpBtnClick = () => {
+    history.push('/signup');
   };
 
   return (
@@ -44,8 +55,8 @@ export default function LoginForm() {
           </p>
           <div>
             <label className={s.label}>
-              {errors.name && <span className={s.errors}> * </span>} Электронная
-              почта:
+              {errors.email && <span className={s.errors}> * </span>}{' '}
+              Электронная почта:
             </label>
             <input
               className={s.field}
@@ -55,9 +66,9 @@ export default function LoginForm() {
             />
             {errors.email && <p className={s.errors}>{errors.email.message}</p>}
           </div>
-          <div>
+          <div className={s.fieldWrap}>
             <label className={s.label}>
-              {errors.name && <span className={s.errors}> * </span>} Пароль:
+              {errors.password && <span className={s.errors}> * </span>} Пароль:
             </label>
             <input
               className={s.field}
@@ -69,9 +80,14 @@ export default function LoginForm() {
               <p className={s.errors}>{errors.password.message}</p>
             )}
           </div>
-          {/* change buttons */}
-          <button type="submit"> Регистрация </button>
-          <button type="submit"> Войти </button>
+          <ButtonBlock
+            firstButtonText={'Войти'}
+            secondButtonText={'Регистрация'}
+            firstButtonHandler={() => console.log('firstButtonHandler')}
+            secondButtonHandler={onSignUpBtnClick}
+            firstButtonType={'submit'}
+            secondButtonType={'button'}
+          ></ButtonBlock>
         </div>
       </form>
     </div>

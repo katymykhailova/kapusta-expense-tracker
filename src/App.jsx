@@ -8,8 +8,9 @@ import NavBar from 'components/NavBar/NavBar';
 import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
+import HomePage from './views/HomePage/HomePage';
 import './App.css';
-import HomePage from 'views/HomePage/HomePage';
+
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
@@ -26,14 +27,14 @@ export default function App() {
           <Container>
             <Switch>
               <PublicRoute path="/" exact>
-                <Redirect to="/signup" />
+                <Redirect to="/login" />
               </PublicRoute>
 
-              <PublicRoute path="/signup" exact restricted>
+              <PublicRoute path="/signup" restricted>
                 <RegisterPage />
               </PublicRoute>
 
-              <PublicRoute path="/login" redirectTo="/home" restricted>
+              <PublicRoute path="/login" restricted>
                 <LoginPage />
               </PublicRoute>
 

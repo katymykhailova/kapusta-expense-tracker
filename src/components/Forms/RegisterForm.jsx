@@ -1,4 +1,6 @@
-import React from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { signUp } from 'redux/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -8,7 +10,7 @@ import s from 'components/Forms/Forms.module.css';
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
 const registerSchema = Yup.object().shape({
-  name: Yup.string().max(50, 'Too Long').required('Required'),
+  username: Yup.string().max(50, 'Too Long').required('Required'),
   email: Yup.string().email().required('Required'),
   password: Yup.string()
     .min(6, 'Password is too short - should be 6 chars minimum.')
@@ -16,6 +18,8 @@ const registerSchema = Yup.object().shape({
 });
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -23,8 +27,13 @@ export default function RegisterForm() {
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
-  const onSubmit = data => {
-    alert(JSON.stringify(data));
+
+  const onSubmit = newUser => {
+    dispatch(signUp(newUser));
+  };
+
+  const onLogInBtnClick = () => {
+    history.push('/login');
   };
 
   return (
@@ -46,19 +55,21 @@ export default function RegisterForm() {
           </p>
           <div>
             <label className={s.label}>
-              {errors.name && <span className={s.errors}> * </span>} Имя:
+              {errors.username && <span className={s.errors}> * </span>} Имя:
             </label>
             <input
               className={s.field}
-              {...register('name')}
+              {...register('username')}
               placeholder="name"
             />
-            {errors.name && <p className={s.errors}>{errors.name.message}</p>}
+            {errors.username && (
+              <p className={s.errors}>{errors.username.message}</p>
+            )}
           </div>
           <div>
             <label className={s.label}>
-              {errors.name && <span className={s.errors}> * </span>} Электронная
-              почта:
+              {errors.email && <span className={s.errors}> * </span>}{' '}
+              Электронная почта:
             </label>
             <input
               className={s.field}
@@ -68,9 +79,9 @@ export default function RegisterForm() {
             />
             {errors.email && <p className={s.errors}>{errors.email.message}</p>}
           </div>
-          <div>
+          <div className={s.fieldWrap}>
             <label className={s.label}>
-              {errors.name && <span className={s.errors}> * </span>} Пароль:
+              {errors.password && <span className={s.errors}> * </span>} Пароль:
             </label>
             <input
               className={s.field}
@@ -82,14 +93,11 @@ export default function RegisterForm() {
               <p className={s.errors}>{errors.password.message}</p>
             )}
           </div>
-          {/* change buttons */}
-          {/* <button type="submit"> Войти </button>
-          <button type="button"> Регистрация </button> */}
           <ButtonBlock
-            firstButtonText={'Войти'}
-            secondButtonText={'Регистрация'}
+            firstButtonText={'Регистрация'}
+            secondButtonText={'Войти'}
             firstButtonHandler={() => console.log('firstButtonHandler')}
-            secondButtonHandler={() => console.log('secondButtonHandler')}
+            secondButtonHandler={onLogInBtnClick}
             firstButtonType={'submit'}
             secondButtonType={'button'}
           ></ButtonBlock>
