@@ -4,30 +4,23 @@ table {
   padding: 0;
   margin: 0;
 }
-@media screen and (min-width: 320px) {
-  .table {
-    width: 282px;
-    margin: 0 auto;
-    font-size: 12px;
-    line-height: 1.7;
-    letter-spacing: 0.04em;
-  }
+
+@media screen and (max-width: 767px) {
   .tableHead {
     display: none;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .table {
-    width: 601px;
-    height: 384px;
-    margin: 0 auto;
-    font-size: 12px;
-    line-height: 1.7;
-    letter-spacing: 0.04em;
+  .tableWrap {
+    width: 605px;
+    border: 2px solid var(--bg-color);
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
   }
 
-  .tableRow {
+  .tableHead {
+    width: 601px;
     background: var(--bg-color);
     border-radius: 20px 20px 0 0;
     height: 40px;
@@ -36,15 +29,8 @@ table {
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    color: #000;
+    color: var(--black-color);
     padding: 0 26px 0 21px;
-  }
-
-  .tableHead {
-    width: 100%;
-    display: flex;
-    border-radius: 20px 20px 0 0;
-    background: var(--bg-color);
   }
 
   .tableDate {
@@ -71,22 +57,22 @@ table {
     width: 57px;
     text-align: end;
   }
-  .tableBody {
+  .scrollWrap {
     display: block;
+    width: 605px;
     height: 346px;
     border-collapse: collapse;
     width: 100%;
-    border: 2px solid var(--bg-color);
     overflow: scroll;
   }
 
-  .tableBody::-webkit-scrollbar {
+  .scrollWrap::-webkit-scrollbar {
     width: 6px;
     border-radius: 2px;
     background: transparent;
   }
 
-  .tableBody::-webkit-scrollbar-thumb {
+  .scrollWrap::-webkit-scrollbar-thumb {
     height: 10px;
     background-color: var(--accent-color-primary);
     border-radius: 2px;
@@ -94,16 +80,13 @@ table {
 }
 
 @media screen and (min-width: 1280px) {
-  .table {
+  .tableWrap {
     width: 760px;
-    height: 384px;
-    margin: 0 auto;
-    font-size: 12px;
-    line-height: 1.7;
-    letter-spacing: 0.04em;
   }
-  .tableRow {
-    padding: 0 46px 0 20px;
+
+  .tableHead {
+    width: 760px;
+    padding: 0 52px 0 20px;
   }
 
   .tableDate {
