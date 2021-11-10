@@ -29,6 +29,7 @@
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.11",
     "yup-phone": "^1.2.19"
