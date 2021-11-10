@@ -12,14 +12,20 @@ const token = {
 };
 
 export async function signUpUser(credentials) {
+  const { email, password } = credentials;
   const { data } = await axios.post('/auth/signup', credentials);
-  return data.data.result;
+  if (data.status === 'success') {
+    const user = await logInUser({ email, password });
+    console.log('signUp', user);
+    return user;
+  }
 }
 
 export async function logInUser(credentials) {
   const { data } = await axios.post(`/auth/login`, credentials);
-  token.set(data.data.token);
-  return data.data;
+  token.set(data.data.user.token);
+  console.log('logIn', data.data.user);
+  return data.data.user;
 }
 
 export async function logOutUser() {

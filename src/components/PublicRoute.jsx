@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { getUserIsLoggedIn, getUserIsSignedUp } from './../redux/auth';
+import { getUserIsLoggedIn } from './../redux/auth';
 
 function PublicRoute({
   children,
@@ -9,11 +9,9 @@ function PublicRoute({
   ...routeProps
 }) {
   const isLoggedIn = useSelector(getUserIsLoggedIn);
-  const isSignedUp = useSelector(getUserIsSignedUp);
   const shouldRedirect = isLoggedIn && restricted;
   return (
     <Route {...routeProps}>
-      {isSignedUp && <Redirect to="/login" />}
       {shouldRedirect ? <Redirect to={redirectTo} /> : children}
     </Route>
   );

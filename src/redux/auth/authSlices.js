@@ -5,7 +5,6 @@ const initialState = {
   user: { username: null, email: null, avatar: null, balance: null },
   token: null,
   error: null,
-  isSignedUp: false,
   isLoggedIn: false,
   isFetchCurrentUser: false,
   isLoading: false,
@@ -22,7 +21,8 @@ const authSlice = createSlice({
 
     [signUp.fulfilled]: (state, { payload }) => {
       state.user = payload;
-      state.isSignedUp = true;
+      state.token = payload.token;
+      state.isLoggedIn = true;
       state.isLoading = false;
     },
 
