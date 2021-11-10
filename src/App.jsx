@@ -19,8 +19,6 @@ import FormDescription from './components/FormDescription/FormDescription';
 // const HomePage = lazy(() => import('' /* webpackChunkName: "homepage" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
 
-//asasddas
-
 export default function App() {
   return (
     <>
