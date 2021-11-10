@@ -29,7 +29,7 @@ export async function logInUser(credentials) {
 }
 
 export async function logOutUser() {
-  await axios.post(`/auth/logout`);
+  await axios.get(`/auth/logout`);
   token.unset();
 }
 
