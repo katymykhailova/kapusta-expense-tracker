@@ -25,9 +25,7 @@ export default function BalanceInput({ balance }) {
       </div>
       {!balance && (
         //Notification must be here
-        <>
-          <p>Привет! Для начала работы внеси текущий баланс своего счета!</p>
-        </>
+        <></>
       )}
     </div>
   );

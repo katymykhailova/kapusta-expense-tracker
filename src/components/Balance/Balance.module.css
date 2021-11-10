@@ -84,14 +84,30 @@
     align-items: center;
     margin-left: 110px;
   }
-  .navigation {
-    margin-left: auto;
-    margin-bottom: 0;
-  }
   .title {
     margin-right: 21px;
   }
   .balanceInput {
     margin-right: 15px;
+  }
+  .balanceInput.report {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .balance.report {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .balanceDeskTab {
+    display: none;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .balance {
+    margin-left: auto;
+  }
+  .balance.report {
+    display: none;
   }
 }

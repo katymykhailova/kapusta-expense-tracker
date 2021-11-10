@@ -29,11 +29,6 @@
   color: rgba(82, 85, 95, 0.7);
   margin-bottom: 5px;
 }
-@media screen and (max-width: 767px) {
-  .navigation.line {
-    margin-right: 125px;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .navigation {
@@ -41,6 +36,11 @@
     margin-bottom: 0;
   }
   .navigationMonthTab {
-    margin: 0;
+    margin: 0 0 0 80px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .navigationMonthTab {
+    margin-left: 225px;
   }
 }
