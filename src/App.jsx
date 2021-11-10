@@ -14,6 +14,8 @@ import HomePage from 'views/HomePage/HomePage';
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
 
+//asasddas
+
 export default function App() {
   return (
     <>
