@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRout';
 import MainContainer from './components/MainContainer/MainContainer';
 import Container from './components/Container/Container';
 import NavBar from 'components/NavBar/NavBar';
+import Toast from 'components/Toast/Toast.jsx';
 import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
@@ -15,6 +16,7 @@ import FormDescription from './components/FormDescription/FormDescription';
 
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
+// const HomePage = lazy(() => import('' /* webpackChunkName: "homepage" */));
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
 
 export default function App() {
@@ -55,6 +57,7 @@ export default function App() {
           </Container>
         </MainContainer>
       </Suspense>
+      <Toast />
     </>
   );
 }

@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import 'yup-phone';
 import { FcGoogle } from 'react-icons/fc';
+// import toast from 'react-hot-toast';
 import s from 'components/Forms/Forms.module.css';
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
@@ -30,6 +31,7 @@ export default function RegisterForm() {
 
   const onSubmit = newUser => {
     dispatch(signUp(newUser));
+    // toast.success('hi');
   };
 
   const onLogInBtnClick = () => {
