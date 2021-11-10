@@ -1,3 +1,7 @@
+.formStyles {
+  position: relative;
+}
+
 .productPosition {
   display: flex;
 }
@@ -67,7 +71,7 @@
   }
 
   .inputValueProduct {
-    width: 95px;
+    width: 185px;
     margin-top: 20px;
     text-align: center;
     border-radius: 16px;
@@ -78,22 +82,22 @@
   }
 
   .inputProductName {
-    width: 252px;
+    width: 282px;
     margin-top: 54px;
     border-bottom: none;
     border-top-right-radius: 16px;
   }
 
   .inputСategoryName {
-    width: 252px;
+    width: 282px;
     border-bottom-right-radius: 16px;
     border-bottom-left-radius: 16px;
   }
 
   .calculatorPos {
     position: absolute;
-    top: 159px;
-    right: 80px;
+    top: 157px;
+    right: 40px;
     padding: 12px;
     border-left: 2px solid#f5f6fb;
   }
@@ -101,16 +105,16 @@
 
 @media screen and (min-width: 768px) {
   .inputProductName {
-    width: 162px;
+    width: 192px;
   }
 
   .inputСategoryName {
-    width: 143px;
+    width: 171px;
     border-left: none;
   }
 
   .inputValueProduct {
-    width: 76px;
+    width: 104px;
     border-left: none;
     text-align: center;
   }
@@ -138,16 +142,16 @@
 
 @media screen and (min-width: 1280px) {
   .inputProductName {
-    width: 240px;
+    width: 289px;
   }
 
   .inputСategoryName {
-    width: 160px;
+    width: 188px;
     border-left: none;
   }
 
   .inputValueProduct {
-    width: 98px;
+    width: 126px;
     border-left: none;
     text-align: center;
   }
@@ -156,6 +160,8 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
+
+    position: relative;
   }
 
   /* .calculatorPos {
