@@ -2,7 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { signUp, logIn, logOut, getCurrentUser } from './index';
 
 const initialState = {
-  user: { username: null, email: null, avatar: null, balance: null },
+  user: {
+    _id: null,
+    username: null,
+    email: null,
+    avatar: null,
+    balance: null,
+    token: null,
+  },
   token: null,
   error: null,
   isLoggedIn: false,
@@ -53,7 +60,14 @@ const authSlice = createSlice({
     },
 
     [logOut.fulfilled]: (state, _) => {
-      state.user = { username: null, email: null, avatar: null, balance: null };
+      state.user = {
+        _id: null,
+        username: null,
+        email: null,
+        avatar: null,
+        balance: null,
+        token: null,
+      };
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;

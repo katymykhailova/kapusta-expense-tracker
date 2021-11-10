@@ -16,7 +16,6 @@ export async function signUpUser(credentials) {
   const { data } = await axios.post('/auth/signup', credentials);
   if (data.status === 'success') {
     const user = await logInUser({ email, password });
-    console.log('signUp', user);
     return user;
   }
 }
@@ -24,7 +23,6 @@ export async function signUpUser(credentials) {
 export async function logInUser(credentials) {
   const { data } = await axios.post(`/auth/login`, credentials);
   token.set(data.data.user.token);
-  console.log('logIn', data.data.user);
   return data.data.user;
 }
 
@@ -36,5 +34,6 @@ export async function logOutUser() {
 export async function fetchCurrentUser(savedToken) {
   token.set(savedToken);
   const { data } = await axios.get(`/auth/current`);
-  return data;
+  // console.log(data);
+  return data.data.result;
 }

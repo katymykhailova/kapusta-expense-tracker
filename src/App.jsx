@@ -1,5 +1,6 @@
-import { /*lazy,*/ Suspense } from 'react';
+import { /*lazy,*/ Suspense, useEffect } from 'react';
 import { Switch, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRout';
 import MainContainer from './components/MainContainer/MainContainer';
@@ -10,6 +11,7 @@ import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
 import HomePage from './views/HomePage/HomePage';
+import { getCurrentUser } from 'redux/auth';
 import './App.css';
 
 import FormDescription from './components/FormDescription/FormDescription';
@@ -20,6 +22,12 @@ import FormDescription from './components/FormDescription/FormDescription';
 // const ReportPage = lazy(() => import('' /* webpackChunkName: "report" */));
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <NavBar />
