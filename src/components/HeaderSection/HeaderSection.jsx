@@ -12,7 +12,7 @@ export default function HeaderSection({ typePage }) {
       {typePage === 'home' && (
         <div className={s.headerTab}>
           <div className={s.navHome}>
-            <Navigation router="/home">
+            <Navigation router="/report">
               <span className={s.linkTitle}>Перейти к отчетам</span>
               <img
                 className={s.linkIcon}
@@ -26,7 +26,7 @@ export default function HeaderSection({ typePage }) {
       )}
       {typePage === 'report' && (
         <div className={s.headerTabReport}>
-          <Navigation router="/report">
+          <Navigation router="/home">
             <div className={s.linkBox}>
               <ArrowBackIcon
                 style={{ color: '#FF751D', cursor: 'pointer' }}
