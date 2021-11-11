@@ -22,7 +22,6 @@ const getCurrentUser = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const savedToken = state.auth.token;
-    // console.log(savedToken);
     if (savedToken === null) return rejectWithValue();
     const data = await authApi.fetchCurrentUser(savedToken);
     return data;
