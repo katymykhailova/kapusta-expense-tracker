@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from '../../services/authApi';
 
 const signUp = createAsyncThunk('auth/register', async credentials => {
-  const { username, email, avatar, balance } = await authApi.signUpUser(
+  const { username, email, avatar, balance, token } = await authApi.signUpUser(
     credentials,
   );
-  return { username, email, avatar, balance };
+  return { username, email, avatar, balance, token };
 });
 
 const logIn = createAsyncThunk('auth/logIn', async credentials => {
