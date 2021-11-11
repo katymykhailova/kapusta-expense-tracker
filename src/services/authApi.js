@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+// import toast from 'react-hot-toast';
 axios.defaults.baseURL = `http://localhost:3000/api`;
 
 const token = {
@@ -12,23 +12,29 @@ const token = {
 };
 
 export async function signUpUser(credentials) {
+  const { email, password } = credentials;
   const { data } = await axios.post('/auth/signup', credentials);
-  return data.data.result;
+
+  if (data.status === 'success') {
+    const user = await logInUser({ email, password });
+    // toast.success('Регистрация успешна');
+    return user;
+  }
 }
 
 export async function logInUser(credentials) {
   const { data } = await axios.post(`/auth/login`, credentials);
-  token.set(data.data.token);
-  return data.data;
+  token.set(data.data.user.token);
+  return data.data.user;
 }
 
 export async function logOutUser() {
-  await axios.post(`/auth/logout`);
+  await axios.get(`/auth/logout`);
   token.unset();
 }
 
 export async function fetchCurrentUser(savedToken) {
   token.set(savedToken);
   const { data } = await axios.get(`/auth/current`);
-  return data;
+  return data.data.result;
 }

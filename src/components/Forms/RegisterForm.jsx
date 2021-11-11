@@ -1,11 +1,13 @@
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch /*useSelector*/ } from 'react-redux';
 import { signUp } from 'redux/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import 'yup-phone';
+// import { getAuthError, getUserIsLoggedIn } from 'redux/auth';
 import { FcGoogle } from 'react-icons/fc';
+// import toast from 'react-hot-toast';
 import s from 'components/Forms/Forms.module.css';
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
@@ -19,6 +21,7 @@ const registerSchema = Yup.object().shape({
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
+  // const authError = useSelector(getAuthError);
   const history = useHistory();
   const {
     register,
@@ -30,6 +33,8 @@ export default function RegisterForm() {
 
   const onSubmit = newUser => {
     dispatch(signUp(newUser));
+    // authError && toast.error(authError);
+    // console.log(authError);
   };
 
   const onLogInBtnClick = () => {
