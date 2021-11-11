@@ -5,7 +5,15 @@ export default function DropDownCategory({ changerDescription }) {
   return (
     <div className={s.categoryPosition}>
       <ul>
-        <li className={s.categoryName} onClick={changerDescription}>
+        <li
+          className={s.categoryName}
+          // label="Транспорт"
+          value="Tranport"
+          onClick={changerDescription}
+          // onClick={() => {
+          //   changerDescription(value);
+          // }}
+        >
           Транспорт
         </li>
         <li className={s.categoryName} onClick={changerDescription}>
@@ -21,22 +29,3 @@ export default function DropDownCategory({ changerDescription }) {
     </div>
   );
 }
-
-// import s from './DropDownCategory.module.css';
-// import { createPortal } from 'react-dom';
-
-// const modalRoot = document.querySelector('#modal-root__category');
-
-// export default function DropDownCategory() {
-//   return createPortal(
-//     <div className={s.categoryPosition}>
-//       <ul>
-//         <li className={s.categoryName}>Транспорт</li>
-//         <li className={s.categoryName}>Продукты</li>
-//         <li className={s.categoryName}>Здоровье</li>
-//         <li className={s.categoryName}>Алкоголь</li>
-//       </ul>
-//     </div>,
-//     modalRoot,
-//   );
-// }
