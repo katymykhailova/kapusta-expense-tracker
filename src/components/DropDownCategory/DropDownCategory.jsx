@@ -2,11 +2,7 @@ import s from './DropDownCategory.module.css';
 
 export default function DropDownCategory() {
   return (
-    <div
-      className={s.categoryPosition}
-      menuPortalTarget={document.body}
-      styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
-    >
+    <div className={s.categoryPosition}>
       <ul>
         <li className={s.categoryName}>Транспорт</li>
         <li className={s.categoryName}>Продукты</li>

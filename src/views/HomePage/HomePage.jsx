@@ -1,11 +1,12 @@
 import ReportTabs from 'components/ReportTabs/ReportTabs';
-// import ListProduct from 'components/ListProduct/ListProduct';
+import HeaderSection from '../../components/HeaderSection/HeaderSection';
+import s from './HomePage.module.css';
 
 export default function HomePage() {
   return (
-    <>
-      {/* <ListProduct></ListProduct> */}
+    <div className={s.pageWrap}>
+      <HeaderSection typePage="home" />
       <ReportTabs></ReportTabs>
-    </>
+    </div>
   );
 }
