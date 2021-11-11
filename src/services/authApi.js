@@ -1,6 +1,6 @@
 import axios from 'axios';
-// import toast from 'react-hot-toast';
-axios.defaults.baseURL = `http://localhost:3000/api`;
+
+axios.defaults.baseURL = `http://kapusta-api-project.herokuapp.com/api`;
 
 const token = {
   set(token) {
@@ -17,7 +17,6 @@ export async function signUpUser(credentials) {
 
   if (data.status === 'success') {
     const user = await logInUser({ email, password });
-    // toast.success('Регистрация успешна');
     return user;
   }
 }
