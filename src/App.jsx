@@ -44,9 +44,9 @@ export default function App() {
                 <LoginPage />
               </PublicRoute>
 
-              <PrivateRoute path="/home">
+              <PublicRoute path="/home">
                 <HomePage />
-              </PrivateRoute>
+              </PublicRoute>
 
               <PrivateRoute path="/report">
                 <ReportPage />
