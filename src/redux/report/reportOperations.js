@@ -18,3 +18,12 @@ const getSummarryExpensesByYear = createAsyncThunk(
 );
 
 export { getSummarryIncomesByYear, getSummarryExpensesByYear };
+=======
+export const getReportList = createAsyncThunk(
+  'report/getReportList',
+  async (reportType, year) => {
+    const reportList = await reportApi.getReportList(reportType, year);
+    return reportList.data;
+  },
+);
+
