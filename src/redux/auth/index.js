@@ -1,4 +1,10 @@
-export { signUp, logIn, logOut, getCurrentUser } from './authOperations';
+export {
+  signUp,
+  logIn,
+  logOut,
+  getCurrentUser,
+  updateUserBalance,
+} from './authOperations';
 
 export {
   getUserIsLoggedIn,
