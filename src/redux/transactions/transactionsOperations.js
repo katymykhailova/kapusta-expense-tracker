@@ -5,7 +5,7 @@ const getTransactionsByMonts = createAsyncThunk(
   'transactions/getTransactionsByMonth',
   async date => {
     const transactions = await transactionsApi.getTransactionsByMonts(date);
-    console.log(transactions.data);
+    console.log(transactions);
     return transactions.data;
   },
 );

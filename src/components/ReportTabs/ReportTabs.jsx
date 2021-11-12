@@ -48,10 +48,9 @@ export default function ReportTabs() {
     dispatch(getTransactionsByMonts(date));
   }, [dispatch]);
 
+  const income = transactions.filter(trans => trans.type === true);
+  const outcome = transactions.filter(trans => trans.type === false);
   console.log(transactions);
-
-  // const income =
-  // const outcome =
   // const handleDelete = (id) => {};
 
   return (
@@ -62,11 +61,12 @@ export default function ReportTabs() {
           <CustomTab className={`${s.commonTab}`}>Доход</CustomTab>
         </TabList>
         <div className={s.tabsWrap}>
-          {!isMobile && <FormDescription />}
           <TabPanel>
+            {!isMobile && <FormDescription />}
             <ReportTable></ReportTable>
           </TabPanel>
           <TabPanel>
+            {!isMobile && <FormDescription />}
             <ReportTable></ReportTable>
           </TabPanel>
           {isDesctop && <Summary />}
