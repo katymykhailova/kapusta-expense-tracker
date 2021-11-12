@@ -7,21 +7,21 @@ import ReportList from '../ReportList/ReportList';
 const typeTrans = 'expenses';
 
 const expenses = [
-  { _id: 1, category: 'Продукты', value: 1500 },
-  { _id: 2, category: 'Прочее', value: 4000 },
-  { _id: 3, category: 'Техника', value: 3000 },
-  { _id: 4, category: 'Развлечения', value: 8000 },
-  { _id: 5, category: 'Здоровье', value: 700 },
-  { _id: 6, category: 'Алкоголь', value: 1200 },
-  { _id: 7, category: 'Транспорт', value: 300 },
-  { _id: 8, category: 'Спорт, хобби', value: 90 },
-  { _id: 9, category: 'Коммуналка, связь', value: 950 },
-  { _id: 10, category: 'Образование', value: 140 },
-  { _id: 11, category: 'Всё для дома', value: 890 },
+  { _id: 1, category: { _id: 1, name: 'Продукты' }, amount: 1500 },
+  { _id: 2, category: { _id: 2, name: 'Прочее' }, amount: 4000 },
+  { _id: 3, category: { _id: 3, name: 'Техника' }, amount: 3000 },
+  { _id: 4, category: { _id: 4, name: 'Развлечения' }, amount: 8000 },
+  { _id: 5, category: { _id: 5, name: 'Здоровье' }, amount: 700 },
+  { _id: 6, category: { _id: 6, name: 'Алкоголь' }, amount: 1200 },
+  { _id: 7, category: { _id: 7, name: 'Транспорт' }, amount: 300 },
+  { _id: 8, category: { _id: 8, name: 'Спорт, хобби' }, amount: 90 },
+  { _id: 9, category: { _id: 9, name: 'Коммуналка, связь' }, amount: 950 },
+  { _id: 10, category: { _id: 10, name: 'Образование' }, amount: 140 },
+  { _id: 11, category: { _id: 11, name: 'Всё для дома' }, amount: 890 },
 ];
 const incomes = [
-  { _id: 12, category: 'Заработная плата', value: 35000 },
-  { _id: 14, category: 'Доп.доход', value: 40000 },
+  { _id: 12, category: { _id: 12, name: 'Заработная плата' }, amount: 35000 },
+  { _id: 14, category: { _id: 14, name: 'Доп.доход' }, amount: 40000 },
 ];
 
 export default function CurrentMonthReport() {

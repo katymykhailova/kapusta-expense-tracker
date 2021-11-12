@@ -98,7 +98,7 @@
     margin-left: 0;
   }
 }
-@media screen and (max-width: 1279px) {
+/* @media screen and (max-width: 1279px) {
   .balanceDeskTab {
     display: none;
   }
@@ -110,4 +110,4 @@
   .balance.report {
     display: none;
   }
-}
+} */

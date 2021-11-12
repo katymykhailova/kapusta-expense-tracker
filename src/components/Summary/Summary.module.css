@@ -26,6 +26,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    max-height: 240px;
+    overflow-y: scroll;
   }
   .summaryItem {
     display: flex;

@@ -9,8 +9,8 @@ export default function ReportList({ trans }) {
           <li className={s.transEmpty}>Транзакций нет</li>
         ) : (
           trans.map(item => (
-            <li key={item.category} className={s.transItem}>
-              <p className={s.itemValue}>{item.value}</p>
+            <li key={item.category._id} className={s.transItem}>
+              <p className={s.itemValue}>{item.amount}</p>
               <div
                 className={
                   item.isActive ? s.svgContainerActive : s.svgContainer
@@ -21,10 +21,10 @@ export default function ReportList({ trans }) {
                   height="58"
                   className={item.isActive ? s.iconActive : s.icon}
                 >
-                  <use xlinkHref={`${sprite}#${item.category}`} />
+                  <use xlinkHref={`${sprite}#${item.category.name}`} />
                 </svg>
               </div>
-              <h3 className={s.titleItem}>{item.category}</h3>
+              <h3 className={s.titleItem}>{item.category.name}</h3>
             </li>
           ))
         )}
