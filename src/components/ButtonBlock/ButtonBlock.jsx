@@ -33,7 +33,7 @@ const ButtonBlock = ({
 ButtonBlock.propTypes = {
   firstButtonText: PropTypes.string.isRequired,
   secondButtonText: PropTypes.string.isRequired,
-  firstButtonHandler: PropTypes.func.isRequired,
+  firstButtonHandler: PropTypes.func,
   secondButtonHandler: PropTypes.func.isRequired,
   firstButtonType: PropTypes.string.isRequired,
   secondButtonType: PropTypes.string.isRequired,
