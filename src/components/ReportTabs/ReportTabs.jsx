@@ -48,7 +48,7 @@ export default function ReportTabs() {
     dispatch(getTransactionsByMonts(date));
   }, [dispatch]);
 
-  // console.log(categories);
+  console.log(transactions);
 
   // const income =
   // const outcome =
