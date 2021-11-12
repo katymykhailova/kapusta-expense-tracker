@@ -10,20 +10,19 @@ import DropDownCategory from '../DropDownCategory/DropDownCategory';
 // import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
 export default function FormDescription() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = data => {
-    // console.log(data);
+    console.log(data);
     reset({
       name: '',
-      categories: 'Категория товара',
+      categories: '',
       sum: '',
     });
-    console.log(data);
   };
 
   const [open, setOpen] = useState(false);
-  const [placeholder, setPlaceholder] = useState('Категория товара');
+  const [placeholderCategories, setPlaceholderCategories] = useState('');
 
   const ref = useRef();
 
@@ -40,78 +39,94 @@ export default function FormDescription() {
   }, [open]);
 
   const changerPlaceholder = e => {
-    console.log(e);
-    setPlaceholder(e.target.innerText);
+    console.log(e.target.innerText);
+    setPlaceholderCategories(e.target.innerText);
     setOpen(false);
   };
 
+  useEffect(() => {
+    setValue('categories', placeholderCategories);
+  }, [placeholderCategories]);
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      autoComplete="off"
-      className={s.formStyles}
-      ref={ref}
-    >
-      <div className={s.productInfo}>
-        <div className={s.datePosition}>
-          <input {...register('date')} type="date" className={s.dateProduct} />
-        </div>
-        <div className={s.productPosition}>
-          <input
-            {...register('name')}
-            className={s.inputProductName}
-            placeholder="Описание товара"
-            // name="firstName"
-          />
-          <input
-            {...register('categories')}
-            className={s.inputСategoryName}
-            // onClick={handleSubmit(onSubmit2)}
-            // placeholder={placeholder}
-            value={placeholder}
-            // value="Категория товара"
-            onClick={() => setOpen(!open)}
-            readOnly
-          />
-          <input
-            {...register('sum')}
-            className={s.inputValueProduct}
-            placeholder="0,00"
-          />
-          <div className={s.calculatorPos}>
-            <img src={calculator} alt="React Logo" />
+    <div>
+      <form
+        // autoComplete="off"
+        onSubmit={handleSubmit(onSubmit)}
+        className={s.formStyles}
+        ref={ref}
+      >
+        <div className={s.productInfo}>
+          <div className={s.datePosition}>
+            <input
+              {...register('date')}
+              type="date"
+              className={s.dateProduct}
+            />
+          </div>
+          <div className={s.productPosition}>
+            <input
+              {...register('name')}
+              className={s.inputProductName}
+              placeholder="Описание товара"
+            />
+            <input
+              autoComplete="off"
+              {...register('categories')}
+              className={s.inputСategoryName}
+              placeholder="Категория товара"
+              // value={placeholderCategories}
+              // value="Категория товара"
+              onClick={() => setOpen(!open)}
+              // onChange={changerPlaceholder}
+              readOnly
+            />
+
+            {/* <select {...register('categories')} className={s.inputСategoryName}>
+            <option value="female">female</option>
+            <option value="male">male</option>
+            <option value="other">other</option>
+          </select> */}
+
+            <input
+              {...register('sum')}
+              className={s.inputValueProduct}
+              placeholder="0,00"
+            />
+            <div className={s.calculatorPos}>
+              <img src={calculator} alt="React Logo" />
+            </div>
           </div>
         </div>
-      </div>
-      <div className={s.btnPosition}>
-        <input
-          value="ввод"
-          type="submit"
-          // type="button"
-          // onClick={() => {
-          //   reset({
-          //     name: '',
-          //     categories: '',
-          //     sum: '',
-          //   });
-          // }}
-        />
-        <input
-          value="очистить"
-          // onClick={() => setPlaceholder('Категория товара')}
-          type="reset"
-          type="button"
-          // onClick={() => {
-          //   reset({
-          //     name: '',
-          //     categories: '',
-          //     sum: '',
-          //   });
-          // }}
-        />
-      </div>
-      {open && <DropDownCategory changerDescription={changerPlaceholder} />}
-      {/* <DropDownCategory /> */}
-    </form>
+        <div className={s.btnPosition}>
+          <input
+            value="ввод"
+            type="submit"
+            // type="button"
+            // onClick={() => {
+            //   reset({
+            //     name: '',
+            //     categories: '',
+            //     sum: '',
+            //   });
+            // }}
+          />
+          <input
+            value="очистить"
+            // onClick={() => setPlaceholderCategories('Категория товара')}
+            // type="reset"
+            type="button"
+            onClick={() => {
+              reset({
+                name: '',
+                categories: '',
+                sum: '',
+              });
+            }}
+          />
+        </div>
+        {open && <DropDownCategory changerDescription={changerPlaceholder} />}
+      </form>
+    </div>
   );
 }
