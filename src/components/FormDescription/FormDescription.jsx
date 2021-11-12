@@ -7,7 +7,7 @@ import { useState, useRef, useEffect } from 'react';
 
 import DropDownCategory from '../DropDownCategory/DropDownCategory';
 
-// import ButtonBlock from '../ButtonBlock/ButtonBlock';
+import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
 export default function FormDescription() {
   const { register, handleSubmit, reset, setValue } = useForm();
@@ -78,15 +78,8 @@ export default function FormDescription() {
               // value={placeholderCategories}
               // value="Категория товара"
               onClick={() => setOpen(!open)}
-              // onChange={changerPlaceholder}
               readOnly
             />
-
-            {/* <select {...register('categories')} className={s.inputСategoryName}>
-            <option value="female">female</option>
-            <option value="male">male</option>
-            <option value="other">other</option>
-          </select> */}
 
             <input
               {...register('sum')}
@@ -99,21 +92,9 @@ export default function FormDescription() {
           </div>
         </div>
         <div className={s.btnPosition}>
-          <input
-            value="ввод"
-            type="submit"
-            // type="button"
-            // onClick={() => {
-            //   reset({
-            //     name: '',
-            //     categories: '',
-            //     sum: '',
-            //   });
-            // }}
-          />
+          {/* <button value="ввод" type="submit" />
           <input
             value="очистить"
-            // onClick={() => setPlaceholderCategories('Категория товара')}
             // type="reset"
             type="button"
             onClick={() => {
@@ -123,6 +104,20 @@ export default function FormDescription() {
                 sum: '',
               });
             }}
+          /> */}
+          <ButtonBlock
+            firstButtonText="ввод"
+            secondButtonText="очистить"
+            // firstButtonHandler={onSubmit}
+            secondButtonHandler={() => {
+              reset({
+                name: '',
+                categories: '',
+                sum: '',
+              });
+            }}
+            firstButtonType="submit"
+            secondButtonType="button"
           />
         </div>
         {open && <DropDownCategory changerDescription={changerPlaceholder} />}
