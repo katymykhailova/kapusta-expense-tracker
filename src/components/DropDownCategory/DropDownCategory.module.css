@@ -1,0 +1,49 @@
+.categoryPosition {
+  position: absolute;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.categoryName {
+  /* width: 148px; */
+  height: 43px;
+  color: #c7ccdc;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.categoryName:hover {
+  background-color: #f5f6fb;
+  color: #52555f;
+}
+
+.categoryPosition {
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 767px) {
+  .categoryPosition {
+    box-shadow: 0px 1px 1px 0px #00000040;
+  }
+
+  .categoryPosition {
+    top: 135px;
+    right: 0px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .categoryPosition {
+    top: 40px;
+    right: 123px;
+    width: 171px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .categoryPosition {
+    top: 40px;
+    right: 454px;
+    width: 187px;
+  }
+}

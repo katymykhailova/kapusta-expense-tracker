@@ -1,0 +1,176 @@
+.formStyles {
+  position: relative;
+}
+
+.productPosition {
+  display: flex;
+}
+.datePosition {
+  display: flex;
+}
+
+.btnPosition {
+  display: flex;
+}
+
+.dateProduct {
+  border: none;
+}
+
+.inputProductName {
+  padding: 13px;
+  border-radius: 16px 0 0 0;
+  border-right: none;
+  outline: none;
+  border: 2px solid#f5f6fb;
+  color: #52555f;
+}
+
+/* select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+} */
+
+.inputСategoryName {
+  padding: 13px;
+  outline: none;
+  border: 2px solid#f5f6fb;
+  background: #ffffff;
+  /* color: #52555f; */
+  color: #c7ccdc;
+}
+
+.inputValueProduct {
+  padding: 13px;
+  border-radius: 0 16px 16px 0;
+  outline: none;
+  border: 2px solid#f5f6fb;
+  text-align: right;
+  color: #52555f;
+}
+.inputProductName::placeholder {
+  color: #c7ccdc;
+}
+
+.inputСategoryName::placeholder {
+  color: #c7ccdc;
+}
+
+@media screen and (max-width: 767px) {
+  .formStyles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .productPosition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .inputValueProduct {
+    width: 185px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 16px;
+  }
+
+  .dateProduct {
+    display: none;
+  }
+
+  .inputProductName {
+    width: 282px;
+    margin-top: 54px;
+    border-bottom: none;
+    border-top-right-radius: 16px;
+  }
+
+  .inputСategoryName {
+    width: 282px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+  }
+
+  .calculatorPos {
+    position: absolute;
+    top: 157px;
+    right: 40px;
+    padding: 12px;
+    border-left: 2px solid#f5f6fb;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .inputProductName {
+    width: 192px;
+  }
+
+  .inputСategoryName {
+    width: 171px;
+    border-left: none;
+  }
+
+  .inputValueProduct {
+    width: 104px;
+    border-left: none;
+    text-align: center;
+  }
+
+  .btnPosition {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .productInfo {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .calculatorPos {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+  .productPosition {
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .inputProductName {
+    width: 289px;
+  }
+
+  .inputСategoryName {
+    width: 188px;
+    border-left: none;
+  }
+
+  .inputValueProduct {
+    width: 126px;
+    border-left: none;
+    text-align: center;
+  }
+
+  .formStyles {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+
+    position: relative;
+  }
+
+  /* .calculatorPos {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+  .productPosition {
+    position: relative;
+  } */
+}

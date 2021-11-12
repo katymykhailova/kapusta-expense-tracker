@@ -1,0 +1,27 @@
+.sectionReport {
+  padding: 30px 0px 20px 0px;
+}
+.sectionTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.title {
+  margin-right: 15px;
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.14;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .sectionReport {
+    background: #ffffff;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+    padding: 30px 20px 30px 30px;
+  }
+}

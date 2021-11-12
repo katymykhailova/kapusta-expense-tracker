@@ -1,0 +1,113 @@
+.title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-bottom: 6px;
+}
+
+.balanceSubmit {
+  min-width: 125px;
+  height: 44px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(82, 85, 95, 0.7);
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.balanceSubmit:hover,
+.balanceSubmit:focus {
+  background-color: #ff751d;
+  color: #ffffff;
+}
+
+.balanceBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+}
+.balanceInput {
+  width: 125px;
+  height: 44px;
+  padding: 15px 5px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 16px;
+  color: #000000;
+  background-color: transparent;
+  outline: none;
+}
+
+.balanceInput.report {
+  border-radius: 16px;
+}
+
+.balanceInput::placeholder {
+  color: #000000;
+}
+.balanceInput:focus {
+  border: 2px solid #ffffff;
+}
+
+@media screen and (max-width: 767px) {
+  .balanceInput {
+    border-radius: 22px 0px 0px 22px;
+  }
+  .balanceSubmit {
+    border-radius: 0px 22px 22px 0px;
+    border-left-width: 0;
+  }
+  .balanceInput.report {
+    border-radius: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .balance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 110px;
+  }
+  .title {
+    margin-right: 21px;
+  }
+  .balanceInput {
+    margin-right: 15px;
+  }
+  .balanceInput.report {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .balance.report {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .balanceDeskTab {
+    display: none;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .balance {
+    margin-left: auto;
+  }
+  .balance.report {
+    display: none;
+  }
+}

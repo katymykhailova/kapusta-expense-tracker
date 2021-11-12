@@ -1,0 +1,41 @@
+.bgPublic {
+  height: 100vh;
+  background: url('../../images/bg/cabbage-mobile.png') no-repeat 270px 112px,
+    url('../../images/bg/single-cabbage.png') no-repeat 40px 720px,
+    url('../../images/bg/bg-mobile.png') no-repeat;
+}
+
+.bgPrivate {
+  height: 100vh;
+  background: url('../../images/bg/bg-mobile.png') no-repeat;
+}
+
+@media screen and (min-width: 321px) {
+  .bgPublic {
+    background: url('../../images/bg/cabbage-desktop.png') no-repeat 11px 50px,
+      url('../../images/bg/double-cabbage.png') no-repeat 100px 800px,
+      url('../../images/bg/bg-desktop.png') no-repeat;
+  }
+
+  .bgPrivate {
+    background: url('../../images/bg/double-cabbage.png') no-repeat 500px 850px,
+      url('../../images/bg/bg-desktop.png') no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bgPublic {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: url('../../images/bg/cabbage-desktop.png') no-repeat 11px 70px,
+      url('../../images/bg/double-cabbage.png') no-repeat 250px 700px,
+      url('../../images/bg/bg-desktop.png') no-repeat;
+  }
+
+  .bgPrivate {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: url('../../images/bg/cabbage-desktop.png') no-repeat 11px 670px,
+      url('../../images/bg/bg-desktop.png') no-repeat;
+  }
+}
