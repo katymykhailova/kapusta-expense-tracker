@@ -15,10 +15,9 @@ export default function ReportPage() {
   const dispatch = useDispatch();
 
   const date = new Date();
-  let getMonth = date.getMonth() + 1;
-  let getYear = date.getFullYear();
-  const [month, setMonth] = useState(getMonth);
-  const [year, setYear] = useState(getYear);
+
+  const [month, setMonth] = useState(date.getMonth() + 1);
+  const [year, setYear] = useState(date.getFullYear());
   const [type, setType] = useState(false);
 
   const handleChangeMonthRight = () => {
