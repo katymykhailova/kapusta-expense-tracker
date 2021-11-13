@@ -98,16 +98,3 @@
     margin-left: 0;
   }
 }
-@media screen and (max-width: 1279px) {
-  .balanceDeskTab {
-    display: none;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .balance {
-    margin-left: auto;
-  }
-  .balance.report {
-    display: none;
-  }
-}

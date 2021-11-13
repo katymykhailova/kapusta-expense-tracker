@@ -28,11 +28,13 @@ const arrMonths = [
 
 export default function ReportPage() {
   const dispatch = useDispatch();
+
   const date = new Date();
   let getMonth = date.getMonth() + 1;
   let getYear = date.getFullYear();
   const [month, setMonth] = useState(getMonth);
   const [year, setYear] = useState(getYear);
+  const [type, setType] = useState(false);
 
   const handleChangeMonthRight = () => {
     if (month < 12) {
@@ -50,18 +52,22 @@ export default function ReportPage() {
       setMonth(prev => (prev -= 1));
     }
   };
-
-  useEffect(
-    () => {
-      const period = `${year}${month} `;
-      console.log(period);
-      dispatch(getCategoriesList());
-      dispatch(getTransactionsByMonts(period));
-    },
-    [dispatch],
-    year,
-    month,
-  );
+  const handleChangeTypeTrans = () => {
+    if (type === false) {
+      setType(true);
+      console.log(type);
+    }
+    if (type === true) {
+      setType(false);
+      console.log(type);
+    }
+  };
+  useEffect(() => {
+    const period = `${year}${month} `;
+    console.log(period);
+    dispatch(getCategoriesList());
+    dispatch(getTransactionsByMonts(period));
+  }, [dispatch, year, month]);
 
   const transactions = useSelector(getTransactionsList);
   console.log(transactions);
@@ -76,7 +82,10 @@ export default function ReportPage() {
         handleChangeMonthRight={handleChangeMonthRight}
       />
       <HeaderReport transactionsMonth={transactions} />
-      <CurrentMonthReport typeTrans={' '} />
+      <CurrentMonthReport
+        typeTrans={type}
+        handleChangeTypeTrans={handleChangeTypeTrans}
+      />
     </div>
   );
 }

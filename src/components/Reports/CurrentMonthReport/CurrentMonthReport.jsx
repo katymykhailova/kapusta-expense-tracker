@@ -24,16 +24,19 @@ const incomes = [
   { _id: 14, category: 'Доп.доход', value: 40000 },
 ];
 
-export default function CurrentMonthReport({ typeTrans }) {
+export default function CurrentMonthReport({
+  typeTrans,
+  handleChangeTypeTrans,
+}) {
   return (
     <div className={s.sectionReport}>
       <div className={s.sectionTitle}>
         <ArrowBackIosIcon
           style={{ color: '#FF751D', cursor: 'pointer' }}
           fontSize="small"
-          //   onClick={onHandleChangeType}
+          onClick={handleChangeTypeTrans}
         />
-        {typeTrans === 'expenses' ? (
+        {typeTrans === false ? (
           <h2 className={s.title}> Расходы </h2>
         ) : (
           <h2 className={s.title}> Доходы </h2>
@@ -42,10 +45,10 @@ export default function CurrentMonthReport({ typeTrans }) {
         <ArrowForwardIosIcon
           style={{ color: '#FF751D', cursor: 'pointer' }}
           fontSize="small"
-          //   onClick={onHandleChangeType}
+          onClick={handleChangeTypeTrans}
         />
       </div>
-      {typeTrans === 'expenses' ? (
+      {typeTrans === false ? (
         <ReportList
           trans={expenses}
           //   onClick={handleClickExpenses}
