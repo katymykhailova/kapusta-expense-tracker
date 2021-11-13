@@ -50,7 +50,7 @@ export default function ReportTabs() {
 
   const income = transactions.filter(trans => trans.type === true);
   const outcome = transactions.filter(trans => trans.type === false);
-  console.log(transactions);
+  // console.log(transactions);
   // const handleDelete = (id) => {};
 
   return (

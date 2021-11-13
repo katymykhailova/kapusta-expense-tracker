@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
 
+import { useSelector } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
 
 import DropDownCategory from '../DropDownCategory/DropDownCategory';
@@ -10,6 +11,9 @@ import DropDownCategory from '../DropDownCategory/DropDownCategory';
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
 
 export default function FormDescription() {
+  const categoriesState = useSelector(state => state.categories.items);
+  // console.log('categoriesState', categoriesState);
+
   const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = data => {
@@ -38,9 +42,12 @@ export default function FormDescription() {
     };
   }, [open]);
 
-  const changerPlaceholder = e => {
-    console.log(e.target.innerText);
-    setPlaceholderCategories(e.target.innerText);
+  const changerPlaceholder = data => {
+    // console.log(e.target.innerText);
+    // setPlaceholderCategories(e.target.innerText);
+
+    // console.log(data);
+    setPlaceholderCategories(data);
     setOpen(false);
   };
 
@@ -120,7 +127,16 @@ export default function FormDescription() {
             secondButtonType="button"
           />
         </div>
-        {open && <DropDownCategory changerDescription={changerPlaceholder} />}
+        {open && (
+          <DropDownCategory
+            changerDescription={changerPlaceholder}
+            categoriesList={categoriesState}
+          />
+        )}
+        {/* <DropDownCategory
+          changerDescription={changerPlaceholder}
+          categoriesList={categoriesState}
+        /> */}
       </form>
     </div>
   );
