@@ -69,6 +69,7 @@ export default function ReportPage() {
       <CurrentMonthReport
         typeTrans={type}
         handleChangeTypeTrans={handleChangeTypeTrans}
+        transactionsCurrentMonth={transactions}
       />
     </div>
   );

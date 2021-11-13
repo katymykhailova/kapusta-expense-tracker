@@ -19,33 +19,34 @@ const arrMonths = [
   { id: '12', name: 'Декабрь' },
 ];
 
-const reportSummary = [59, 5, 0, 500, 600, 900, 1200, 0, 800, 600, 800, 900];
-const amountArr = [];
-for (let i = 0; i < reportSummary.length; i++) {
-  const amountArrItem = { month: i + 1, value: reportSummary[i] };
-  amountArr.push(amountArrItem);
-}
-const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
-const amountSummarrySixMonth = amountArrReversed.slice(0, 6);
-console.log(amountSummarrySixMonth);
+// const reportSummary = [59, 5, 0, 500, 600, 900, 1200, 0, 800, 600, 800, 900];
+// const amountArr = [];
+// for (let i = 0; i < reportSummary.length; i++) {
+//   const amountArrItem = { month: i + 1, value: reportSummary[i] };
+//   amountArr.push(amountArrItem);
+// }
+// const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
+// const amountSummarrySixMonth = amountArrReversed.slice(0, 6);
+// console.log(amountSummarrySixMonth);
 
-export default function Summary({ year = '2021', reportType = 'o' }) {
-  // const dispatch = useDispatch();
-  // const reportSummary = useSelector(selectors.getReports);
-  // console.log(reportSummarry);
-  // useEffect(() => {
-  //   if (year > 0 && reportType) {
-  //     dispatch(reportOperations.getReportList(year, reportType));
-  //   }
-  // }, [year, reportType, dispatch]);
-
-  // const amountArr = [];
-  // for (let i = 0; i < reportSummary.length; i++) {
-  //   const amountArrItem = { month: i + 1, value: reportSummary[i] };
-  //   amountArr.push(amountArrItem);
-  // }
-  // const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
-  // const amountSummarrySixMonth = amountArrReversed.slice(0, 6);
+export default function Summary({ reportType }) {
+  const dispatch = useDispatch();
+  const reportArr = useSelector(selectors.getReports);
+  useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    if (year > 0 && reportType) {
+      dispatch(reportOperations.getReportList(reportType, year));
+    }
+  }, [reportType, dispatch]);
+  console.log(reportArr);
+  const amountArr = [];
+  for (let i = 0; i < reportArr.length; i++) {
+    const amountArrItem = { month: i + 1, value: reportArr[i] };
+    amountArr.push(amountArrItem);
+  }
+  const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
+  const amountSummarrySixMonth = amountArrReversed.slice(0, 6);
 
   return (
     <div className={s.summaryContainer}>

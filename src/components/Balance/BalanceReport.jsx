@@ -1,5 +1,4 @@
 import s from './Balance.module.css';
-import BalanceInput from './BalanceInput';
 
 export default function BalanceReport({ balance }) {
   return (
