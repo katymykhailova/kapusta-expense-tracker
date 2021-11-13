@@ -18,6 +18,7 @@ export default function FormDescription() {
 
   const onSubmit = data => {
     console.log(data);
+    setPlaceholderCategories('');
     reset({
       name: '',
       categories: '',
@@ -52,6 +53,7 @@ export default function FormDescription() {
   };
 
   useEffect(() => {
+    // console.log('+++');
     setValue('categories', placeholderCategories);
   }, [placeholderCategories]);
 
@@ -117,6 +119,7 @@ export default function FormDescription() {
             secondButtonText="очистить"
             // firstButtonHandler={onSubmit}
             secondButtonHandler={() => {
+              setPlaceholderCategories('');
               reset({
                 name: '',
                 categories: '',
