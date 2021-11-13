@@ -8,15 +8,8 @@ import {
 } from './index';
 
 const initialState = {
-  // transaction: {
-  //   type: false,
-  //   date: null,
-  //   category: null,
-  //   amount: null,
-  //   description: null,
-  //   owner: null,
-  // },
   items: [],
+  sums: null,
   error: null,
   isLoading: false,
 };
@@ -31,7 +24,8 @@ const transactionsSlice = createSlice({
     },
 
     [getTransactionsByMonts.fulfilled]: (state, { payload }) => {
-      state.items = payload;
+      state.items = payload.tActions;
+      state.sums = payload.sums;
       state.isLoading = false;
     },
 

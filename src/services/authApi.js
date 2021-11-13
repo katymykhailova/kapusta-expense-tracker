@@ -42,3 +42,8 @@ export async function fetchCurrentUser(savedToken) {
   const { data } = await axios.get(`/auth/current`);
   return data.data.result;
 }
+
+export async function updateBalance(balance) {
+  const { data } = await axios.put(`/auth/balance`, balance);
+  return data;
+}

@@ -37,7 +37,8 @@
   outline: none;
   border: 2px solid#f5f6fb;
   background: #ffffff;
-  color: #52555f;
+  /* color: #52555f; */
+  color: #c7ccdc;
 }
 
 .inputValueProduct {
