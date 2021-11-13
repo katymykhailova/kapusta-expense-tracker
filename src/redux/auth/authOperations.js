@@ -18,9 +18,10 @@ const logIn = createAsyncThunk(
   'auth/logIn',
   async (credentials, { rejectWithValue }) => {
     try {
-      const data = await authApi.logInUser(credentials);
-      toast.success(`С возвращением, ${data.username}`);
-      return data;
+      const { username, email, avatar, balance, token } =
+        await authApi.logInUser(credentials);
+      toast.success(`С возвращением, ${username}`);
+      return { username, email, avatar, balance, token };
     } catch (error) {
       toast.error('Ошибка авторизации. Проверте почту и пароль.');
       return rejectWithValue(error);
