@@ -24,7 +24,7 @@ const incomes = [
   { _id: 14, category: 'Доп.доход', value: 40000 },
 ];
 
-export default function CurrentMonthReport() {
+export default function CurrentMonthReport({ typeTrans }) {
   return (
     <div className={s.sectionReport}>
       <div className={s.sectionTitle}>

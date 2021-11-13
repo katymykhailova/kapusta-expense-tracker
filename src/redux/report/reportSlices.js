@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getReportList } from './index';
 
 const initialState = {
-  items: null,
+  items: [],
   error: null,
   isLoading: false,
 };

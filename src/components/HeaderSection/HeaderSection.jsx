@@ -6,7 +6,13 @@ import NavigationMonth from '../Navigation/NavigationMonth';
 import BalanceInput from '../Balance/BalanceInput';
 import BalanceReport from '../Balance/BalanceReport';
 
-export default function HeaderSection({ typePage }) {
+export default function HeaderSection({
+  typePage,
+  month,
+  year,
+  handleChangeMonthLeft,
+  handleChangeMonthRight,
+}) {
   return (
     <>
       {typePage === 'home' && (
@@ -40,7 +46,12 @@ export default function HeaderSection({ typePage }) {
           </Navigation>
           <div className={s.headData}>
             <BalanceReport balance={55000} />
-            <NavigationMonth period={'Октябрь 2021'} />
+            <NavigationMonth
+              month={month}
+              year={year}
+              handleChangeMonthLeft={handleChangeMonthLeft}
+              handleChangeMonthRight={handleChangeMonthRight}
+            />
           </div>
         </div>
       )}

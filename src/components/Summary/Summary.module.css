@@ -25,6 +25,10 @@
   .summaryList {
     margin: 0;
     padding: 0;
+    /* max-width: 230px;
+    max-height: 240px;
+    overflow: hidden;
+    overflow-y: scroll; */
     list-style: none;
   }
   .summaryItem {
