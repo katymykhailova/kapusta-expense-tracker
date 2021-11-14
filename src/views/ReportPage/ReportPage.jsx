@@ -68,6 +68,7 @@ export default function ReportPage() {
         handleChangeTypeTrans={handleChangeTypeTrans}
         transactionsCurrentMonth={transactions}
       />
+      <BarChartReport />
     </div>
   );
 }
