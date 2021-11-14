@@ -1,9 +1,11 @@
 @media screen and (max-width: 767px) {
   .pageWrap {
     display: flex;
-
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: calc(100vh - 56px);
+  }
+  body {
+    /* overflow: hidden; */
   }
 }

@@ -49,10 +49,10 @@ const getCurrentUser = createAsyncThunk(
 );
 
 const updateUserBalance = createAsyncThunk(
-  'auth/getUserBalance',
+  'auth/updateUserBalance',
   async balance => {
     const updatedBalance = await authApi.updateBalance(balance);
-    return updatedBalance;
+    return updatedBalance.data;
   },
 );
 

@@ -114,7 +114,7 @@ const authSlice = createSlice({
     },
 
     [updateUserBalance.fulfilled]: (state, { payload }) => {
-      state.user.balance = payload;
+      state.user.balance = payload.balance;
       state.isLoading = false;
     },
 
