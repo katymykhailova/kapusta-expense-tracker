@@ -2,15 +2,22 @@ import s from './ReportList.module.css';
 import sprite from '../../../images/sprite.svg';
 
 export default function ReportList({ trans }) {
+  let categories = [];
+  trans.forEach(el => categories.push(el.category.name));
+  categories = [...new Set(categories)];
+  const sums = new Array(categories.length).fill(0);
+  trans.forEach(
+    el => (sums[categories.indexOf(el.category.name)] += el.amount),
+  );
   return (
     <div className={s.reportData}>
       <ul className={s.reportList}>
         {trans.length === 0 ? (
           <li className={s.transEmpty}>Транзакций нет</li>
         ) : (
-          trans.map(item => (
-            <li key={item.category} className={s.transItem}>
-              <p className={s.itemValue}>{item.value}</p>
+          categories.map((item, idx) => (
+            <li key={item} className={s.transItem}>
+              <p className={s.itemValue}>{sums[idx]}</p>
               <div
                 className={
                   item.isActive ? s.svgContainerActive : s.svgContainer
@@ -21,10 +28,10 @@ export default function ReportList({ trans }) {
                   height="58"
                   className={item.isActive ? s.iconActive : s.icon}
                 >
-                  <use xlinkHref={`${sprite}#${item.category}`} />
+                  <use xlinkHref={`${sprite}#${item}`} />
                 </svg>
               </div>
-              <h3 className={s.titleItem}>{item.category}</h3>
+              <h3 className={s.titleItem}>{item}</h3>
             </li>
           ))
         )}
