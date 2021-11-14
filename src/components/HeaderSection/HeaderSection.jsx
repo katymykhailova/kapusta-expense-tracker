@@ -7,17 +7,14 @@ import NavigationMonth from '../Navigation/NavigationMonth';
 import BalanceInput from '../Balance/BalanceInput';
 import BalanceReport from '../Balance/BalanceReport';
 
-
 export default function HeaderSection({
   typePage,
   month,
   year,
   handleChangeMonthLeft,
   handleChangeMonthRight,
+  onClick,
 }) {
-
-export default function HeaderSection({ typePage, onClick }) {
-
   return (
     <>
       {typePage === 'home' && (
