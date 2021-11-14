@@ -4,7 +4,7 @@
   }
   .scrollWrap {
     display: flex;
-    max-height: 200px;
+    max-height: 155px;
     max-width: 282px;
     overflow-y: scroll;
   }
@@ -61,20 +61,7 @@
     display: block;
     background-color: var(--white-color);
     height: 360px;
-    border-collapse: collapse;
     width: 100%;
-    overflow: scroll;
-  }
-
-  .scrollWrap::-webkit-scrollbar {
-    width: 6px;
-    border-radius: 2px;
-    background: transparent;
-  }
-
-  .scrollWrap::-webkit-scrollbar-thumb {
-    background-color: var(--accent-color-primary);
-    border-radius: 2px;
   }
 }
 

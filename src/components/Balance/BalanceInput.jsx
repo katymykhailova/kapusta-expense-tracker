@@ -1,29 +1,55 @@
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import s from './Balance.module.css';
+import { getUserBalance, updateUserBalance } from '../../redux/auth';
 
-export default function BalanceInput({ balance }) {
+export default function BalanceInput() {
+  const [userBalance, setUserBalance] = useState('');
+  const [showBtn, setShowBtn] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const currentBalance = useSelector(getUserBalance);
+  const currentValue = currentBalance === null ? '00' : currentBalance;
+
+  const handleChange = e => {
+    setUserBalance(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (currentBalance === null)
+    dispatch(updateUserBalance({ balance: Number.parseInt(userBalance) }));
+    setUserBalance('');
+    setShowBtn(false);
+  };
+
   return (
     <div className={s.balance}>
       <p className={s.title}>Баланс:</p>
       <div className={s.balanceBox}>
         <input
+          id="balanceInput"
           className={s.balanceInput}
           type="text"
           pattern="^[0-9]+$"
           maxLength="10"
-          //   value={`${balance}.00UAH`}
-          placeholder="00.00 UAH"
-          //   onChange={handleChange}
+          value={userBalance}
+          placeholder={`${currentValue}.00 UAH`}
+          onChange={handleChange}
+          onFocus={e => (e.target.placeholder = '')}
         />
-        <button
-          className={s.balanceSubmit}
-          type="submit"
-          onClick={() => {}}
-          //   onClick={nandleSubmit}
-        >
-          Подтвердить
-        </button>
+        {showBtn && (
+          <button
+            className={s.balanceSubmit}
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Подтвердить
+          </button>
+        )}
       </div>
-      {!balance && (
+      {currentBalance === null && (
         //Notification must be here
         <></>
       )}

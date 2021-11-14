@@ -73,7 +73,8 @@
 
   .inputValueProduct {
     width: 185px;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 83px;
     text-align: center;
     border-radius: 16px;
   }
@@ -84,7 +85,7 @@
 
   .inputProductName {
     width: 282px;
-    margin-top: 54px;
+    /* margin-top: 54px; */
     border-bottom: none;
     border-top-right-radius: 16px;
   }
@@ -129,6 +130,7 @@
   .productInfo {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 30px;
   }
 
   .calculatorPos {
@@ -165,6 +167,9 @@
     position: relative;
   }
 
+  .productInfo {
+    margin-bottom: 0;
+  }
   /* .calculatorPos {
     position: absolute;
     top: 12px;
