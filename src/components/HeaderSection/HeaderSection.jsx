@@ -1,12 +1,13 @@
 import s from './HeaderSection.module.css';
 import chartIcon from '../../images/chart-icon.svg';
+import { AiOutlinePlus } from 'react-icons/ai';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Navigation from '../Navigation/Navigation';
 import NavigationMonth from '../Navigation/NavigationMonth';
 import BalanceInput from '../Balance/BalanceInput';
 import BalanceReport from '../Balance/BalanceReport';
 
-export default function HeaderSection({ typePage }) {
+export default function HeaderSection({ typePage, onClick }) {
   return (
     <>
       {typePage === 'home' && (
@@ -21,7 +22,10 @@ export default function HeaderSection({ typePage }) {
               />
             </Navigation>
           </div>
-          <BalanceInput balance={'55000'} />
+          <BalanceInput />
+          <button type="button" onClick={onClick} className={s.addBtn}>
+            <AiOutlinePlus size="18" color="#ffffff" />
+          </button>
         </div>
       )}
       {typePage === 'report' && (
@@ -39,7 +43,7 @@ export default function HeaderSection({ typePage }) {
             </div>
           </Navigation>
           <div className={s.headData}>
-            <BalanceReport balance={55000} />
+            <BalanceReport /*balance={55000}*/ />
             <NavigationMonth period={'Октябрь 2021'} />
           </div>
         </div>

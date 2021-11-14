@@ -13,4 +13,5 @@ export {
   getIsFetchCurrentUser,
   getAuthError,
   getIsLoading,
+  getUserBalance,
 } from './authSelectors';
