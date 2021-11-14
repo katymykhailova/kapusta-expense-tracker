@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth';
+import { googleAuth } from 'services/authApi';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -28,13 +29,11 @@ export default function LoginForm() {
     resolver: yupResolver(LogInSchema),
   });
 
-  const onSubmit = newUser => {
-    dispatch(logIn(newUser));
-  };
+  const onSubmit = newUser => dispatch(logIn(newUser));
 
-  const onSignUpBtnClick = () => {
-    history.push('/signup');
-  };
+  const onGoogleBtnClick = () => googleAuth();
+
+  const onSignUpBtnClick = () => history.push('/signup');
 
   return (
     <div className={s.wrap}>
@@ -43,7 +42,11 @@ export default function LoginForm() {
           <p className={s.text}>
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button type="button" className={s.googleBtn}>
+          <button
+            type="button"
+            className={s.googleBtn}
+            onClick={onGoogleBtnClick}
+          >
             <FcGoogle size={19} />
             Google
           </button>
