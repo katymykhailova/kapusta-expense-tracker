@@ -4,36 +4,29 @@ export default function DropDownCategory({
   changerDescription,
   categoriesList,
 }) {
-  // const test = e => console.log(e.target.innerText);
+  const test = categoriesList.filter(el => !el.type);
   return (
     <div className={s.categoryPosition}>
       <ul>
-        {/* <li
-          className={s.categoryName}
-          // label="Транспорт"
-          value="Tranport"
-          onClick={changerDescription}
-          // onClick={() => {
-          //   changerDescription(value);
-          // }}
-        >
-          Транспорт
-        </li>
-        <li className={s.categoryName} onClick={changerDescription}>
-          Продукты
-        </li>
-        <li className={s.categoryName} onClick={changerDescription}>
-          Здоровье
-        </li>
-        <li className={s.categoryName} onClick={changerDescription}>
-          Алкоголь
-        </li> */}
+        {test.map(el => (
+          <li
+            value={el.name}
+            className={s.categoryName}
+            key={el._id}
+            onClick={() => {
+              changerDescription(el.name, el._id);
+            }}
+          >
+            {el.name}
+          </li>
+        ))}
+      </ul>
+      {/* <ul>
         {categoriesList.map(el => (
           <li
             value={el.name}
             className={s.categoryName}
             key={el._id}
-            // onClick={changerDescription}
             onClick={() => {
               changerDescription(el.name);
             }}
@@ -41,7 +34,7 @@ export default function DropDownCategory({
             {el.name}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

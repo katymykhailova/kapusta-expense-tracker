@@ -57,6 +57,17 @@
   color: #c7ccdc;
 }
 
+.inputProductDate {
+  border: none;
+  color: #52555f;
+  font-weight: 900;
+  width: 74px;
+  height: 40px;
+  font-size: 12px;
+  line-height: 14px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 767px) {
   .formStyles {
     display: flex;
