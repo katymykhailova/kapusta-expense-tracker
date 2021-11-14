@@ -21,7 +21,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
-export default function FormDescription() {
+export default function FormDescription({ typeForm }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const categoriesState = useSelector(getCategories);
@@ -31,16 +31,16 @@ export default function FormDescription() {
   //   'categoriesState',
   //   categoriesState.filter(el => el.type === false),
   // );
-
+  // console.log(typeForm);
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = data => {
-    const { categories, date, name, sum } = data;
+    const { date, name, sum } = data;
     // console.log('placeholderCategories222', placeholderCategories);
     const newData = {
-      type: false,
+      type: typeForm,
       category: placeholderCategories.id,
       date: moment(date).format('YYYY-MM-DD'),
       description: name,
@@ -58,6 +58,7 @@ export default function FormDescription() {
     // console.log('sum', typeof data.sum);
     // console.log('sum', typeof +sum);
     // console.log({ categories, date, name, sum });
+    console.log('name', placeholderCategories.data);
     console.log('newData', newData);
     dispatch(addTransaction(newData));
     // dispatch(addTransaction(data));
@@ -136,15 +137,13 @@ export default function FormDescription() {
             <input
               {...register('name')}
               className={s.inputProductName}
-              placeholder="Описание товара"
+              placeholder={typeForm ? 'Описание дохода' : 'Описание товара'}
             />
             <input
               autoComplete="off"
               {...register('categories')}
               className={s.inputСategoryName}
-              placeholder="Категория товара"
-              // value={placeholderCategories}
-              // value="Категория товара"
+              placeholder={typeForm ? 'Категория дохода' : 'Категория товара'}
               onClick={() => setOpen(!open)}
               readOnly
             />
@@ -180,11 +179,13 @@ export default function FormDescription() {
           <DropDownCategory
             changerDescription={changerPlaceholder}
             categoriesList={categoriesState}
+            typeForm={typeForm}
           />
         )}
         {/* <DropDownCategory
           changerDescription={changerPlaceholder}
           categoriesList={categoriesState}
+          typeForm={typeForm}
         /> */}
       </form>
       <div className={s.formStyles}></div>

@@ -62,11 +62,11 @@ export default function ReportTabs() {
         </TabList>
         <div className={s.tabsWrap}>
           <TabPanel>
-            {!isMobile && <FormDescription />}
+            {!isMobile && <FormDescription typeForm={false} />}
             <ReportTable></ReportTable>
           </TabPanel>
           <TabPanel>
-            {!isMobile && <FormDescription />}
+            {!isMobile && <FormDescription typeForm={true} />}
             <ReportTable></ReportTable>
           </TabPanel>
           {isDesctop && <Summary />}

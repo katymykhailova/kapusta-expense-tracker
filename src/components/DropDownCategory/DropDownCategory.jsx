@@ -3,8 +3,9 @@ import s from './DropDownCategory.module.css';
 export default function DropDownCategory({
   changerDescription,
   categoriesList,
+  typeForm,
 }) {
-  const test = categoriesList.filter(el => !el.type);
+  const test = categoriesList.filter(el => el.type === typeForm);
   return (
     <div className={s.categoryPosition}>
       <ul>
