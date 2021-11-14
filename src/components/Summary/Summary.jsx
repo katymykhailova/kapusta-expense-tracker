@@ -36,7 +36,7 @@ export default function Summary({ reportType }) {
     amountArr.push(amountArrItem);
   }
   const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
-  const amountSummarrySixMonth = amountArrReversed.slice(0, 6);
+  const amountSummarrySixMonth = amountArrReversed.slice(0, 5);
 
   return (
     <div className={s.summaryContainer}>

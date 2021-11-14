@@ -5,7 +5,7 @@ import {
   getTransactionsList,
 } from '../../redux/transactions';
 
-import { getCategoriesList, getCategories } from '../../redux/categories';
+import { getCategoriesList } from '../../redux/categories';
 import s from './ReportPage.module.css';
 import HeaderReport from '../../components/Reports/HeaderReport';
 import CurrentMonthReport from '../../components/Reports/CurrentMonthReport';
