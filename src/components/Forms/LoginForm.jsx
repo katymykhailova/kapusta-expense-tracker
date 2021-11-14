@@ -13,7 +13,7 @@ import ButtonBlock from '../ButtonBlock/ButtonBlock';
 const LogInSchema = Yup.object().shape({
   email: Yup.string().email().required('Required'),
   password: Yup.string()
-    .min(7, 'Password is too short - should be 7 chars minimum.')
+    .min(6, 'Password is too short - should be 7 chars minimum.')
     .required('Required'),
 });
 
