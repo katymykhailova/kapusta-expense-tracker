@@ -13,12 +13,19 @@ import HeaderSection from '../../components/HeaderSection/HeaderSection';
 
 export default function ReportPage() {
   const dispatch = useDispatch();
+  const transactions = useSelector(getTransactionsList);
 
   const date = new Date();
-
   const [month, setMonth] = useState(date.getMonth() + 1);
   const [year, setYear] = useState(date.getFullYear());
   const [type, setType] = useState(false);
+
+  useEffect(() => {
+    const period = `${year}${month} `;
+
+    dispatch(getCategoriesList());
+    dispatch(getTransactionsByMonts(period));
+  }, [dispatch, year, month]);
 
   const handleChangeMonthRight = () => {
     if (month < 12) {
@@ -39,22 +46,11 @@ export default function ReportPage() {
   const handleChangeTypeTrans = () => {
     if (type === false) {
       setType(true);
-      console.log(type);
     }
     if (type === true) {
       setType(false);
-      console.log(type);
     }
   };
-  useEffect(() => {
-    const period = `${year}${month} `;
-    console.log(period);
-    dispatch(getCategoriesList());
-    dispatch(getTransactionsByMonts(period));
-  }, [dispatch, year, month]);
-
-  const transactions = useSelector(getTransactionsList);
-  console.log(transactions);
 
   return (
     <div className={s.reportContainer}>

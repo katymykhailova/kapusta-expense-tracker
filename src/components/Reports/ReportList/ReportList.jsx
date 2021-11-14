@@ -24,7 +24,7 @@ export default function ReportList({ trans }) {
                   <use xlinkHref={`${sprite}#${item.category.name}`} />
                 </svg>
               </div>
-              <h3 className={s.titleItem}>{item.category}</h3>
+              <h3 className={s.titleItem}>{item.category.name}</h3>
             </li>
           ))
         )}

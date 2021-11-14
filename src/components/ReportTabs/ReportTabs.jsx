@@ -69,10 +69,10 @@ export default function ReportTabs() {
             {!isMobile && <FormDescription />}
             <ReportTable></ReportTable>
           </TabPanel>
-          {isDesctop && <Summary />}
+          {isDesctop && <Summary reportType="o" />}
         </div>
       </Tabs>
-      {isTablet && <Summary />}
+      {isTablet && <Summary reportType="o" />}
     </>
   );
 }
