@@ -2,25 +2,30 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from '../../services/authApi';
 import toast from 'react-hot-toast';
 
-const signUp = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const { username, email, avatar, balance, token } =
-      await authApi.signUpUser(credentials);
-    toast.success('Регистрация прошла успешно');
-    return { username, email, avatar, balance, token };
-  } catch (error) {
-    console.log(error);
-    toast.error('Пользователь с такой почтой уже существует');
-  }
-});
+const signUp = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { username, email, avatar, balance, token } =
+        await authApi.signUpUser(credentials);
+      toast.success('Регистрация прошла успешно');
+
+      return { username, email, avatar, balance, token };
+    } catch (error) {
+      toast.error('Пользователь с такой почтой уже существует');
+      return rejectWithValue(error);
+    }
+  },
+);
 
 const logIn = createAsyncThunk(
   'auth/logIn',
   async (credentials, { rejectWithValue }) => {
     try {
-      const data = await authApi.logInUser(credentials);
-      toast.success(`С возвращением, ${data.username}`);
-      return data;
+      const { username, email, avatar, balance, token } =
+        await authApi.logInUser(credentials);
+      toast.success(`С возвращением, ${username}`);
+      return { username, email, avatar, balance, token };
     } catch (error) {
       toast.error('Ошибка авторизации. Проверте почту и пароль.');
       return rejectWithValue(error);

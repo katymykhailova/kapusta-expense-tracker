@@ -1,3 +1,5 @@
+export { getGoogleAuthToken } from './authActions';
+
 export {
   signUp,
   logIn,
