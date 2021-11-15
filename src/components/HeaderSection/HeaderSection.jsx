@@ -50,7 +50,8 @@ export default function HeaderSection({
             </div>
           </Navigation>
           <div className={s.headData}>
-            <BalanceReport /*balance={55000}*/ />
+            <BalanceInput />
+            {/* <BalanceReport balance={55000} /> */}
             <NavigationMonth
               month={month}
               year={year}
