@@ -22,8 +22,10 @@ export default function FormDescription({ typeForm }) {
   const [placeholderCategories, setPlaceholderCategories] = useState('');
 
   const categoriesState = useSelector(getCategories);
+  console.log('categoriesState', categoriesState);
   const ref = useRef();
   const dispatch = useDispatch();
+  // console.log('typeForm', typeForm);
 
   const onSubmit = data => {
     const { date, name, sum } = data;
@@ -46,7 +48,10 @@ export default function FormDescription({ typeForm }) {
 
   useEffect(() => {
     const checkClickOutside = e => {
-      if (open && ref.current && !ref.current.contains(e.target)) {
+      // if (open && ref.current && !ref.current.contains(e.target)) {
+      //   setOpen(false);
+      // }
+      if (open) {
         setOpen(false);
       }
     };
@@ -58,6 +63,7 @@ export default function FormDescription({ typeForm }) {
 
   const changerPlaceholder = (data, id) => {
     setPlaceholderCategories({ data, id });
+    console.log('++');
     setOpen(false);
   };
 

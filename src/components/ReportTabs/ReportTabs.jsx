@@ -9,6 +9,8 @@ import ReportTable from 'components/ReportTable/ReportTable';
 import Modal from 'components/Modal/Modal';
 import Summary from 'components/Summary/Summary';
 import FormDescription from 'components/FormDescription/FormDescription';
+import { getCategoriesList } from '../../redux/categories';
+
 import {
   getTransactionsByMonts,
   getTransactionsList,
@@ -47,13 +49,12 @@ export default function ReportTabs() {
     const month = curretnDate.getUTCMonth() + 1;
     const year = curretnDate.getFullYear();
     const date = `${year}${month}`;
-    // dispatch(getCategoriesList());
+    dispatch(getCategoriesList());
     dispatch(getTransactionsByMonts(date));
   }, [dispatch]);
 
   const income = transactions.filter(trans => trans.type === true);
   const outcome = transactions.filter(trans => trans.type === false);
-
 
   const handleDelete = id => {
     setShowModal(true);
@@ -74,7 +75,6 @@ export default function ReportTabs() {
         </TabList>
         <div className={s.tabsWrap}>
           <TabPanel>
-
             {!isMobile && <FormDescription typeForm={false} />}
             <div className={s.wrapper}>
               <ReportTable
@@ -93,12 +93,12 @@ export default function ReportTabs() {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o"  />}
+              {isDesctop && <Summary reportType="o" />}
             </div>
           </TabPanel>
         </div>
       </Tabs>
-      {isTablet && <Summary reportType="o"  />}
+      {isTablet && <Summary reportType="o" />}
       {showModal && (
         <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
           <ButtonBlock
