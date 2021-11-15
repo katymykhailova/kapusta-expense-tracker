@@ -22,7 +22,7 @@ export default function FormDescription({ typeForm }) {
   const [placeholderCategories, setPlaceholderCategories] = useState('');
 
   const categoriesState = useSelector(getCategories);
-  console.log('categoriesState', categoriesState);
+  // console.log('categoriesState', categoriesState);
   const ref = useRef();
   const dispatch = useDispatch();
   // console.log('typeForm', typeForm);
@@ -36,7 +36,7 @@ export default function FormDescription({ typeForm }) {
       description: name,
       amount: +sum,
     };
-    console.log('newData', newData);
+    // console.log('newData', newData);
     dispatch(addTransaction(newData));
     setPlaceholderCategories('');
     reset({
@@ -63,7 +63,7 @@ export default function FormDescription({ typeForm }) {
 
   const changerPlaceholder = (data, id) => {
     setPlaceholderCategories({ data, id });
-    console.log('++');
+    // console.log('++');
     setOpen(false);
   };
 
