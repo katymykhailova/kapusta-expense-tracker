@@ -20,6 +20,7 @@ import {
 import './App.css';
 
 import FormDescription from './components/FormDescription/FormDescription';
+import Spinner from 'components/Spinner/Spinner';
 // const SignUpPage = lazy(() => import('' /* webpackChunkName: "signup" */));
 // const LoginPage = lazy(() => import('' /* webpackChunkName: "login" */));
 // const HomePage = lazy(() => import('' /* webpackChunkName: "homepage" */));
@@ -28,6 +29,7 @@ import FormDescription from './components/FormDescription/FormDescription';
 export default function App() {
   const dispatch = useDispatch();
   const isFetchCurrentUser = useSelector(getIsFetchCurrentUser);
+
   const token = queryString.parse(window.location.search).token;
 
   useEffect(() => {
@@ -39,8 +41,7 @@ export default function App() {
     !isFetchCurrentUser && (
       <>
         <NavBar />
-
-        <Suspense fallback={<div>loading</div>}>
+        <Suspense fallback={<Spinner />}>
           <MainContainer>
             <Container>
               <Switch>
