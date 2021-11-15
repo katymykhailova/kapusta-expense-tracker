@@ -9,12 +9,14 @@ import ReportTable from 'components/ReportTable/ReportTable';
 import Modal from 'components/Modal/Modal';
 import Summary from 'components/Summary/Summary';
 import FormDescription from 'components/FormDescription/FormDescription';
+import { getCategoriesList } from '../../redux/categories';
+
 import {
   getTransactionsByMonts,
   getTransactionsList,
   removeTransaction,
 } from '../../redux/transactions';
-import { getCategoriesList } from '../../redux/categories/';
+// import { getCategoriesList } from '../../redux/categories/';
 import { AiOutlinePlus } from 'react-icons/ai';
 import FormDescriptionModal from 'components/FormDescriptionModal/FormDescriptionModal';
 
@@ -123,12 +125,14 @@ export default function ReportTabs({ onClick }) {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
+
               {isDesctop && <Summary reportType="i" />}
             </div>
             {isTablet && <Summary reportType="i" />}
           </TabPanel>
         </div>
       </Tabs>
+
       {showModal && (
         <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
           <ButtonBlock

@@ -22,8 +22,10 @@ export default function FormDescription({ typeForm }) {
   const [placeholderCategories, setPlaceholderCategories] = useState('');
 
   const categoriesState = useSelector(getCategories);
+  // console.log('categoriesState', categoriesState);
   const ref = useRef();
   const dispatch = useDispatch();
+  // console.log('typeForm', typeForm);
 
   const onSubmit = data => {
     const { date, name, sum } = data;
@@ -46,7 +48,10 @@ export default function FormDescription({ typeForm }) {
 
   useEffect(() => {
     const checkClickOutside = e => {
-      if (open && ref.current && !ref.current.contains(e.target)) {
+      // if (open && ref.current && !ref.current.contains(e.target)) {
+      //   setOpen(false);
+      // }
+      if (open) {
         setOpen(false);
       }
     };
@@ -58,6 +63,7 @@ export default function FormDescription({ typeForm }) {
 
   const changerPlaceholder = (data, id) => {
     setPlaceholderCategories({ data, id });
+    // console.log('++');
     setOpen(false);
   };
 
@@ -95,15 +101,23 @@ export default function FormDescription({ typeForm }) {
               className={s.inputProductName}
               placeholder={typeForm ? 'Описание дохода' : 'Описание товара'}
             />
-            <input
-              autoComplete="off"
-              {...register('categories')}
-              className={s.inputСategoryName}
-              placeholder={typeForm ? 'Категория дохода' : 'Категория товара'}
-              onClick={() => setOpen(!open)}
-              readOnly
-            />
-
+            <div className={s.DropDownPos}>
+              <input
+                autoComplete="off"
+                {...register('categories')}
+                className={s.inputСategoryName}
+                placeholder={typeForm ? 'Категория дохода' : 'Категория товара'}
+                onClick={() => setOpen(!open)}
+                readOnly
+              />
+              {open && (
+                <DropDownCategory
+                  changerDescription={changerPlaceholder}
+                  categoriesList={categoriesState}
+                  typeForm={typeForm}
+                />
+              )}
+            </div>
             <input
               {...register('sum')}
               className={s.inputValueProduct}
@@ -130,13 +144,13 @@ export default function FormDescription({ typeForm }) {
             secondButtonType="button"
           />
         </div>
-        {open && (
+        {/* {open && (
           <DropDownCategory
             changerDescription={changerPlaceholder}
             categoriesList={categoriesState}
             typeForm={typeForm}
           />
-        )}
+        )} */}
       </form>
       <div className={s.formStyles}></div>
     </div>
