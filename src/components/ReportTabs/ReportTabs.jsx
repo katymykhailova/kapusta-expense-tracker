@@ -16,7 +16,7 @@ import {
   getTransactionsList,
   removeTransaction,
 } from '../../redux/transactions';
-import { getCategoriesList } from '../../redux/categories/';
+// import { getCategoriesList } from '../../redux/categories/';
 import { AiOutlinePlus } from 'react-icons/ai';
 import FormDescriptionModal from 'components/FormDescriptionModal/FormDescriptionModal';
 
@@ -57,7 +57,6 @@ export default function ReportTabs({ onClick }) {
     dispatch(getTransactionsByMonts(date));
   }, [dispatch]);
 
-
   const income = transactions.filter(trans => trans.type);
   const outcome = transactions.filter(trans => !trans.type);
 
@@ -88,7 +87,6 @@ export default function ReportTabs({ onClick }) {
         </TabList>
         <div className={s.tabsWrap}>
           <TabPanel>
-
             {isMobile && (
               <button type="button" onClick={toggleModal} className={s.addBtn}>
                 <AiOutlinePlus size="18" color="#ffffff" />
