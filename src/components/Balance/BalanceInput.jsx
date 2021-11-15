@@ -23,7 +23,7 @@ export default function BalanceInput() {
     setUserBalance('');
     setShowBtn(false);
   };
-  console.log(showBtn);
+
   return (
     <div className={s.balance}>
       <p className={s.title}>Баланс:</p>
