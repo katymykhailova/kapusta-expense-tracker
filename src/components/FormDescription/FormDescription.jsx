@@ -36,7 +36,7 @@ export default function FormDescription({ typeForm }) {
       description: name,
       amount: +sum,
     };
-    // console.log('newData', newData);
+    console.log('newData', newData);
     dispatch(addTransaction(newData));
     setPlaceholderCategories('');
     reset({
@@ -101,15 +101,23 @@ export default function FormDescription({ typeForm }) {
               className={s.inputProductName}
               placeholder={typeForm ? 'Описание дохода' : 'Описание товара'}
             />
-            <input
-              autoComplete="off"
-              {...register('categories')}
-              className={s.inputСategoryName}
-              placeholder={typeForm ? 'Категория дохода' : 'Категория товара'}
-              onClick={() => setOpen(!open)}
-              readOnly
-            />
-
+            <div className={s.DropDownPos}>
+              <input
+                autoComplete="off"
+                {...register('categories')}
+                className={s.inputСategoryName}
+                placeholder={typeForm ? 'Категория дохода' : 'Категория товара'}
+                onClick={() => setOpen(!open)}
+                readOnly
+              />
+              {open && (
+                <DropDownCategory
+                  changerDescription={changerPlaceholder}
+                  categoriesList={categoriesState}
+                  typeForm={typeForm}
+                />
+              )}
+            </div>
             <input
               {...register('sum')}
               className={s.inputValueProduct}
@@ -136,13 +144,13 @@ export default function FormDescription({ typeForm }) {
             secondButtonType="button"
           />
         </div>
-        {open && (
+        {/* {open && (
           <DropDownCategory
             changerDescription={changerPlaceholder}
             categoriesList={categoriesState}
             typeForm={typeForm}
           />
-        )}
+        )} */}
       </form>
       <div className={s.formStyles}></div>
     </div>

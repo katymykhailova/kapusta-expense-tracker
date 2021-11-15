@@ -28,7 +28,7 @@
 
   .categoryPosition {
     top: 135px;
-    right: 0px;
+    /* right: 0px; */
     width: 100%;
   }
 }
@@ -36,7 +36,7 @@
 @media screen and (min-width: 768px) {
   .categoryPosition {
     top: 40px;
-    right: 121px;
+    /* right: 121px; */
     width: 170px;
   }
 }
@@ -44,7 +44,7 @@
 @media screen and (min-width: 1280px) {
   .categoryPosition {
     top: 40px;
-    right: 378px;
+    /* right: 378px; */
     width: 187px;
   }
 }

@@ -68,6 +68,10 @@
   cursor: pointer;
 }
 
+.DropDownPos {
+  position: relative;
+}
+
 @media screen and (max-width: 767px) {
   .formStyles {
     display: flex;
