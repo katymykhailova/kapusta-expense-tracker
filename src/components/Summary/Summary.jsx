@@ -1,6 +1,10 @@
 import s from './Summary.module.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as selectors from 'redux/report/reportSelectors';
+import * as reportOperations from 'redux/report/reportOperations';
 
-const items = [
+const arrMonths = [
   { id: '1', name: 'Январь' },
   { id: '2', name: 'Февраль' },
   { id: '3', name: 'Март ' },
@@ -14,23 +18,34 @@ const items = [
   { id: '11', name: 'Ноябрь' },
   { id: '12', name: 'Декабрь' },
 ];
-const balances = [
-  { month: '10', value: -100 },
-  { month: '8', value: -200 },
-  { month: '11', value: -150 },
-  { month: '9', value: -190 },
-];
-const balancesArr = [...balances].sort((a, b) => b.month - a.month);
 
-export default function Summary() {
+export default function Summary({ reportType }) {
+  const dispatch = useDispatch();
+  const reportArr = useSelector(selectors.getReports);
+  useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    if (year > 0 && reportType) {
+      dispatch(reportOperations.getReportList({ reportType, year }));
+    }
+  }, [reportType, dispatch]);
+
+  const amountArr = [];
+  for (let i = 0; i < reportArr.length; i++) {
+    const amountArrItem = { month: i + 1, value: reportArr[i] };
+    amountArr.push(amountArrItem);
+  }
+  const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
+  const amountSummarrySixMonth = amountArrReversed.slice(0, 5);
+
   return (
     <div className={s.summaryContainer}>
       <h4 className={s.summaryTitle}>Сводка</h4>
       <ul className={s.summaryList}>
-        {balancesArr.map(({ month, value }) => (
-          <li key={month} className={s.summaryItem}>
+        {amountSummarrySixMonth.map(({ month, value }, idx) => (
+          <li key={idx} className={s.summaryItem}>
             <p className={s.summaryDescription}>
-              {items.find(item => item.id === month).name}
+              {arrMonths.find(item => item.id === String(month)).name}
             </p>
             <p className={s.summaryDescription}>{value}</p>
           </li>

@@ -21,7 +21,7 @@ export async function addTransaction(newTransaction) {
 
 export async function removeTransaction(transactionId) {
   const { data } = await axios.delete(`/transactions/${transactionId}`);
-  return data;
+  return data.result;
 }
 
 export async function updateTransaction(transactionId) {
