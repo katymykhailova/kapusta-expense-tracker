@@ -66,10 +66,12 @@
 
 @media screen and (max-width: 767px) {
   .balanceInput {
-    border-radius: 22px 0px 0px 22px;
+    /* border-radius: 22px 0px 0px 22px; */
+    border-radius: 22px;
   }
   .balanceSubmit {
-    border-radius: 0px 22px 22px 0px;
+    /* border-radius: 0px 22px 22px 0px; */
+    border-radius: 22px;
     border-left-width: 0;
   }
   .balanceInput.report {
@@ -82,7 +84,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 110px;
+    /* margin-left: 110px; */
   }
   .title {
     margin-right: 21px;
