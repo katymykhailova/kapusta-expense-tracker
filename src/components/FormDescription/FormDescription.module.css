@@ -108,13 +108,12 @@
   .inputСategoryName {
     width: 282px;
     border-bottom-right-radius: 16px;
-    border-bottom-left-radius: 16px;
   }
 
   .calculatorPos {
     position: absolute;
-    top: 157px;
-    right: 40px;
+    top: 113px;
+    right: 53px;
     padding: 12px;
     border-left: 2px solid#f5f6fb;
   }
