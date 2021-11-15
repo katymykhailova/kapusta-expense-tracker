@@ -79,6 +79,10 @@
   }
 }
 
+.balance {
+  position: relative;
+}
+
 @media screen and (min-width: 768px) {
   .balance {
     display: flex;
@@ -99,4 +103,77 @@
   .balance.report {
     margin-left: 0;
   }
+}
+
+.balanceNotification {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  width: 282px;
+  height: 163px;
+  left: -63%;
+  top: 127%;
+  z-index: 4;
+
+  padding-left: 30px;
+  padding-right: 30px;
+
+  background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
+  border-radius: 30px;
+}
+
+.balanceNotification:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-bottom-color: #1d345c;
+  border-top: 0;
+  margin-left: -30px;
+  margin-top: -15px;
+}
+
+@media screen and (min-width: 768px) {
+  .balanceNotification {
+    left: 16%;
+    top: 145%;
+    width: 292px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .balanceNotification {
+    left: 16%;
+    width: 292px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .balanceNotification:after {
+    border-bottom-color: #1d3464;
+    margin-left: -100px;
+  }
+}
+
+.notificationWarningText {
+  margin-bottom: 20px;
+
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.42;
+  letter-spacing: 0.01em;
+  color: var(--white-color);
+}
+
+.notificationDescrText {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
+  color: var(--white-color);
 }

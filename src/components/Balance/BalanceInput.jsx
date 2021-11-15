@@ -51,7 +51,14 @@ export default function BalanceInput() {
       </div>
       {currentBalance === null && (
         //Notification must be here
-        <></>
+        <div className={s.balanceNotification}>
+          <p className={s.notificationWarningText}>
+            Привет! Для начала работы внеси текущий баланс своего счета!
+          </p>
+          <p className={s.notificationDescrText}>
+            Ты не можешь тратить деньги пока их у тебя нет &#58;&#41;
+          </p>
+        </div>
       )}
     </div>
   );
