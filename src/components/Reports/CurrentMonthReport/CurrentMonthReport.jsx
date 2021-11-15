@@ -12,6 +12,7 @@ export default function CurrentMonthReport({
   const expenses = transactionsCurrentMonth.filter(
     trans => trans.type === false,
   );
+
   return (
     <div className={s.sectionReport}>
       <div className={s.sectionTitle}>

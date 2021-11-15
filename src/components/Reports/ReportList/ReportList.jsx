@@ -1,22 +1,40 @@
 import s from './ReportList.module.css';
 import sprite from '../../../images/sprite.svg';
 
-export default function ReportList({ trans }) {
+export default function ReportList({ trans /*handleClick*/ }) {
   let categories = [];
+
   trans.forEach(el => categories.push(el.category.name));
   categories = [...new Set(categories)];
   const sums = new Array(categories.length).fill(0);
   trans.forEach(
     el => (sums[categories.indexOf(el.category.name)] += el.amount),
   );
+  console.log(categories);
+  console.log(sums);
+
+  /*let newReport = [];
+  for (let i = 0; i < trans.length; i++) {
+    const newReportItem = {
+      category: trans[i].category.name,
+      value: trans[i].amount,
+      subcategory: trans[i].description,
+    };
+    newReport.push(newReportItem);
+  }*/
+
   return (
     <div className={s.reportData}>
       <ul className={s.reportList}>
         {trans.length === 0 ? (
           <li className={s.transEmpty}>Транзакций нет</li>
         ) : (
-          categories.map((item, idx) => (
-            <li key={item} className={s.transItem}>
+          categories?.map((item, idx) => (
+            <li
+              key={item}
+              className={s.transItem}
+              // onClick={handleClick}
+            >
               <p className={s.itemValue}>{sums[idx]}</p>
               <div
                 className={

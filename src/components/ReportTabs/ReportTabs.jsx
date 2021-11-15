@@ -80,7 +80,7 @@ export default function ReportTabs() {
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary />}
+              {isDesctop && <Summary reportType="o" />}
             </div>
           </TabPanel>
           <TabPanel>
@@ -91,12 +91,12 @@ export default function ReportTabs() {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o"  />}
+              {isDesctop && <Summary reportType="o" />}
             </div>
           </TabPanel>
         </div>
       </Tabs>
-      {isTablet && <Summary reportType="o"  />}
+      {isTablet && <Summary reportType="o" />}
       {showModal && (
         <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
           <ButtonBlock
