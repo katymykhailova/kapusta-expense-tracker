@@ -54,6 +54,7 @@ export default function ReportTabs() {
   const income = transactions.filter(trans => trans.type === true);
   const outcome = transactions.filter(trans => trans.type === false);
 
+
   const handleDelete = id => {
     setShowModal(true);
     if (!remove) {
@@ -73,7 +74,8 @@ export default function ReportTabs() {
         </TabList>
         <div className={s.tabsWrap}>
           <TabPanel>
-            {!isMobile && <FormDescription />}
+
+            {!isMobile && <FormDescription typeForm={false} />}
             <div className={s.wrapper}>
               <ReportTable
                 type={false}
@@ -84,7 +86,7 @@ export default function ReportTabs() {
             </div>
           </TabPanel>
           <TabPanel>
-            {!isMobile && <FormDescription />}
+            {!isMobile && <FormDescription typeForm={true} />}
             <div className={s.wrapper}>
               <ReportTable
                 type={true}
