@@ -31,6 +31,7 @@ CustomTab.tabsRole = 'Tab';
 export default function ReportTabs() {
   const [showModal, setShowModal] = useState(false);
   const [remove, setRemove] = useState(false);
+  const [currentTransaction, setCurrentTransaction] = useState(null);
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesctop = useMediaQuery({ minWidth: 1280 });
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -51,20 +52,23 @@ export default function ReportTabs() {
     dispatch(getTransactionsByMonts(date));
   }, [dispatch]);
 
-  const income = transactions.filter(trans => trans.type === true);
-  const outcome = transactions.filter(trans => trans.type === false);
+  const income = transactions.filter(trans => trans.type);
+  const outcome = transactions.filter(trans => !trans.type);
 
 
   const handleDelete = id => {
     setShowModal(true);
+    setCurrentTransaction(id);
+  };
+
+  useEffect(() => {
     if (!remove) {
       return;
     }
-    dispatch(removeTransaction(id));
+    dispatch(removeTransaction(currentTransaction));
     setShowModal(false);
     setRemove(false);
-  };
-
+  }, [currentTransaction, dispatch, remove]);
   return (
     <>
       <Tabs className={s.tabsContainer} selectedTabClassName={s.isSelected}>
@@ -82,8 +86,9 @@ export default function ReportTabs() {
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary />}
+              {isDesctop && <Summary reportType="o" />}
             </div>
+            {isTablet && <Summary reportType="o" />}
           </TabPanel>
           <TabPanel>
             {!isMobile && <FormDescription typeForm={true} />}
@@ -93,12 +98,12 @@ export default function ReportTabs() {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o"  />}
+              {isDesctop && <Summary reportType="i" />}
             </div>
+            {isTablet && <Summary reportType="i" />}
           </TabPanel>
         </div>
       </Tabs>
-      {isTablet && <Summary reportType="o"  />}
       {showModal && (
         <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
           <ButtonBlock
@@ -108,9 +113,10 @@ export default function ReportTabs() {
               setRemove(true);
             }}
             secondButtonHandler={() => {
+              setRemove(false);
               setShowModal(false);
             }}
-            firstButtonType="submit"
+            firstButtonType="button"
             secondButtonType="button"
           ></ButtonBlock>
         </Modal>
