@@ -14,7 +14,7 @@ const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async newTransaction => {
     const transaction = await transactionsApi.addTransaction(newTransaction);
-    return transaction;
+    return transaction.data.result;
   },
 );
 
