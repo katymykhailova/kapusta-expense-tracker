@@ -1,44 +1,32 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
-
 import moment from 'moment';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
 import { getCategories } from '../../redux/categories/categoriesSelectors';
-
 import { useState, useRef, useEffect } from 'react';
-
 import DropDownCategory from '../DropDownCategory/DropDownCategory';
-
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
-
 import 'react-datepicker/dist/react-datepicker.css';
-
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
 export default function FormDescription({ typeForm }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const { register, handleSubmit, reset, setValue } = useForm();
+  const [open, setOpen] = useState(false);
+  const [placeholderCategories, setPlaceholderCategories] = useState('');
 
   const categoriesState = useSelector(getCategories);
-  // console.log('categoriesState', categoriesState);
-
-  // console.log(
-  //   'categoriesState',
-  //   categoriesState.filter(el => el.type === false),
-  // );
-  // console.log(typeForm);
+  const ref = useRef();
   const dispatch = useDispatch();
-
-  const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = data => {
     const { date, name, sum } = data;
-    // console.log('placeholderCategories222', placeholderCategories);
     const newData = {
       type: typeForm,
       category: placeholderCategories.id,
@@ -46,22 +34,8 @@ export default function FormDescription({ typeForm }) {
       description: name,
       amount: +sum,
     };
-    // console.log('categories', categories);
-    // console.log('categories', categories);
-    // console.log('date', date);
-    // console.log('name', name);
-    // console.log('sum', sum);
-    // console.log('categories', typeof data.categories);
-    // console.log('date', typeof data.date);
-    // console.log('name', typeof data.name);
-    // Number(data.sum);
-    // console.log('sum', typeof data.sum);
-    // console.log('sum', typeof +sum);
-    // console.log({ categories, date, name, sum });
-    console.log('name', placeholderCategories.data);
-    console.log('newData', newData);
+    // console.log('newData', newData);
     dispatch(addTransaction(newData));
-    // dispatch(addTransaction(data));
     setPlaceholderCategories('');
     reset({
       name: '',
@@ -69,11 +43,6 @@ export default function FormDescription({ typeForm }) {
       sum: '',
     });
   };
-
-  const [open, setOpen] = useState(false);
-  const [placeholderCategories, setPlaceholderCategories] = useState('');
-
-  const ref = useRef();
 
   useEffect(() => {
     const checkClickOutside = e => {
@@ -88,27 +57,15 @@ export default function FormDescription({ typeForm }) {
   }, [open]);
 
   const changerPlaceholder = (data, id) => {
-    // console.log(e.target.innerText);
-    // setPlaceholderCategories(e.target.innerText);
-
-    // console.log('data2', data);
-    // console.log('id2', id);
     setPlaceholderCategories({ data, id });
     setOpen(false);
   };
 
   useEffect(() => {
-    // console.log('placeholderCategories', placeholderCategories);
     setValue('categories', placeholderCategories.data);
   }, [placeholderCategories, setValue]);
 
   useEffect(() => {
-    // console.log('+++');
-    // const Year = selectedDate.getFullYear();
-    // const Month = selectedDate.getMonth();
-    // const date = selectedDate.getDate();
-    // console.log(`date:${date} Month:${Month + 1} Year:${Year}`);
-    // console.log(moment(selectedDate).subtract(10, 'days').calendar());
     setValue('date', selectedDate);
   }, [selectedDate, setValue]);
 
@@ -125,7 +82,6 @@ export default function FormDescription({ typeForm }) {
             <DatePicker
               {...register('date')}
               locale="ru"
-              // className={s.formStyles}
               selected={selectedDate}
               onChange={date => setSelectedDate(date)}
               dateFormat="dd.MM.yyyy"
@@ -162,7 +118,6 @@ export default function FormDescription({ typeForm }) {
           <ButtonBlock
             firstButtonText="ввод"
             secondButtonText="очистить"
-            // firstButtonHandler={onSubmit}
             secondButtonHandler={() => {
               setPlaceholderCategories('');
               reset({
@@ -182,13 +137,12 @@ export default function FormDescription({ typeForm }) {
             typeForm={typeForm}
           />
         )}
-        {/* <DropDownCategory
-          changerDescription={changerPlaceholder}
-          categoriesList={categoriesState}
-          typeForm={typeForm}
-        /> */}
       </form>
       <div className={s.formStyles}></div>
     </div>
   );
 }
+
+FormDescription.propTypes = {
+  typeForm: PropTypes.bool,
+};
