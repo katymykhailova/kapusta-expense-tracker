@@ -1,6 +1,7 @@
 .categoryPosition {
   position: absolute;
   box-shadow: 0px 4px 4px 0px #00000040;
+  z-index: 1000;
 }
 
 .categoryName {
@@ -27,7 +28,7 @@
 
   .categoryPosition {
     top: 135px;
-    right: 0px;
+    /* right: 0px; */
     width: 100%;
   }
 }
@@ -35,15 +36,15 @@
 @media screen and (min-width: 768px) {
   .categoryPosition {
     top: 40px;
-    right: 123px;
-    width: 171px;
+    /* right: 121px; */
+    width: 170px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .categoryPosition {
     top: 40px;
-    right: 454px;
+    /* right: 378px; */
     width: 187px;
   }
 }
