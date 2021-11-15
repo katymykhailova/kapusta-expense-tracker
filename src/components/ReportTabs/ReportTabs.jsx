@@ -14,6 +14,9 @@ import {
   getTransactionsList,
   removeTransaction,
 } from '../../redux/transactions';
+import { getCategoriesList } from '../../redux/categories/';
+import { AiOutlinePlus } from 'react-icons/ai';
+import FormDescriptionModal from 'components/FormDescriptionModal/FormDescriptionModal';
 
 const DEFAULT_CLASS = 'react-tabs__tab';
 const DEFAULT_SELECTED_CLASS = `${DEFAULT_CLASS}--selected`;
@@ -28,33 +31,32 @@ const CustomTab = ({ className, selectedClassName, ...props }) => (
 
 CustomTab.tabsRole = 'Tab';
 
-export default function ReportTabs() {
+export default function ReportTabs({ onClick }) {
   const [showModal, setShowModal] = useState(false);
   const [remove, setRemove] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesctop = useMediaQuery({ minWidth: 1280 });
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const dispatch = useDispatch();
-  // получаем все транзакции за месяц (доход и расход)
-  const transactions = useSelector(getTransactionsList);
 
   // получаем все транзакции за месяц (доход и расход)
-  // const categories = useSelector(getCategories);
+  const transactions = useSelector(getTransactionsList);
 
   useEffect(() => {
     const curretnDate = new Date();
     const month = curretnDate.getUTCMonth() + 1;
     const year = curretnDate.getFullYear();
     const date = `${year}${month}`;
-    // dispatch(getCategoriesList());
+    dispatch(getCategoriesList());
     dispatch(getTransactionsByMonts(date));
   }, [dispatch]);
 
   const income = transactions.filter(trans => trans.type);
   const outcome = transactions.filter(trans => !trans.type);
-
 
   const handleDelete = id => {
     setShowModal(true);
@@ -69,6 +71,11 @@ export default function ReportTabs() {
     setShowModal(false);
     setRemove(false);
   }, [currentTransaction, dispatch, remove]);
+
+  const toggleModal = () => {
+    return isVisible ? setIsVisible(false) : setIsVisible(true);
+  };
+
   return (
     <>
       <Tabs className={s.tabsContainer} selectedTabClassName={s.isSelected}>
@@ -78,7 +85,17 @@ export default function ReportTabs() {
         </TabList>
         <div className={s.tabsWrap}>
           <TabPanel>
-
+            {isMobile && (
+              <button type="button" onClick={toggleModal} className={s.addBtn}>
+                <AiOutlinePlus size="18" color="#ffffff" />
+              </button>
+            )}
+            {isVisible && isMobile && (
+              <FormDescriptionModal
+                toggleModal={toggleModal}
+                typeForm={false}
+              />
+            )}
             {!isMobile && <FormDescription typeForm={false} />}
             <div className={s.wrapper}>
               <ReportTable
@@ -91,6 +108,14 @@ export default function ReportTabs() {
             {isTablet && <Summary reportType="o" />}
           </TabPanel>
           <TabPanel>
+            {isMobile && (
+              <button type="button" onClick={toggleModal} className={s.addBtn}>
+                <AiOutlinePlus size="18" color="#ffffff" />
+              </button>
+            )}
+            {isVisible && isMobile && (
+              <FormDescriptionModal toggleModal={toggleModal} typeForm={true} />
+            )}
             {!isMobile && <FormDescription typeForm={true} />}
             <div className={s.wrapper}>
               <ReportTable
