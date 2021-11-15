@@ -125,14 +125,13 @@ export default function ReportTabs({ onClick }) {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-
               {isDesctop && <Summary reportType="i" />}
+
             </div>
             {isTablet && <Summary reportType="i" />}
           </TabPanel>
         </div>
       </Tabs>
-
       {showModal && (
         <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
           <ButtonBlock

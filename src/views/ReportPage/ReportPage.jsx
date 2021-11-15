@@ -5,7 +5,7 @@ import {
   getTransactionsList,
 } from '../../redux/transactions';
 
-import { getCategoriesList } from '../../redux/categories';
+// import { getTransactionsSums } from '../../redux/transactions/transactionsSelectors';
 import s from './ReportPage.module.css';
 import HeaderReport from '../../components/Reports/HeaderReport';
 import CurrentMonthReport from '../../components/Reports/CurrentMonthReport';
@@ -22,9 +22,8 @@ export default function ReportPage() {
   const [type, setType] = useState(false);
 
   useEffect(() => {
-    const period = `${year}${month} `;
-
-    dispatch(getCategoriesList());
+    const monthCorrect = month <= 9 ? '0' + month : month;
+    const period = `${year}${monthCorrect} `;
     dispatch(getTransactionsByMonts(period));
   }, [dispatch, year, month]);
 
