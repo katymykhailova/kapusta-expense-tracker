@@ -53,7 +53,8 @@ const data = [
   },
 ];
 
-export default function BarChartReport() {
+export default function BarChartReport({ chartsName }) {
+  console.log(chartsName);
   return (
     <div className={s.wrap}>
       <BarChart

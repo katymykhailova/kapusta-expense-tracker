@@ -3,9 +3,8 @@ import s from './ReportList.module.css';
 import sprite from '../../../images/sprite.svg';
 import { getCategories } from 'redux/categories';
 
-export default function ReportList({ trans /*handleClick*/ }) {
+export default function ReportList({ trans, handleClick }) {
   let categories = useSelector(getCategories);
-
   const summs = Object.values(
     trans.reduce((acc, { group, total_amounts }) => {
       const category = categories.find(i => i._id === group.category);
@@ -25,9 +24,10 @@ export default function ReportList({ trans /*handleClick*/ }) {
         ) : (
           summs.map(item => (
             <li
-              key={item.category.name}
+              key={item.category._id}
               className={s.transItem}
-              // onClick={handleClick}
+              title={item.category.name}
+              onClick={handleClick}
             >
               <p className={s.itemValue}>{item.total_amounts}</p>
               <div
