@@ -16,7 +16,7 @@ export default function ReportPage() {
   const [month, setMonth] = useState(date.getMonth() + 1);
   const [year, setYear] = useState(date.getFullYear());
   const [type, setType] = useState(false);
-  const [chartsName, setChartsName] = useState('');
+  const [chartsCategoryId, setChartsCategoryId] = useState('');
 
   useEffect(() => {
     const monthCorrect = month <= 9 ? '0' + month : month;
@@ -32,6 +32,7 @@ export default function ReportPage() {
       setYear(prev => (prev += 1));
     }
   };
+
   const handleChangeMonthLeft = () => {
     if (month <= 1) {
       setMonth(12);
@@ -50,8 +51,19 @@ export default function ReportPage() {
   };
 
   const handleClickGetChart = id => {
-    setChartsName(id);
-    console.log(id);
+    setChartsCategoryId(id);
+  };
+
+  const filtredTransactions = (transType, categoryId) => {
+    return transactions
+      .filter(
+        transaction =>
+          transaction.group.type === transType &&
+          transaction.group.category === categoryId,
+      )
+      .map(tr => {
+        return { description: tr.group.description, amount: tr.total_amounts };
+      });
   };
 
   return (
@@ -70,7 +82,11 @@ export default function ReportPage() {
         transactionsCurrentMonth={transactions}
         handleClickGetChart={handleClickGetChart}
       />
-      <BarChartReport />
+      {chartsCategoryId && (
+        <BarChartReport
+          transactions={filtredTransactions(type, chartsCategoryId)}
+        />
+      )}
     </div>
   );
 }
