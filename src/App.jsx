@@ -32,6 +32,11 @@ export default function App() {
 
   const token = queryString.parse(window.location.search).token;
 
+  // const data = '/report';
+  localStorage.setItem('curLink', '/report');
+  let curLink = localStorage.getItem('curLink');
+  console.log('curLink', curLink);
+
   useEffect(() => {
     token && dispatch(getGoogleAuthToken(token));
     dispatch(getCurrentUser());
