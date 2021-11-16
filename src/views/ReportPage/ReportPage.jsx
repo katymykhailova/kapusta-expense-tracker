@@ -49,10 +49,11 @@ export default function ReportPage() {
     }
   };
 
-  const handleClickGetChart = e => {
-    setChartsName(e.currentTarget.attributes.title.nodeValue);
+  const handleClickGetChart = id => {
+    setChartsName(id);
+    console.log(id);
   };
-  console.log(chartsName);
+
   return (
     <div className={s.reportContainer}>
       <HeaderSection
@@ -69,7 +70,7 @@ export default function ReportPage() {
         transactionsCurrentMonth={transactions}
         handleClickGetChart={handleClickGetChart}
       />
-      <BarChartReport chartsName={chartsName} />
+      <BarChartReport />
     </div>
   );
 }

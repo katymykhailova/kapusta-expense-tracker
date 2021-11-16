@@ -26,8 +26,9 @@ export default function ReportList({ trans, handleClick }) {
             <li
               key={item.category._id}
               className={s.transItem}
-              title={item.category.name}
-              onClick={handleClick}
+              onClick={() => {
+                handleClick(item.category._id);
+              }}
             >
               <p className={s.itemValue}>{item.total_amounts}</p>
               <div
