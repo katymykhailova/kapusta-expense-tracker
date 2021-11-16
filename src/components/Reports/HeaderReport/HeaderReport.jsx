@@ -5,9 +5,9 @@ export default function HeaderReport({ transactionsMonth }) {
   const getTotalSum = typeTrans => {
     let totalAmount = 0;
     const sumArr = transactionsMonth.filter(
-      transaction => transaction.type === typeTrans,
+      transaction => transaction.group.type === typeTrans,
     );
-    sumArr.map(el => (totalAmount += el.amount));
+    sumArr.map(el => (totalAmount += el.total_amounts));
     return totalAmount;
   };
 

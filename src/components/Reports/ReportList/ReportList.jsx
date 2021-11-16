@@ -1,27 +1,21 @@
+import { useSelector } from 'react-redux';
 import s from './ReportList.module.css';
 import sprite from '../../../images/sprite.svg';
+import { getCategories } from 'redux/categories';
 
 export default function ReportList({ trans /*handleClick*/ }) {
-  let categories = [];
+  let categories = useSelector(getCategories);
 
-  trans.forEach(el => categories.push(el.category.name));
-  categories = [...new Set(categories)];
-  const sums = new Array(categories.length).fill(0);
-  trans.forEach(
-    el => (sums[categories.indexOf(el.category.name)] += el.amount),
+  const summs = Object.values(
+    trans.reduce((acc, { group, total_amounts }) => {
+      const category = categories.find(i => i._id === group.category);
+      if (!acc[category.name]) {
+        acc[category.name] = { category, total_amounts: 0 };
+      }
+      acc[category.name].total_amounts += total_amounts;
+      return acc;
+    }, {}),
   );
-  console.log(categories);
-  console.log(sums);
-
-  /*let newReport = [];
-  for (let i = 0; i < trans.length; i++) {
-    const newReportItem = {
-      category: trans[i].category.name,
-      value: trans[i].amount,
-      subcategory: trans[i].description,
-    };
-    newReport.push(newReportItem);
-  }*/
 
   return (
     <div className={s.reportData}>
@@ -29,13 +23,13 @@ export default function ReportList({ trans /*handleClick*/ }) {
         {trans.length === 0 ? (
           <li className={s.transEmpty}>Транзакций нет</li>
         ) : (
-          categories?.map((item, idx) => (
+          summs.map(item => (
             <li
-              key={item}
+              key={item.category.name}
               className={s.transItem}
               // onClick={handleClick}
             >
-              <p className={s.itemValue}>{sums[idx]}</p>
+              <p className={s.itemValue}>{item.total_amounts}</p>
               <div
                 className={
                   item.isActive ? s.svgContainerActive : s.svgContainer
@@ -46,10 +40,10 @@ export default function ReportList({ trans /*handleClick*/ }) {
                   height="58"
                   className={item.isActive ? s.iconActive : s.icon}
                 >
-                  <use xlinkHref={`${sprite}#${item}`} />
+                  <use xlinkHref={`${sprite}#${item.category.name}`} />
                 </svg>
               </div>
-              <h3 className={s.titleItem}>{item}</h3>
+              <h3 className={s.titleItem}>{item.category.name}</h3>
             </li>
           ))
         )}
