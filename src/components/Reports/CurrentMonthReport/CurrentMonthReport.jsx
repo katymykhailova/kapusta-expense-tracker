@@ -7,6 +7,7 @@ export default function CurrentMonthReport({
   transactionsCurrentMonth,
   typeTrans,
   handleChangeTypeTrans,
+  handleClickGetChart,
 }) {
   const incomes = transactionsCurrentMonth.filter(trans => trans.group.type);
   const expenses = transactionsCurrentMonth.filter(trans => !trans.group.type);
@@ -32,15 +33,9 @@ export default function CurrentMonthReport({
         />
       </div>
       {typeTrans === false ? (
-        <ReportList
-          trans={expenses}
-          //   onClick={handleClickExpenses}
-        />
+        <ReportList trans={expenses} handleClick={handleClickGetChart} />
       ) : (
-        <ReportList
-          trans={incomes}
-          //   onClick={handleClickIncomes}
-        />
+        <ReportList trans={incomes} handleClick={handleClickGetChart} />
       )}
     </div>
   );

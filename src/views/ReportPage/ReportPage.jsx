@@ -16,6 +16,7 @@ export default function ReportPage() {
   const [month, setMonth] = useState(date.getMonth() + 1);
   const [year, setYear] = useState(date.getFullYear());
   const [type, setType] = useState(false);
+  const [chartsName, setChartsName] = useState('');
 
   useEffect(() => {
     const monthCorrect = month <= 9 ? '0' + month : month;
@@ -48,6 +49,11 @@ export default function ReportPage() {
     }
   };
 
+  const handleClickGetChart = id => {
+    setChartsName(id);
+    console.log(id);
+  };
+
   return (
     <div className={s.reportContainer}>
       <HeaderSection
@@ -62,6 +68,7 @@ export default function ReportPage() {
         typeTrans={type}
         handleChangeTypeTrans={handleChangeTypeTrans}
         transactionsCurrentMonth={transactions}
+        handleClickGetChart={handleClickGetChart}
       />
       <BarChartReport />
     </div>
