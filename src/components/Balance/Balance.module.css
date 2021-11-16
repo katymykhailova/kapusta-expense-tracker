@@ -126,9 +126,9 @@ input::-webkit-inner-spin-button {
   position: absolute;
   width: 282px;
   height: 163px;
-  left: -63%;
+  left: -1%;
   top: 127%;
-  z-index: 4;
+  z-index: 0;
 
   padding-left: 30px;
   padding-right: 30px;
@@ -147,7 +147,7 @@ input::-webkit-inner-spin-button {
   border: 15px solid transparent;
   border-bottom-color: #1d345c;
   border-top: 0;
-  margin-left: -30px;
+  margin-left: -95px;
   margin-top: -15px;
 }
 
@@ -156,6 +156,7 @@ input::-webkit-inner-spin-button {
     left: 16%;
     top: 145%;
     width: 292px;
+    z-index: 4;
   }
 }
 
