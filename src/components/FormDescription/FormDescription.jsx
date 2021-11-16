@@ -26,7 +26,7 @@ export default function FormDescription({ typeForm }) {
   // console.log('categoriesState', categoriesState);
   const ref = useRef();
   const dispatch = useDispatch();
-  console.log('typeForm', typeForm);
+  // console.log('typeForm', typeForm);
 
   const onSubmit = data => {
     const { date, name, sum } = data;
@@ -37,7 +37,7 @@ export default function FormDescription({ typeForm }) {
       description: name,
       amount: +sum,
     };
-    console.log('newData', newData);
+    // console.log('newData', newData);
     dispatch(addTransaction(newData));
     setPlaceholderCategories('');
     reset({
@@ -146,7 +146,6 @@ export default function FormDescription({ typeForm }) {
             }}
             firstButtonType="submit"
             secondButtonType="button"
-            className={s.ButtonBlockFormDescription}
           />
         </div>
         {/* {open && (
