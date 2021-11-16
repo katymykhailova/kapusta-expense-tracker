@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = `http://kapusta-api-project.herokuapp.com/api`;
+axios.defaults.baseURL = `https://kapusta-api-project.herokuapp.com/api`;
 
 /**
  * 1. getTransactionsByMonts
