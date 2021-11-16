@@ -14,23 +14,23 @@ const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async newTransaction => {
     const transaction = await transactionsApi.addTransaction(newTransaction);
-    return transaction;
+    return transaction.data.result;
   },
 );
 
 const removeTransaction = createAsyncThunk(
   'transactions/removeTransaction',
   async transactionId => {
-    const data = await transactionsApi.removeTransaction(transactionId);
-    return data;
+    await transactionsApi.removeTransaction(transactionId);
+    return transactionId;
   },
 );
 
 const updateTransaction = createAsyncThunk(
   'transactions/updateTransaction',
   async transactionId => {
-    const data = await transactionsApi.updateTransaction(transactionId);
-    return data;
+    await transactionsApi.updateTransaction(transactionId);
+    return transactionId;
   },
 );
 

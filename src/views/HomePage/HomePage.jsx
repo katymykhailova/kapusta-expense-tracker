@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <div className={s.pageWrap}>
       <HeaderSection typePage="home" />
-      <ReportTabs></ReportTabs>
+      <ReportTabs />
     </div>
   );
 }

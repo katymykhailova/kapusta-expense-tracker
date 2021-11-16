@@ -10,8 +10,13 @@
   margin-top: 10px;
 }
 
-.tableSum {
+.tableSumI {
   font-weight: 700;
+  color: var(--green-color);
+}
+.tableSumO {
+  font-weight: 700;
+  color: #e7192e;
 }
 
 .tableDelet {
@@ -21,11 +26,23 @@
 }
 
 .deleteBtn {
+  width: 32px;
+  height: 32px;
   border: none;
   border-color: transparent;
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+}
+
+.deleteBtnImg {
+  margin: 0 auto;
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus {
+  background-color: var(--bg-color);
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 767px) {
@@ -86,7 +103,8 @@
     text-align: center;
   }
 
-  .tableSum {
+  .tableSumI,
+  .tableSumO {
     width: 113px;
     text-align: end;
   }
@@ -111,7 +129,8 @@
   .tableCat {
     width: 172px;
   }
-  .tableSum {
+  .tableSumI,
+  .tableSumO {
     width: 130px;
   }
   .tableDelet {

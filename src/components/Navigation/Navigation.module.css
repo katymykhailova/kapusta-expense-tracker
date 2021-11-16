@@ -19,6 +19,7 @@
   color: #000000;
 }
 .navigationMonthTab {
+  width: 150px;
   margin: 10px auto 30px auto;
 }
 .navigationMonthPeriod {

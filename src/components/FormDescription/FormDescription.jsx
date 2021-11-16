@@ -1,19 +1,44 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
-
+import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTransaction } from '../../redux/transactions/transactionsOperations';
+import { getCategories } from '../../redux/categories/categoriesSelectors';
 import { useState, useRef, useEffect } from 'react';
-
 import DropDownCategory from '../DropDownCategory/DropDownCategory';
-
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import ru from 'date-fns/locale/ru'; // the locale you want
+registerLocale('ru', ru); // register it with the name you want
 
-export default function FormDescription() {
+export default function FormDescription({ typeForm }) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const { register, handleSubmit, reset, setValue } = useForm();
+  const [open, setOpen] = useState(false);
+  const [placeholderCategories, setPlaceholderCategories] = useState('');
+
+  const categoriesState = useSelector(getCategories);
+  // console.log('categoriesState', categoriesState);
+  const ref = useRef();
+  const dispatch = useDispatch();
+  // console.log('typeForm', typeForm);
 
   const onSubmit = data => {
-    console.log(data);
+    const { date, name, sum } = data;
+    const newData = {
+      type: typeForm,
+      category: placeholderCategories.id,
+      date: moment(date).format('YYYY-MM-DD'),
+      description: name,
+      amount: +sum,
+    };
+    // console.log('newData', newData);
+    dispatch(addTransaction(newData));
+    setPlaceholderCategories('');
     reset({
       name: '',
       categories: '',
@@ -21,14 +46,12 @@ export default function FormDescription() {
     });
   };
 
-  const [open, setOpen] = useState(false);
-  const [placeholderCategories, setPlaceholderCategories] = useState('');
-
-  const ref = useRef();
-
   useEffect(() => {
     const checkClickOutside = e => {
-      if (open && ref.current && !ref.current.contains(e.target)) {
+      // if (open && ref.current && !ref.current.contains(e.target)) {
+      //   setOpen(false);
+      // }
+      if (open) {
         setOpen(false);
       }
     };
@@ -38,15 +61,19 @@ export default function FormDescription() {
     };
   }, [open]);
 
-  const changerPlaceholder = e => {
-    console.log(e.target.innerText);
-    setPlaceholderCategories(e.target.innerText);
+  const changerPlaceholder = (data, id) => {
+    setPlaceholderCategories({ data, id });
+    // console.log('++');
     setOpen(false);
   };
 
   useEffect(() => {
-    setValue('categories', placeholderCategories);
-  }, [placeholderCategories]);
+    setValue('categories', placeholderCategories.data);
+  }, [placeholderCategories, setValue]);
+
+  useEffect(() => {
+    setValue('date', selectedDate);
+  }, [selectedDate, setValue]);
 
   return (
     <div>
@@ -58,29 +85,39 @@ export default function FormDescription() {
       >
         <div className={s.productInfo}>
           <div className={s.datePosition}>
-            <input
+            <DatePicker
               {...register('date')}
-              type="date"
-              className={s.dateProduct}
+              locale="ru"
+              selected={selectedDate}
+              onChange={date => setSelectedDate(date)}
+              dateFormat="dd.MM.yyyy"
+              maxDate={new Date()}
+              className={s.inputProductDate}
             />
           </div>
           <div className={s.productPosition}>
             <input
               {...register('name')}
               className={s.inputProductName}
-              placeholder="Описание товара"
+              placeholder={typeForm ? 'Описание дохода' : 'Описание товара'}
             />
-            <input
-              autoComplete="off"
-              {...register('categories')}
-              className={s.inputСategoryName}
-              placeholder="Категория товара"
-              // value={placeholderCategories}
-              // value="Категория товара"
-              onClick={() => setOpen(!open)}
-              readOnly
-            />
-
+            <div className={s.DropDownPos}>
+              <input
+                autoComplete="off"
+                {...register('categories')}
+                className={s.inputСategoryName}
+                placeholder={typeForm ? 'Категория дохода' : 'Категория товара'}
+                onClick={() => setOpen(!open)}
+                readOnly
+              />
+              {open && (
+                <DropDownCategory
+                  changerDescription={changerPlaceholder}
+                  categoriesList={categoriesState}
+                  typeForm={typeForm}
+                />
+              )}
+            </div>
             <input
               {...register('sum')}
               className={s.inputValueProduct}
@@ -92,24 +129,11 @@ export default function FormDescription() {
           </div>
         </div>
         <div className={s.btnPosition}>
-          {/* <button value="ввод" type="submit" />
-          <input
-            value="очистить"
-            // type="reset"
-            type="button"
-            onClick={() => {
-              reset({
-                name: '',
-                categories: '',
-                sum: '',
-              });
-            }}
-          /> */}
           <ButtonBlock
             firstButtonText="ввод"
             secondButtonText="очистить"
-            // firstButtonHandler={onSubmit}
             secondButtonHandler={() => {
+              setPlaceholderCategories('');
               reset({
                 name: '',
                 categories: '',
@@ -120,8 +144,19 @@ export default function FormDescription() {
             secondButtonType="button"
           />
         </div>
-        {open && <DropDownCategory changerDescription={changerPlaceholder} />}
+        {/* {open && (
+          <DropDownCategory
+            changerDescription={changerPlaceholder}
+            categoriesList={categoriesState}
+            typeForm={typeForm}
+          />
+        )} */}
       </form>
+      <div className={s.formStyles}></div>
     </div>
   );
 }
+
+FormDescription.propTypes = {
+  typeForm: PropTypes.bool,
+};

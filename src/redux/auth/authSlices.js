@@ -4,6 +4,7 @@ import {
   logIn,
   logOut,
   getCurrentUser,
+  getGoogleAuthToken,
   updateUserBalance,
 } from './index';
 
@@ -61,6 +62,12 @@ const authSlice = createSlice({
       state.error = action.error.message;
     },
 
+    [getGoogleAuthToken]: (state, { payload }) => {
+      state.token = payload;
+      state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+
     [logOut.pending]: (state, _) => {
       state.error = null;
       state.isLoading = true;
@@ -107,7 +114,7 @@ const authSlice = createSlice({
     },
 
     [updateUserBalance.fulfilled]: (state, { payload }) => {
-      state.user.balance = payload;
+      state.user.balance = payload.balance;
       state.isLoading = false;
     },
 

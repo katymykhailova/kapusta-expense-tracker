@@ -37,6 +37,9 @@
   align-items: center;
   padding: 40px 0;
 }
+.addBtn {
+  display: none;
+}
 @media screen and (max-width: 767px) {
   .headerTab {
     display: flex;

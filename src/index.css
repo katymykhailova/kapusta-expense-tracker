@@ -18,6 +18,12 @@
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@media screen and (max-width: 767px) {
+  body {
+    overflow: hidden;
+  }
+}
+
 body {
   margin: 0;
   scroll-behavior: smooth;
@@ -55,4 +61,14 @@ img {
 input,
 button {
   font: inherit;
+}
+
+.simplebar-scrollbar::before {
+  background-color: var(--accent-color-primary);
+}
+
+.simplebar-scrollbar.simplebar-visible.simplebar-scrollbar::before {
+  transform: none;
+  opacity: 1;
+  transition: none;
 }

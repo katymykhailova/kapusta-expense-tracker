@@ -4,9 +4,15 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Navigation from '../Navigation/Navigation';
 import NavigationMonth from '../Navigation/NavigationMonth';
 import BalanceInput from '../Balance/BalanceInput';
-import BalanceReport from '../Balance/BalanceReport';
 
-export default function HeaderSection({ typePage }) {
+export default function HeaderSection({
+  typePage,
+  month,
+  year,
+  handleChangeMonthLeft,
+  handleChangeMonthRight,
+  onClick,
+}) {
   return (
     <>
       {typePage === 'home' && (
@@ -21,7 +27,7 @@ export default function HeaderSection({ typePage }) {
               />
             </Navigation>
           </div>
-          <BalanceInput balance={'55000'} />
+          <BalanceInput />
         </div>
       )}
       {typePage === 'report' && (
@@ -39,8 +45,14 @@ export default function HeaderSection({ typePage }) {
             </div>
           </Navigation>
           <div className={s.headData}>
-            <BalanceReport balance={55000} />
-            <NavigationMonth period={'Октябрь 2021'} />
+            <BalanceInput />
+            {/* <BalanceReport balance={55000} /> */}
+            <NavigationMonth
+              month={month}
+              year={year}
+              handleChangeMonthLeft={handleChangeMonthLeft}
+              handleChangeMonthRight={handleChangeMonthRight}
+            />
           </div>
         </div>
       )}
