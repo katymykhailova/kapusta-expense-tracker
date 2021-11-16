@@ -8,10 +8,8 @@ export default function CurrentMonthReport({
   typeTrans,
   handleChangeTypeTrans,
 }) {
-  const incomes = transactionsCurrentMonth.filter(trans => trans.type === true);
-  const expenses = transactionsCurrentMonth.filter(
-    trans => trans.type === false,
-  );
+  const incomes = transactionsCurrentMonth.filter(trans => trans.group.type);
+  const expenses = transactionsCurrentMonth.filter(trans => !trans.group.type);
 
   return (
     <div className={s.sectionReport}>
