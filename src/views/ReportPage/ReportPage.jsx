@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  getTransactionsByMonts,
-  getTransactionsList,
-} from '../../redux/transactions';
-
-// import { getTransactionsSums } from '../../redux/transactions/transactionsSelectors';
+import { getTransactionsByMonts } from '../../redux/transactions';
+import { getTransactionsSums } from '../../redux/transactions/transactionsSelectors';
 import s from './ReportPage.module.css';
 import HeaderReport from '../../components/Reports/HeaderReport';
 import CurrentMonthReport from '../../components/Reports/CurrentMonthReport';
@@ -14,7 +10,7 @@ import BarChartReport from 'components/BarChartReport/BarChartReport';
 
 export default function ReportPage() {
   const dispatch = useDispatch();
-  const transactions = useSelector(getTransactionsList);
+  const transactions = useSelector(getTransactionsSums);
 
   const date = new Date();
   const [month, setMonth] = useState(date.getMonth() + 1);
