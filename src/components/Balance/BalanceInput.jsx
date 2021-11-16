@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './Balance.module.css';
 import { getUserBalance, updateUserBalance } from '../../redux/auth';
+import BalanceReport from './BalanceReport';
 
 export default function BalanceInput() {
   const [userBalance, setUserBalance] = useState('');
-  const [showBtn, setShowBtn] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -18,48 +18,50 @@ export default function BalanceInput() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (currentBalance === null) setShowBtn(true);
-    dispatch(updateUserBalance({ balance: Number.parseInt(userBalance) }));
+    if (currentBalance === null)
+      dispatch(updateUserBalance({ balance: Number.parseInt(userBalance) }));
     setUserBalance('');
-    setShowBtn(false);
   };
 
   return (
-    <div className={s.balance}>
-      <p className={s.title}>Баланс:</p>
-      <div className={s.balanceBox}>
-        <input
-          id="balanceInput"
-          className={s.balanceInput}
-          type="text"
-          pattern="^[0-9]+$"
-          maxLength="10"
-          value={userBalance}
-          placeholder={`${currentValue}.00 UAH`}
-          onChange={handleChange}
-          onFocus={e => (e.target.placeholder = '')}
-        />
-        {showBtn && (
-          <button
-            className={s.balanceSubmit}
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Подтвердить
-          </button>
-        )}
-      </div>
+    <>
       {currentBalance === null && (
-        //Notification must be here
-        <div className={s.balanceNotification}>
-          <p className={s.notificationWarningText}>
-            Привет! Для начала работы внеси текущий баланс своего счета!
-          </p>
-          <p className={s.notificationDescrText}>
-            Ты не можешь тратить деньги пока их у тебя нет &#58;&#41;
-          </p>
+        <div className={s.balance}>
+          <p className={s.title}>Баланс:</p>
+          <div className={s.balanceBox}>
+            <label className={s.label}>UAH</label>
+            <input
+              id="balanceInput"
+              className={s.balanceInput}
+              type="number"
+              maxLength="10"
+              value={userBalance}
+              placeholder={`${currentValue}.00`}
+              onChange={handleChange}
+              onFocus={e => (e.target.placeholder = '')}
+            />
+
+            <>
+              <button
+                className={s.balanceSubmit}
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Подтвердить
+              </button>
+              <div className={s.balanceNotification}>
+                <p className={s.notificationWarningText}>
+                  Привет! Для начала работы внеси текущий баланс своего счета!
+                </p>
+                <p className={s.notificationDescrText}>
+                  Ты не можешь тратить деньги пока их у тебя нет &#58;&#41;
+                </p>
+              </div>
+            </>
+          </div>
         </div>
       )}
-    </div>
+      {currentBalance !== null && <BalanceReport balance={currentBalance} />}
+    </>
   );
 }
