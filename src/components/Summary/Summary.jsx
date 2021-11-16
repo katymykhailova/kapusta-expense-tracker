@@ -7,12 +7,16 @@ import SimpleBar from 'simplebar-react';
 import arrMonths from '../../utils/dataMonth.json';
 import 'simplebar/dist/simplebar.min.css';
 
-export default function Summary({ reportType }) {
+export default function Summary({ reportType, maks2 }) {
   const dispatch = useDispatch();
   const reportArr = useSelector(selectors.getReports);
+  // console.log('maks2', maks2);
+
   useEffect(() => {
     const date = new Date();
-    const year = date.getFullYear();
+    // const year = date.getFullYear();
+    const year = maks2.getFullYear();
+    console.log('year', year);
     if (year > 0 && reportType) {
       dispatch(reportOperations.getReportList({ reportType, year }));
     }

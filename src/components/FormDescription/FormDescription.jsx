@@ -16,7 +16,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
-export default function FormDescription({ typeForm }) {
+export default function FormDescription({ typeForm, maks }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { register, handleSubmit, reset, setValue } = useForm();
   const [open, setOpen] = useState(false);
@@ -46,7 +46,6 @@ export default function FormDescription({ typeForm }) {
       sum: '',
     });
   };
-
   useEffect(() => {
     const checkClickOutside = e => {
       // if (open && ref.current && !ref.current.contains(e.target)) {
@@ -73,6 +72,10 @@ export default function FormDescription({ typeForm }) {
   }, [placeholderCategories, setValue]);
 
   useEffect(() => {
+    // console.log('selectedDate', selectedDate);
+    // findDate(selectedDate);
+    maks(selectedDate);
+    // console.log('findDate', maks);
     setValue('date', selectedDate);
   }, [selectedDate, setValue]);
 

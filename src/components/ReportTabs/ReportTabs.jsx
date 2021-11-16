@@ -45,6 +45,15 @@ export default function ReportTabs({ onClick }) {
 
   const dispatch = useDispatch();
 
+  const [calendar, setCalendar] = useState(new Date());
+  console.log('calendar', calendar);
+  const getDate = newdata => {
+    console.log('data', newdata);
+    setCalendar(newdata);
+  };
+
+  const tester = 'test';
+
   // получаем все транзакции за месяц (доход и расход)
   const transactions = useSelector(getTransactionsList);
 
@@ -98,16 +107,16 @@ export default function ReportTabs({ onClick }) {
                 typeForm={false}
               />
             )}
-            {!isMobile && <FormDescription typeForm={false} />}
+            {!isMobile && <FormDescription typeForm={false} maks={getDate} />}
             <div className={s.wrapper}>
               <ReportTable
                 type={false}
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o" />}
+              {isDesctop && <Summary reportType="o" maks2={calendar} />}
             </div>
-            {isTablet && <Summary reportType="o" />}
+            {isTablet && <Summary reportType="o" maks2={calendar} />}
           </TabPanel>
           <TabPanel>
             {isMobile && (
@@ -118,17 +127,16 @@ export default function ReportTabs({ onClick }) {
             {isVisible && isMobile && (
               <FormDescriptionModal toggleModal={toggleModal} typeForm={true} />
             )}
-            {!isMobile && <FormDescription typeForm={true} />}
+            {!isMobile && <FormDescription typeForm={true} maks={getDate} />}
             <div className={s.wrapper}>
               <ReportTable
                 type={true}
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="i" />}
-
+              {isDesctop && <Summary reportType="i" maks2={calendar} />}
             </div>
-            {isTablet && <Summary reportType="i" />}
+            {isTablet && <Summary reportType="i" maks2={calendar} />}
           </TabPanel>
         </div>
       </Tabs>
