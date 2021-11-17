@@ -41,11 +41,14 @@ export default function FormDescription({ typeForm, maks }) {
     // console.log('newData', newData);
 
     await dispatch(addTransaction(newData));
+    // dispatch(addTransaction(newData));
 
-    dispatch(getCurrentUser());
+    // dispatch(getCurrentUser());
+
     // dispatch(updateUserBalance());
 
     setPlaceholderCategories('');
+    dispatch(getCurrentUser());
     reset({
       name: '',
       categories: '',
@@ -175,4 +178,5 @@ export default function FormDescription({ typeForm, maks }) {
 
 FormDescription.propTypes = {
   typeForm: PropTypes.bool,
+  maks: PropTypes.func,
 };

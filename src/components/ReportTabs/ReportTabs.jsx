@@ -108,6 +108,7 @@ export default function ReportTabs({ onClick }) {
               <FormDescriptionModal
                 toggleModal={toggleModal}
                 typeForm={false}
+                maks={getDate}
               />
             )}
             {!isMobile && <FormDescription typeForm={false} maks={getDate} />}
@@ -128,7 +129,11 @@ export default function ReportTabs({ onClick }) {
               </button>
             )}
             {isVisible && isMobile && (
-              <FormDescriptionModal toggleModal={toggleModal} typeForm={true} />
+              <FormDescriptionModal
+                toggleModal={toggleModal}
+                typeForm={true}
+                maks={getDate}
+              />
             )}
             {!isMobile && <FormDescription typeForm={true} maks={getDate} />}
             <div className={s.wrapper}>
