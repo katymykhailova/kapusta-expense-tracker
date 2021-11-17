@@ -10,13 +10,12 @@ import Modal from 'components/Modal/Modal';
 import Summary from 'components/Summary/Summary';
 import FormDescription from 'components/FormDescription/FormDescription';
 import { getCategoriesList } from '../../redux/categories';
-
+import { getCurrentUser } from '../../redux/auth';
 import {
   getTransactionsByMonts,
   getTransactionsList,
   removeTransaction,
 } from '../../redux/transactions';
-// import { getCategoriesList } from '../../redux/categories/';
 import { AiOutlinePlus } from 'react-icons/ai';
 import FormDescriptionModal from 'components/FormDescriptionModal/FormDescriptionModal';
 
@@ -79,7 +78,11 @@ export default function ReportTabs({ onClick }) {
     if (!remove) {
       return;
     }
-    dispatch(removeTransaction(currentTransaction));
+    const getUser = async () => {
+      await dispatch(removeTransaction(currentTransaction));
+      dispatch(getCurrentUser());
+    };
+    getUser();
     setShowModal(false);
     setRemove(false);
   }, [currentTransaction, dispatch, remove]);
