@@ -1,5 +1,4 @@
 import axios from 'axios';
-// axios.defaults.baseURL = `http://localhost:3000/api`;
 axios.defaults.baseURL = `https://kapusta-api-project.herokuapp.com/api`;
 
 const token = {
@@ -25,13 +24,6 @@ export async function logInUser(credentials) {
   const { data } = await axios.post(`/auth/login`, credentials);
   token.set(data.data.user.token);
   return data.data.user;
-}
-
-export async function googleAuth() {
-  const data = await axios.get('/auth/google');
-  window.location = data.request.responseURL;
-
-  console.log(data);
 }
 
 export async function logOutUser() {

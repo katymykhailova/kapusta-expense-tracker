@@ -1,7 +1,6 @@
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth';
-import { googleAuth } from 'services/authApi';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -31,8 +30,6 @@ export default function LoginForm() {
 
   const onSubmit = newUser => dispatch(logIn(newUser));
 
-  const onGoogleBtnClick = () => googleAuth();
-
   const onSignUpBtnClick = () => history.push('/signup');
 
   return (
@@ -57,7 +54,7 @@ export default function LoginForm() {
           </p>
           <div>
             <label className={s.label}>
-              {errors.email && <span className={s.errors}> * </span>}{' '}
+              {errors.email && <span className={s.errors}> * </span>}
               Электронная почта:
             </label>
             <input
