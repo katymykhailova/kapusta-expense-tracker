@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import s from './ReportList.module.css';
 import sprite from '../../../images/sprite.svg';
@@ -5,6 +6,7 @@ import { getCategories } from 'redux/categories';
 
 export default function ReportList({ trans, handleClick }) {
   let categories = useSelector(getCategories);
+  const [isActiveId, setIsActiveId] = useState('');
   const summs = Object.values(
     trans.reduce((acc, { group, total_amounts }) => {
       const category = categories.find(i => i._id === group.category);
@@ -28,12 +30,15 @@ export default function ReportList({ trans, handleClick }) {
               className={s.transItem}
               onClick={() => {
                 handleClick(item.category._id);
+                setIsActiveId(item.category._id);
               }}
             >
               <p className={s.itemValue}>{item.total_amounts}</p>
               <div
                 className={
-                  item.isActive ? s.svgContainerActive : s.svgContainer
+                  isActiveId === item.category._id
+                    ? s.svgContainerActive
+                    : s.svgContainer
                 }
               >
                 <svg
