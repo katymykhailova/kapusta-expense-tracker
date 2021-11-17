@@ -28,7 +28,10 @@ export async function logInUser(credentials) {
 }
 
 export async function googleAuth() {
-  await axios.get('/auth/google');
+  const data = await axios.get('/auth/google');
+  window.location = data.request.responseURL;
+
+  console.log(data);
 }
 
 export async function logOutUser() {
