@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: 'balance',
+  name: 'userBalance',
   initialState,
   extraReducers: {
     [getCurrentUser.pending]: (state, _) => {
@@ -17,7 +17,7 @@ const authSlice = createSlice({
     },
 
     [getCurrentUser.fulfilled]: (state, { payload }) => {
-      state.balance = payload;
+      state.balance = payload.balance;
       state.isLoggedIn = true;
       state.isFetchCurrentUser = false;
       state.isLoading = false;
@@ -33,7 +33,7 @@ const authSlice = createSlice({
     },
 
     [updateUserBalance.fulfilled]: (state, { payload }) => {
-      state.user.balance = payload.balance;
+      state.balance = payload.balance;
       state.isLoading = false;
     },
 

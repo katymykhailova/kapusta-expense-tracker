@@ -10,7 +10,6 @@ import Modal from 'components/Modal/Modal';
 import Summary from 'components/Summary/Summary';
 import FormDescription from 'components/FormDescription/FormDescription';
 import { getCategoriesList } from '../../redux/categories';
-// import { getCurrentUser } from '../../redux/auth';
 import { getCurrentUser } from '../../redux/balance';
 import {
   getTransactionsByMonts,

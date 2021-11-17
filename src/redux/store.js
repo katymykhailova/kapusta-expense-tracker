@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   transactions: transactionsReducer,
   categories: categoriesReducer,
   report: reportReducer,
-  balance: balanceReducer,
+  userBalance: balanceReducer,
 });
 
 export const store = configureStore({

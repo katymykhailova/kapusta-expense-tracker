@@ -1,3 +1,2 @@
-export const getUserBalance = state => state.balance.items;
-
-//export const isLoadingValue = state => state.balance.isLoading;
+export const getUserBalance = state => state.userBalance.balance;
+export const isLoadingValue = state => state.userBalance.isLoading;
