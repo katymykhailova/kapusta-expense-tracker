@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
+import calendar from '../../images/calendar.svg';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
@@ -94,6 +95,9 @@ export default function FormDescription({ typeForm }) {
               maxDate={new Date()}
               className={s.inputProductDate}
             />
+            <div className={s.calendarPos}>
+              <img src={calendar} alt="Calendar" />
+            </div>
           </div>
           <div className={s.productPosition}>
             <input
@@ -124,7 +128,7 @@ export default function FormDescription({ typeForm }) {
               placeholder="0,00"
             />
             <div className={s.calculatorPos}>
-              <img src={calculator} alt="React Logo" />
+              <img src={calculator} alt="Calculator" />
             </div>
           </div>
         </div>

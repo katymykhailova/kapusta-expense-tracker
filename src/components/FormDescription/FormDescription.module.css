@@ -92,6 +92,8 @@
     margin-bottom: 83px;
     text-align: center;
     border-radius: 16px;
+    border: 2px solid #ffffff;
+    background: none;
   }
 
   .dateProduct {
@@ -103,20 +105,41 @@
     /* margin-top: 54px; */
     border-bottom: none;
     border-top-right-radius: 16px;
+    border: 2px solid #ffffff;
+    background: none;
   }
 
   .inputСategoryName {
     width: 282px;
     border-bottom-right-radius: 16px;
-    border-bottom-left-radius: 16px;
+    border: 2px solid #ffffff;
+    background: none;
   }
 
   .calculatorPos {
     position: absolute;
-    top: 157px;
-    right: 40px;
+    top: 113px;
+    right: 53px;
     padding: 12px;
-    border-left: 2px solid#f5f6fb;
+    /* border-left: 2px solid#f5f6fb; */
+    border-left: 2px solid #ffffff;
+  }
+
+  .calendarPos {
+    position: absolute;
+    top: 10px;
+    left: 29%;
+  }
+  .datePosition {
+    /* margin-left: 25px;
+    margin-right: 23px; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 104px;
+    text-align: center;
+  }
+  .inputProductDate {
+    background: none;
   }
 }
 
@@ -156,6 +179,15 @@
   .productPosition {
     position: relative;
   }
+  .calendarPos {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+  }
+  .datePosition {
+    margin-left: 25px;
+    margin-right: 23px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -193,4 +225,14 @@
   .productPosition {
     position: relative;
   } */
+
+  .calendarPos {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+  }
+  .datePosition {
+    margin-left: 25px;
+    margin-right: 23px;
+  }
 }
