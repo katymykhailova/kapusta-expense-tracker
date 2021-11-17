@@ -6,6 +6,7 @@ import calculator from '../../images/calculator.svg';
 import calendar from '../../images/calendar.svg';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentUser, updateUserBalance } from 'redux/auth';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
 import { getCategories } from '../../redux/categories/categoriesSelectors';
 import { useState, useRef, useEffect } from 'react';
@@ -28,7 +29,7 @@ export default function FormDescription({ typeForm, maks }) {
   const dispatch = useDispatch();
   // console.log('typeForm', typeForm);
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     const { date, name, sum } = data;
     const newData = {
       type: typeForm,
@@ -38,7 +39,12 @@ export default function FormDescription({ typeForm, maks }) {
       amount: +sum,
     };
     // console.log('newData', newData);
-    dispatch(addTransaction(newData));
+
+    await dispatch(addTransaction(newData));
+
+    dispatch(getCurrentUser());
+    // dispatch(updateUserBalance());
+
     setPlaceholderCategories('');
     reset({
       name: '',
@@ -74,7 +80,9 @@ export default function FormDescription({ typeForm, maks }) {
   useEffect(() => {
     // console.log('selectedDate', selectedDate);
     // findDate(selectedDate);
+
     maks(selectedDate);
+
     // console.log('findDate', maks);
     setValue('date', selectedDate);
   }, [selectedDate, setValue]);
@@ -128,6 +136,7 @@ export default function FormDescription({ typeForm, maks }) {
             <input
               {...register('sum')}
               className={s.inputValueProduct}
+              onFocus={e => (e.target.placeholder = '')}
               placeholder="0,00"
             />
             <div className={s.calculatorPos}>

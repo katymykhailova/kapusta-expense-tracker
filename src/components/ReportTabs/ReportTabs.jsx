@@ -58,13 +58,16 @@ export default function ReportTabs({ onClick }) {
   const transactions = useSelector(getTransactionsList);
 
   useEffect(() => {
-    const curretnDate = new Date();
-    const month = curretnDate.getUTCMonth() + 1;
-    const year = curretnDate.getFullYear();
+    let month = calendar.getUTCMonth() + 1;
+    if (month < 10) {
+      month = '0' + month;
+    }
+    const year = calendar.getFullYear();
     const date = `${year}${month}`;
+    console.log('month', month);
     dispatch(getCategoriesList());
     dispatch(getTransactionsByMonts(date));
-  }, [dispatch]);
+  }, [calendar, dispatch]);
 
   const income = transactions.filter(trans => trans.type);
   const outcome = transactions.filter(trans => !trans.type);
@@ -114,9 +117,9 @@ export default function ReportTabs({ onClick }) {
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o" maks2={calendar} />}
+              {isDesctop && <Summary reportType="o" />}
             </div>
-            {isTablet && <Summary reportType="o" maks2={calendar} />}
+            {isTablet && <Summary reportType="o" />}
           </TabPanel>
           <TabPanel>
             {isMobile && (
@@ -134,9 +137,9 @@ export default function ReportTabs({ onClick }) {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="i" maks2={calendar} />}
+              {isDesctop && <Summary reportType="i" />}
             </div>
-            {isTablet && <Summary reportType="i" maks2={calendar} />}
+            {isTablet && <Summary reportType="i" />}
           </TabPanel>
         </div>
       </Tabs>
