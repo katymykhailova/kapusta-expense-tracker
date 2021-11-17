@@ -41,3 +41,8 @@ export async function updateBalance(balance) {
   const { data } = await axios.put(`/auth/balance`, balance);
   return data;
 }
+
+export async function getUserBalance() {
+  const { data } = await axios.get(`/auth/balance`);
+  return data;
+}

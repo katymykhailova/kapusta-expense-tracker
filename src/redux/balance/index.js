@@ -1,2 +1,2 @@
-export { getCurrentUser, updateUserBalance } from './balanceOperations';
-export { getUserBalance } from './balanceSelectors';
+export { updateUserBalance, getUserBalance } from './balanceOperations';
+export { getBalance } from './balanceSelectors';

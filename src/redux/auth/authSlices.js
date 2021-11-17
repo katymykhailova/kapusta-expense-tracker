@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, logIn, logOut, getGoogleAuthToken } from './index';
+import {
+  signUp,
+  logIn,
+  logOut,
+  getGoogleAuthToken,
+  getCurrentUser,
+} from './index';
 
 const initialState = {
   user: {
@@ -83,6 +89,23 @@ const authSlice = createSlice({
     [logOut.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
+    },
+
+    [getCurrentUser.pending]: (state, _) => {
+      state.isFetchCurrentUser = true;
+      state.isLoading = true;
+    },
+
+    [getCurrentUser.fulfilled]: (state, { payload }) => {
+      state.user = payload;
+      state.isLoggedIn = true;
+      state.isFetchCurrentUser = false;
+      state.isLoading = false;
+    },
+
+    [getCurrentUser.rejected]: (state, _) => {
+      state.isFetchCurrentUser = false;
+      state.isLoading = false;
     },
   },
 });

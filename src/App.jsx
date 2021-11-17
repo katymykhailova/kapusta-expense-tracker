@@ -18,7 +18,8 @@ import HomePage from './views/HomePage/HomePage';
 //   getGoogleAuthToken,
 // } from 'redux/auth';
 import { getIsFetchCurrentUser, getGoogleAuthToken } from 'redux/auth';
-import { getCurrentUser } from 'redux/balance';
+import { getCurrentUser } from 'redux/auth';
+import { getUserBalance } from 'redux/balance';
 
 import './App.css';
 
@@ -38,6 +39,7 @@ export default function App() {
   useEffect(() => {
     token && dispatch(getGoogleAuthToken(token));
     dispatch(getCurrentUser());
+    dispatch(getUserBalance());
   }, [dispatch, token]);
 
   return (
