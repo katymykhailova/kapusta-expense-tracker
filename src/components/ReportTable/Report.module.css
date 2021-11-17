@@ -20,7 +20,7 @@
 }
 
 .tableDelet {
-  width: 52px;
+  width: 37px;
   text-align: end;
   align-self: center;
 }
@@ -70,8 +70,9 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  .tableSum {
-    width: 70px;
+  .tableSumI,
+  .tableSumO {
+    width: 85px;
     font-weight: 700;
     align-self: center;
     text-align: end;
