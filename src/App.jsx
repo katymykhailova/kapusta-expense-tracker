@@ -12,11 +12,14 @@ import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
 import HomePage from './views/HomePage/HomePage';
-import {
-  getCurrentUser,
-  getIsFetchCurrentUser,
-  getGoogleAuthToken,
-} from 'redux/auth';
+// import {
+//   getCurrentUser,
+//   getIsFetchCurrentUser,
+//   getGoogleAuthToken,
+// } from 'redux/auth';
+import { getIsFetchCurrentUser, getGoogleAuthToken } from 'redux/auth';
+import { getCurrentUser } from 'redux/balance';
+
 import './App.css';
 
 import FormDescription from './components/FormDescription/FormDescription';

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './Balance.module.css';
-import { getUserBalance, updateUserBalance } from '../../redux/auth';
+// import { getUserBalance, updateUserBalance } from '../../redux/auth';
+import { getUserBalance, updateUserBalance } from '../../redux/balance';
 import BalanceReport from './BalanceReport';
 
 export default function BalanceInput() {

@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  signUp,
-  logIn,
-  logOut,
-  getCurrentUser,
-  getGoogleAuthToken,
-  updateUserBalance,
-} from './index';
+// import {
+//   signUp,
+//   logIn,
+//   logOut,
+//   getCurrentUser,
+//   getGoogleAuthToken,
+//   updateUserBalance,
+// } from './index';
+import { signUp, logIn, logOut, getGoogleAuthToken } from './index';
 
 const initialState = {
   user: {
@@ -92,36 +93,36 @@ const authSlice = createSlice({
       state.error = action.error.message;
     },
 
-    [getCurrentUser.pending]: (state, _) => {
-      state.isFetchCurrentUser = true;
-      state.isLoading = true;
-    },
+    // [getCurrentUser.pending]: (state, _) => {
+    //   state.isFetchCurrentUser = true;
+    //   state.isLoading = true;
+    // },
 
-    [getCurrentUser.fulfilled]: (state, { payload }) => {
-      state.user = payload;
-      state.isLoggedIn = true;
-      state.isFetchCurrentUser = false;
-      state.isLoading = false;
-    },
+    // [getCurrentUser.fulfilled]: (state, { payload }) => {
+    //   state.user = payload;
+    //   state.isLoggedIn = true;
+    //   state.isFetchCurrentUser = false;
+    //   state.isLoading = false;
+    // },
 
-    [getCurrentUser.rejected]: (state, _) => {
-      state.isFetchCurrentUser = false;
-      state.isLoading = false;
-    },
+    // [getCurrentUser.rejected]: (state, _) => {
+    //   state.isFetchCurrentUser = false;
+    //   state.isLoading = false;
+    // },
 
-    [updateUserBalance.pending]: (state, _) => {
-      state.isLoading = true;
-    },
+    // [updateUserBalance.pending]: (state, _) => {
+    //   state.isLoading = true;
+    // },
 
-    [updateUserBalance.fulfilled]: (state, { payload }) => {
-      state.user.balance = payload.balance;
-      state.isLoading = false;
-    },
+    // [updateUserBalance.fulfilled]: (state, { payload }) => {
+    //   state.user.balance = payload.balance;
+    //   state.isLoading = false;
+    // },
 
-    [updateUserBalance.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    },
+    // [updateUserBalance.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.error.message;
+    // },
   },
 });
 
