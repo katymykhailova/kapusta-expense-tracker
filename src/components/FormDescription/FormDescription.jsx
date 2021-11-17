@@ -6,7 +6,7 @@ import calculator from '../../images/calculator.svg';
 import calendar from '../../images/calendar.svg';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentUser, updateUserBalance } from 'redux/auth';
+import { getCurrentUser } from 'redux/auth';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
 import { getCategories } from '../../redux/categories/categoriesSelectors';
 import { useState, useRef, useEffect } from 'react';
@@ -17,7 +17,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
-export default function FormDescription({ typeForm, maks }) {
+export default function FormDescription({ typeForm, dateFinder }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { register, handleSubmit, reset, setValue } = useForm();
   const [open, setOpen] = useState(false);
@@ -44,8 +44,6 @@ export default function FormDescription({ typeForm, maks }) {
     // dispatch(addTransaction(newData));
 
     // dispatch(getCurrentUser());
-
-    // dispatch(updateUserBalance());
 
     setPlaceholderCategories('');
     dispatch(getCurrentUser());
@@ -84,11 +82,11 @@ export default function FormDescription({ typeForm, maks }) {
     // console.log('selectedDate', selectedDate);
     // findDate(selectedDate);
 
-    maks(selectedDate);
+    dateFinder(selectedDate);
 
-    // console.log('findDate', maks);
+    // console.log('findDate', dateFinder);
     setValue('date', selectedDate);
-  }, [selectedDate, setValue]);
+  }, [selectedDate, setValue, dateFinder]);
 
   return (
     <div>
@@ -178,5 +176,5 @@ export default function FormDescription({ typeForm, maks }) {
 
 FormDescription.propTypes = {
   typeForm: PropTypes.bool,
-  maks: PropTypes.func,
+  dateFinder: PropTypes.func,
 };

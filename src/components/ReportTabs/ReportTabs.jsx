@@ -46,13 +46,11 @@ export default function ReportTabs({ onClick }) {
   const dispatch = useDispatch();
 
   const [calendar, setCalendar] = useState(new Date());
-  console.log('calendar', calendar);
+  // console.log('calendar', calendar);
   const getDate = newdata => {
-    console.log('data', newdata);
+    // console.log('data', newdata);
     setCalendar(newdata);
   };
-
-  const tester = 'test';
 
   // получаем все транзакции за месяц (доход и расход)
   const transactions = useSelector(getTransactionsList);
@@ -64,7 +62,7 @@ export default function ReportTabs({ onClick }) {
     }
     const year = calendar.getFullYear();
     const date = `${year}${month}`;
-    console.log('month', month);
+    // console.log('month', month);
     dispatch(getCategoriesList());
     dispatch(getTransactionsByMonts(date));
   }, [calendar, dispatch]);
@@ -108,10 +106,12 @@ export default function ReportTabs({ onClick }) {
               <FormDescriptionModal
                 toggleModal={toggleModal}
                 typeForm={false}
-                maks={getDate}
+                dateFinder={getDate}
               />
             )}
-            {!isMobile && <FormDescription typeForm={false} maks={getDate} />}
+            {!isMobile && (
+              <FormDescription typeForm={false} dateFinder={getDate} />
+            )}
             <div className={s.wrapper}>
               <ReportTable
                 type={false}
@@ -132,10 +132,12 @@ export default function ReportTabs({ onClick }) {
               <FormDescriptionModal
                 toggleModal={toggleModal}
                 typeForm={true}
-                maks={getDate}
+                dateFinder={getDate}
               />
             )}
-            {!isMobile && <FormDescription typeForm={true} maks={getDate} />}
+            {!isMobile && (
+              <FormDescription typeForm={true} dateFinder={getDate} />
+            )}
             <div className={s.wrapper}>
               <ReportTable
                 type={true}

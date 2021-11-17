@@ -5,7 +5,7 @@ import s from './FormDescriptionModal.module.css';
 
 const formModalRoot = document.querySelector('#form-modal-root');
 
-function FormDescriptionModal({ toggleModal, typeForm, maks }) {
+function FormDescriptionModal({ toggleModal, typeForm, dateFinder }) {
   return createPortal(
     <div className={s.overlay}>
       <div className={s.modalWindow}>
@@ -15,7 +15,7 @@ function FormDescriptionModal({ toggleModal, typeForm, maks }) {
             size="18"
           />
         </button>
-        <FormDescription typeForm={typeForm} maks={maks} />
+        <FormDescription typeForm={typeForm} dateFinder={dateFinder} />
       </div>
     </div>,
     formModalRoot,
