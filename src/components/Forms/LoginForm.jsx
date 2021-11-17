@@ -42,13 +42,14 @@ export default function LoginForm() {
           <p className={s.text}>
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <a
+          <button
+            type="button"
             className={s.googleBtn}
-            href="https://kapusta-api-project.herokuapp.com/api/auth/google"
+            onClick={onGoogleBtnClick}
           >
             <FcGoogle size={19} />
             Google
-          </a>
+          </button>
         </div>
         <div className={s.textWrap}>
           <p className={s.text}>
