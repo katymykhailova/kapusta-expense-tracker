@@ -45,17 +45,27 @@ export default function ReportTabs({ onClick }) {
 
   const dispatch = useDispatch();
 
+  const [calendar, setCalendar] = useState(new Date());
+  // console.log('calendar', calendar);
+  const getDate = newdata => {
+    // console.log('data', newdata);
+    setCalendar(newdata);
+  };
+
   // получаем все транзакции за месяц (доход и расход)
   const transactions = useSelector(getTransactionsList);
 
   useEffect(() => {
-    const curretnDate = new Date();
-    const month = curretnDate.getUTCMonth() + 1;
-    const year = curretnDate.getFullYear();
+    let month = calendar.getUTCMonth() + 1;
+    if (month < 10) {
+      month = '0' + month;
+    }
+    const year = calendar.getFullYear();
     const date = `${year}${month}`;
+    // console.log('month', month);
     dispatch(getCategoriesList());
     dispatch(getTransactionsByMonts(date));
-  }, [dispatch]);
+  }, [calendar, dispatch]);
 
   const income = transactions.filter(trans => trans.type);
   const outcome = transactions.filter(trans => !trans.type);
@@ -96,9 +106,12 @@ export default function ReportTabs({ onClick }) {
               <FormDescriptionModal
                 toggleModal={toggleModal}
                 typeForm={false}
+                dateFinder={getDate}
               />
             )}
-            {!isMobile && <FormDescription typeForm={false} />}
+            {!isMobile && (
+              <FormDescription typeForm={false} dateFinder={getDate} />
+            )}
             <div className={s.wrapper}>
               <ReportTable
                 type={false}
@@ -116,9 +129,15 @@ export default function ReportTabs({ onClick }) {
               </button>
             )}
             {isVisible && isMobile && (
-              <FormDescriptionModal toggleModal={toggleModal} typeForm={true} />
+              <FormDescriptionModal
+                toggleModal={toggleModal}
+                typeForm={true}
+                dateFinder={getDate}
+              />
             )}
-            {!isMobile && <FormDescription typeForm={true} />}
+            {!isMobile && (
+              <FormDescription typeForm={true} dateFinder={getDate} />
+            )}
             <div className={s.wrapper}>
               <ReportTable
                 type={true}
@@ -126,7 +145,6 @@ export default function ReportTabs({ onClick }) {
                 handleDelete={handleDelete}
               ></ReportTable>
               {isDesctop && <Summary reportType="i" />}
-
             </div>
             {isTablet && <Summary reportType="i" />}
           </TabPanel>
