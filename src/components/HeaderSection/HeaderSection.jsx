@@ -4,8 +4,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Navigation from '../Navigation/Navigation';
 import NavigationMonth from '../Navigation/NavigationMonth';
 import BalanceInput from '../Balance/BalanceInput';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
 
 export default function HeaderSection({
   typePage,
@@ -13,34 +11,14 @@ export default function HeaderSection({
   year,
   handleChangeMonthLeft,
   handleChangeMonthRight,
+  onClick,
 }) {
-  const routerState = useRef(null);
-
-  const location = useLocation();
-  const history = useHistory();
-  useEffect(() => {
-    if (routerState.current) return;
-    routerState.current = location.state;
-  }, [location.state]);
-
-  const handleChangeLocation = location => {
-    history.push({
-      ...location,
-    });
-  };
-
-  console.log(location);
   return (
     <>
       {typePage === 'home' && (
         <div className={s.headerTab}>
           <div className={s.navHome}>
-            <Navigation
-              router="/report"
-              handleClick={() => {
-                handleChangeLocation(location);
-              }}
-            >
+            <Navigation router="/report">
               <span className={s.linkTitle}>Перейти к отчетам</span>
               <img
                 className={s.linkIcon}
@@ -54,12 +32,7 @@ export default function HeaderSection({
       )}
       {typePage === 'report' && (
         <div className={s.headerTabReport}>
-          <Navigation
-            router="/home"
-            handleClick={() => {
-              handleChangeLocation(location);
-            }}
-          >
+          <Navigation router="/home">
             <div className={s.linkBox}>
               <ArrowBackIcon
                 style={{ color: '#FF751D', cursor: 'pointer' }}
@@ -72,7 +45,6 @@ export default function HeaderSection({
           </Navigation>
           <div className={s.headData}>
             <BalanceInput />
-            {/* <BalanceReport balance={55000} /> */}
             <NavigationMonth
               month={month}
               year={year}
