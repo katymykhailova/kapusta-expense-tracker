@@ -16,6 +16,7 @@ import {
   getTransactionsList,
   removeTransaction,
 } from '../../redux/transactions';
+import { getReportList } from '../../redux/report';
 import { AiOutlinePlus } from 'react-icons/ai';
 import FormDescriptionModal from 'components/FormDescriptionModal/FormDescriptionModal';
 
@@ -37,6 +38,8 @@ export default function ReportTabs({ onClick }) {
   const [remove, setRemove] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [calendar, setCalendar] = useState(new Date());
+  const [transType, setTransType] = useState(false);
 
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesctop = useMediaQuery({ minWidth: 1280 });
@@ -44,48 +47,57 @@ export default function ReportTabs({ onClick }) {
 
   const dispatch = useDispatch();
 
-  const [calendar, setCalendar] = useState(new Date());
-  // console.log('calendar', calendar);
-  const getDate = newdata => {
-    // console.log('data', newdata);
-    setCalendar(newdata);
-  };
-
   // получаем все транзакции за месяц (доход и расход)
   const transactions = useSelector(getTransactionsList);
-
-  useEffect(() => {
-    let month = calendar.getUTCMonth() + 1;
-    if (month < 10) {
-      month = '0' + month;
-    }
-    const year = calendar.getFullYear();
-    const date = `${year}${month}`;
-    // console.log('month', month);
-    dispatch(getCategoriesList());
-    dispatch(getTransactionsByMonts(date));
-  }, [calendar, dispatch]);
-
   const income = transactions.filter(trans => trans.type);
   const outcome = transactions.filter(trans => !trans.type);
 
-  const handleDelete = id => {
+  // формируем дату с календаря
+  let month = calendar.getUTCMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+  }
+  const year = calendar.getFullYear();
+  const date = `${year}${month}`;
+
+  const getDate = newdata => {
+    setCalendar(newdata);
+  };
+
+  useEffect(() => {
+    dispatch(getCategoriesList());
+    dispatch(getTransactionsByMonts(date));
+  }, [calendar, date, dispatch, transType]);
+
+  const handleDelete = (id, type) => {
     setShowModal(true);
     setCurrentTransaction(id);
+    setTransType(type);
   };
 
   useEffect(() => {
     if (!remove) {
       return;
     }
+    const updateReportList = type => {
+      let reportType;
+      type === true ? (reportType = 'i') : (reportType = 'o');
+      dispatch(
+        getReportList({
+          reportType: reportType,
+          year: new Date().getFullYear(),
+        }),
+      );
+    };
     const getUser = async () => {
       await dispatch(removeTransaction(currentTransaction));
+      updateReportList(transType);
       dispatch(getCurrentUser());
     };
     getUser();
     setShowModal(false);
     setRemove(false);
-  }, [currentTransaction, dispatch, remove]);
+  }, [currentTransaction, dispatch, remove, transType]);
 
   const toggleModal = () => {
     return isVisible ? setIsVisible(false) : setIsVisible(true);

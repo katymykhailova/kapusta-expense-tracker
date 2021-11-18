@@ -6,7 +6,7 @@ import calculator from '../../images/calculator.svg';
 import calendar from '../../images/calendar.svg';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentUser } from 'redux/auth';
+import { getCurrentUser } from '../../redux/balance';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
 import { getCategories } from '../../redux/categories/categoriesSelectors';
 import { useState, useRef, useEffect } from 'react';
@@ -14,6 +14,7 @@ import DropDownCategory from '../DropDownCategory/DropDownCategory';
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
+import { getReportList } from '../../redux/report';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
@@ -28,6 +29,14 @@ export default function FormDescription({ typeForm, dateFinder }) {
   const ref = useRef();
   const dispatch = useDispatch();
   // console.log('typeForm', typeForm);
+
+  function updateReportList(type) {
+    let reportType;
+    type === true ? (reportType = 'i') : (reportType = 'o');
+    dispatch(
+      getReportList({ reportType: reportType, year: new Date().getFullYear() }),
+    );
+  }
 
   const onSubmit = async data => {
     const { date, name, sum } = data;
@@ -44,9 +53,10 @@ export default function FormDescription({ typeForm, dateFinder }) {
     // dispatch(addTransaction(newData));
 
     // dispatch(getCurrentUser());
-
+    updateReportList(typeForm);
     setPlaceholderCategories('');
     dispatch(getCurrentUser());
+
     reset({
       name: '',
       categories: '',

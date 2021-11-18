@@ -19,7 +19,7 @@ function Report({ date, category, amount, descr, id, handleDelete, type }) {
         <button
           type="button"
           className={s.deleteBtn}
-          onClick={() => handleDelete(id)}
+          onClick={() => handleDelete(id, type)}
         >
           <img
             src={deleteBtn}
