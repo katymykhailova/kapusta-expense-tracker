@@ -26,9 +26,7 @@ export default function Summary({ reportType, year }) {
     amountArr.push(amountArrItem);
   }
   const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
-  const amountSummarrySixMonth = amountArrReversed
-    .filter(el => el.value > 0)
-    .slice(0, 5);
+  const amountSummarryMonth = amountArrReversed.filter(el => el.value > 0);
 
   return (
     <>
@@ -39,7 +37,7 @@ export default function Summary({ reportType, year }) {
         ) : (
           <SimpleBar style={{ maxHeight: 360 }}>
             <ul className={s.summaryList}>
-              {amountSummarrySixMonth.map(({ month, value }, idx) => (
+              {amountSummarryMonth.map(({ month, value }, idx) => (
                 <li key={idx} className={s.summaryItem}>
                   <p className={s.summaryDescription}>
                     {arrMonths.find(item => item.id === String(month)).name}
