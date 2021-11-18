@@ -10,7 +10,7 @@ export default function BalanceInput() {
   const dispatch = useDispatch();
 
   const currentBalance = useSelector(getBalance);
-  const currentValue = currentBalance === null ? '00' : currentBalance;
+  const currentValue = currentBalance === null ? '0' : currentBalance;
 
   const handleChange = e => {
     setUserBalance(e.target.value);
@@ -36,7 +36,7 @@ export default function BalanceInput() {
               type="number"
               maxLength="10"
               value={userBalance}
-              placeholder={`${currentValue}.00`}
+              placeholder={`${currentValue}`}
               onChange={handleChange}
               onFocus={e => (e.target.placeholder = '')}
             />
