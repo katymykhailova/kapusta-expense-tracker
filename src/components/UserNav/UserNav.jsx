@@ -1,6 +1,6 @@
-import { useState /* , useEffect */ } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { getUserName, getUserAvatar } from '../../redux/auth';
 import { logOut } from '../../redux/auth';
@@ -17,9 +17,9 @@ function UserNav() {
   const avatar = useSelector(getUserAvatar);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-  // }, [isOpen]);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }, [isOpen]);
 
   return (
     <>
@@ -48,25 +48,25 @@ function UserNav() {
           <p className={s.logoutText}>Выйти</p>
         </button>
       </div>
-      {/* <TransitionGroup> */}
-      {isOpen && (
-        // <CSSTransition classNames="option" timeout={1000}>
-        <Modal
-          onClose={() => setIsOpen(false)}
-          text="Вы уверены, что хотите закрыть приложение?"
-        >
-          <ButtonBlock
-            firstButtonText={'Да'}
-            secondButtonText={'Нет'}
-            firstButtonHandler={() => dispatch(logOut())}
-            secondButtonHandler={() => setIsOpen(false)}
-            firstButtonType={'button'}
-            secondButtonType={'button'}
-          />
-        </Modal>
-        // </CSSTransition>
-      )}
-      {/* </TransitionGroup> */}
+      <TransitionGroup>
+        {isOpen && (
+          <CSSTransition classNames="option" timeout={1000}>
+            <Modal
+              onClose={() => setIsOpen(false)}
+              text="Вы уверены, что хотите закрыть приложение?"
+            >
+              <ButtonBlock
+                firstButtonText={'Да'}
+                secondButtonText={'Нет'}
+                firstButtonHandler={() => dispatch(logOut())}
+                secondButtonHandler={() => setIsOpen(false)}
+                firstButtonType={'button'}
+                secondButtonType={'button'}
+              />
+            </Modal>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
     </>
   );
 }
