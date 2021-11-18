@@ -43,6 +43,7 @@ export default function FormDescription({ typeForm, dateFinder }) {
   });
   const [open, setOpen] = useState(false);
   const [placeholderCategories, setPlaceholderCategories] = useState('');
+  // console.log('placeholderCategories', placeholderCategories);
 
   const categoriesState = useSelector(getCategories);
   // console.log('categoriesState', categoriesState);
@@ -67,7 +68,7 @@ export default function FormDescription({ typeForm, dateFinder }) {
       description: name,
       amount: +sum,
     };
-    console.log('newData', newData);
+    // console.log('newData', newData);
 
     await dispatch(addTransaction(newData));
     // dispatch(addTransaction(newData));
@@ -98,8 +99,8 @@ export default function FormDescription({ typeForm, dateFinder }) {
   }, [open]);
 
   const changerPlaceholder = (data, id) => {
+    // console.log(data, id);
     setPlaceholderCategories({ data, id });
-    // console.log('++');
     setOpen(false);
   };
 
@@ -158,7 +159,10 @@ export default function FormDescription({ typeForm, dateFinder }) {
                 onClick={() => setOpen(!open)}
                 readOnly
               />
-              {errors.categories && <p className={s.errors}>Required</p>}
+              {placeholderCategories === '' && errors.categories && (
+                <p className={s.errors}>Required</p>
+              )}
+              {/* {errors.categories && <p className={s.errors}>Required</p>} */}
               {open && (
                 <DropDownCategory
                   changerDescription={changerPlaceholder}
