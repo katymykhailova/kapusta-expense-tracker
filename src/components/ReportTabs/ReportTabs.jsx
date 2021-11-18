@@ -99,7 +99,13 @@ export default function ReportTabs() {
     setRemove(false);
   }, [currentTransaction, dispatch, remove, transType]);
 
+  const hidden = () => {
+    const body = document.querySelector('body');
+    body.style.overflow = isVisible ? 'auto' : 'hidden';
+  };
+
   const toggleModal = () => {
+    hidden();
     return isVisible ? setIsVisible(false) : setIsVisible(true);
   };
 
