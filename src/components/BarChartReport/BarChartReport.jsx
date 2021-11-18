@@ -64,7 +64,7 @@ export default function BarChartReport({ transactions }) {
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <XAxis type="number" hide />
-          <YAxis type="category" dataKey="description" tickLine={false} />
+          <YAxis type="category" dataKey="description" tickLine={false} hide />
           <CartesianGrid vertical={false} horizontal={false} />
           <Bar
             dataKey="amount"

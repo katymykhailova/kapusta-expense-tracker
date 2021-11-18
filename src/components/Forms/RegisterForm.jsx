@@ -1,7 +1,6 @@
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { signUp } from 'redux/auth';
-import { googleAuth } from 'services/authApi';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -32,8 +31,6 @@ export default function RegisterForm() {
 
   const onSubmit = newUser => dispatch(signUp(newUser));
 
-  const onGoogleBtnClick = () => googleAuth();
-
   const onLogInBtnClick = () => history.push('/login');
 
   return (
@@ -43,14 +40,13 @@ export default function RegisterForm() {
           <p className={s.text}>
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button
-            type="button"
+          <a
             className={s.googleBtn}
-            onClick={onGoogleBtnClick}
+            href="https://kapusta-api-project.herokuapp.com/api/auth/google"
           >
             <FcGoogle size={19} />
             Google
-          </button>
+          </a>
         </div>
         <div className={s.textWrap}>
           <p className={s.text}>
@@ -72,7 +68,7 @@ export default function RegisterForm() {
           </div>
           <div>
             <label className={s.label}>
-              {errors.email && <span className={s.errors}> * </span>}{' '}
+              {errors.email && <span className={s.errors}> * </span>}
               Электронная почта:
             </label>
             <input
