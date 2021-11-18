@@ -21,14 +21,9 @@ import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
 const FormSchema = Yup.object().shape({
-  // sum: Yup.number().min(0.01).required().positive().required('Required'),
   sum: Yup.number().min(1).positive().integer().required('Required'),
   name: Yup.string().required(),
   categories: Yup.string().required(),
-  // sum: Yup.number().required('Required'),
-  // password: Yup.string()
-  //   .min(6, 'Password is too short - should be 7 chars minimum.')
-  //   .required('Required'),
 });
 
 export default function FormDescription({ typeForm, dateFinder }) {
@@ -44,13 +39,10 @@ export default function FormDescription({ typeForm, dateFinder }) {
   });
   const [open, setOpen] = useState(false);
   const [placeholderCategories, setPlaceholderCategories] = useState('');
-  // console.log('placeholderCategories', placeholderCategories);
 
   const categoriesState = useSelector(getCategories);
-  // console.log('categoriesState', categoriesState);
   const ref = useRef();
   const dispatch = useDispatch();
-  // console.log('typeForm', typeForm);
 
   function updateReportList(type) {
     let reportType;
@@ -69,12 +61,9 @@ export default function FormDescription({ typeForm, dateFinder }) {
       description: name,
       amount: +sum,
     };
-    // console.log('newData', newData);
 
     await dispatch(addTransaction(newData));
-    // dispatch(addTransaction(newData));
 
-    // dispatch(getCurrentUser());
     updateReportList(typeForm);
     setPlaceholderCategories('');
     dispatch(getUserBalance());
@@ -86,9 +75,6 @@ export default function FormDescription({ typeForm, dateFinder }) {
   };
   useEffect(() => {
     const checkClickOutside = e => {
-      // if (open && ref.current && !ref.current.contains(e.target)) {
-      //   setOpen(false);
-      // }
       if (open) {
         setOpen(false);
       }
@@ -100,7 +86,6 @@ export default function FormDescription({ typeForm, dateFinder }) {
   }, [open]);
 
   const changerPlaceholder = (data, id) => {
-    // console.log(data, id);
     setPlaceholderCategories({ data, id });
     setOpen(false);
   };
@@ -110,19 +95,14 @@ export default function FormDescription({ typeForm, dateFinder }) {
   }, [placeholderCategories, setValue]);
 
   useEffect(() => {
-    // console.log('selectedDate', selectedDate);
-    // findDate(selectedDate);
-
     dateFinder(selectedDate);
-
-    // console.log('findDate', dateFinder);
     setValue('date', selectedDate);
   }, [selectedDate, setValue, dateFinder]);
 
   return (
     <div>
       <form
-        // autoComplete="off"
+        autoComplete="off"
         onSubmit={handleSubmit(onSubmit)}
         className={s.formStyles}
         ref={ref}
@@ -163,7 +143,6 @@ export default function FormDescription({ typeForm, dateFinder }) {
               {placeholderCategories === '' && errors.categories && (
                 <p className={s.errors}>Required</p>
               )}
-              {/* {errors.categories && <p className={s.errors}>Required</p>} */}
               {open && (
                 <DropDownCategory
                   changerDescription={changerPlaceholder}
@@ -203,13 +182,6 @@ export default function FormDescription({ typeForm, dateFinder }) {
             secondButtonType="button"
           />
         </div>
-        {/* {open && (
-          <DropDownCategory
-            changerDescription={changerPlaceholder}
-            categoriesList={categoriesState}
-            typeForm={typeForm}
-          />
-        )} */}
       </form>
       <div className={s.formStyles}></div>
     </div>
