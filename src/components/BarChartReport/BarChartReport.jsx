@@ -11,13 +11,18 @@ import {
 } from 'recharts';
 import s from './BarChartReport.module.css';
 
-export default function BarChartReport({ transactions }) {
+export default function BarChartReport({
+  transactions,
+  categories,
+  chartsCategoryId,
+}) {
+  const data = chartsCategoryId ? transactions : categories;
   return (
     <>
       <div className={s.wrap}>
         <ResponsiveContainer width="100%" height={328}>
           <BarChart
-            data={transactions}
+            data={data}
             margin={{
               top: 5,
               right: 30,
@@ -27,20 +32,24 @@ export default function BarChartReport({ transactions }) {
           >
             <CartesianGrid strokeDasharray="1" vertical={false} />
             <XAxis
-              dataKey="description"
+              dataKey={chartsCategoryId ? 'description' : 'category.name'}
               padding={{ left: 77, right: 77 }}
               tickLine={false}
             />
             {/* <Tooltip /> */}
             <Bar
-              dataKey="amount"
+              dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
               fill={'var(--accent-color-primary)'}
               barSize={38}
               radius={[10, 10, 0, 0]}
             >
-              <LabelList dataKey="amount" position="top" fill="grey" />
+              <LabelList
+                dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
+                position="top"
+                fill="grey"
+              />
 
-              {transactions.map((_, index) => (
+              {data.map((_, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={
@@ -59,22 +68,35 @@ export default function BarChartReport({ transactions }) {
         <BarChart
           width={282}
           height={521}
-          data={transactions}
+          data={data}
           layout="vertical"
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <XAxis type="number" hide />
-          <YAxis type="category" dataKey="description" tickLine={false} />
+          <YAxis
+            type="category"
+            dataKey={chartsCategoryId ? 'description' : 'category.name'}
+            hide
+          />
           <CartesianGrid vertical={false} horizontal={false} />
           <Bar
-            dataKey="amount"
+            dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
             fill={'var(--accent-color-primary)'}
             barSize={18}
             radius={[0, 10, 10, 0]}
           >
-            <LabelList dataKey="amount" position="top" fill="grey" />
+            <LabelList
+              dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
+              position="bottom"
+              fill="grey"
+            />
+            <LabelList
+              dataKey={chartsCategoryId ? 'description' : 'category.name'}
+              position="top"
+              fill="grey"
+            />
 
-            {transactions.map((_, index) => (
+            {data.map((_, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={

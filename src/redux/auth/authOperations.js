@@ -48,12 +48,4 @@ const getCurrentUser = createAsyncThunk(
   },
 );
 
-const updateUserBalance = createAsyncThunk(
-  'auth/updateUserBalance',
-  async balance => {
-    const updatedBalance = await authApi.updateBalance(balance);
-    return updatedBalance.data;
-  },
-);
-
-export { signUp, logIn, logOut, getCurrentUser, updateUserBalance };
+export { signUp, logIn, logOut, getCurrentUser };

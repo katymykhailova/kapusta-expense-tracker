@@ -1,12 +1,5 @@
 export { getGoogleAuthToken } from './authActions';
-
-export {
-  signUp,
-  logIn,
-  logOut,
-  getCurrentUser,
-  updateUserBalance,
-} from './authOperations';
+export { signUp, logIn, logOut, getCurrentUser } from './authOperations';
 
 export {
   getUserIsLoggedIn,
@@ -15,5 +8,4 @@ export {
   getIsFetchCurrentUser,
   getAuthError,
   getIsLoading,
-  getUserBalance,
 } from './authSelectors';

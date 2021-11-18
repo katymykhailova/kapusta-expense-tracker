@@ -11,6 +11,7 @@
 
 .btnPosition {
   display: flex;
+  width: 100%;
 }
 
 .dateProduct {
