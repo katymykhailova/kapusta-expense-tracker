@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -16,6 +16,10 @@ function UserNav() {
   const username = useSelector(getUserName);
   const avatar = useSelector(getUserAvatar);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }, [isOpen]);
 
   return (
     <>
