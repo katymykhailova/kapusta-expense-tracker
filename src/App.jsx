@@ -12,12 +12,11 @@ import RegisterPage from './views/RegisterPage/RegisterPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import ReportPage from './views/ReportPage/ReportPage';
 import HomePage from './views/HomePage/HomePage';
-// import {
-//   getCurrentUser,
-//   getIsFetchCurrentUser,
-//   getGoogleAuthToken,
-// } from 'redux/auth';
-import { getIsFetchCurrentUser, getGoogleAuthToken } from 'redux/auth';
+import {
+  getIsFetchCurrentUser,
+  getGoogleAuthToken,
+  getUserIsLoggedIn,
+} from 'redux/auth';
 import { getCurrentUser } from 'redux/auth';
 import { getUserBalance } from 'redux/balance';
 
@@ -33,14 +32,19 @@ import Spinner from 'components/Spinner/Spinner';
 export default function App() {
   const dispatch = useDispatch();
   const isFetchCurrentUser = useSelector(getIsFetchCurrentUser);
+  const isLoggedIn = useSelector(getUserIsLoggedIn);
 
   const token = queryString.parse(window.location.search).token;
 
   useEffect(() => {
     token && dispatch(getGoogleAuthToken(token));
     dispatch(getCurrentUser());
-    dispatch(getUserBalance());
+    token && dispatch(getUserBalance());
   }, [dispatch, token]);
+
+  useEffect(() => {
+    isLoggedIn && dispatch(getUserBalance());
+  }, [dispatch, isLoggedIn]);
 
   return (
     !isFetchCurrentUser && (
