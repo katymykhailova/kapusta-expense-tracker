@@ -1,15 +1,16 @@
 import s from './Summary.module.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getLoading } from 'redux/transactions/transactionsSelectors';
 import * as selectors from 'redux/report/reportSelectors';
 import * as reportOperations from 'redux/report/reportOperations';
-import SimpleBar from 'simplebar-react';
 import arrMonths from '../../utils/dataMonth.json';
-import 'simplebar/dist/simplebar.min.css';
+import LoadingSpiner from 'components/Spinner/LoadingSpinner';
 
 export default function Summary({ reportType }) {
   const dispatch = useDispatch();
   const reportArr = useSelector(selectors.getReports);
+  const isLoading = useSelector(getLoading);
 
   useEffect(() => {
     const date = new Date();
@@ -30,20 +31,26 @@ export default function Summary({ reportType }) {
     .slice(0, 5);
 
   return (
-    <div className={s.summaryContainer}>
-      <h4 className={s.summaryTitle}>Сводка</h4>
-      <SimpleBar style={{ maxHeight: 360 }}>
-        <ul className={s.summaryList}>
-          {amountSummarrySixMonth.map(({ month, value }, idx) => (
-            <li key={idx} className={s.summaryItem}>
-              <p className={s.summaryDescription}>
-                {arrMonths.find(item => item.id === String(month)).name}
-              </p>
-              <p className={s.summaryDescription}>{value}</p>
-            </li>
-          ))}
-        </ul>
-      </SimpleBar>
-    </div>
+    <>
+      {isLoading ? (
+        <LoadingSpiner />
+      ) : (
+        <div className={s.summaryContainer}>
+          <h4 className={s.summaryTitle}>Сводка</h4>
+          <ul className={s.summaryList}>
+            {amountSummarrySixMonth.map(({ month, value }, idx) => (
+              <li key={idx} className={s.summaryItem}>
+                <p className={s.summaryDescription}>
+                  {arrMonths.find(item => item.id === String(month)).name}
+                </p>
+                <p className={s.summaryDescription}>
+                  {reportType === 'i' ? `${value}.00` : `- ${value}.00`}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
   );
 }

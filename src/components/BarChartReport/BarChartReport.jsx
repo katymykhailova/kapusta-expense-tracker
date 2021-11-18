@@ -17,6 +17,7 @@ export default function BarChartReport({
   chartsCategoryId,
 }) {
   const data = chartsCategoryId ? transactions : categories;
+
   return (
     <>
       <div className={s.wrap}>
@@ -35,6 +36,7 @@ export default function BarChartReport({
               dataKey={chartsCategoryId ? 'description' : 'category.name'}
               padding={{ left: 77, right: 77 }}
               tickLine={false}
+              axisLine={false}
             />
             {/* <Tooltip /> */}
             <Bar
@@ -87,12 +89,14 @@ export default function BarChartReport({
           >
             <LabelList
               dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
-              position="bottom"
+              position="insideBottomRight"
+              offset="25"
               fill="grey"
             />
             <LabelList
               dataKey={chartsCategoryId ? 'description' : 'category.name'}
-              position="top"
+              position="insideBottomLeft"
+              offset="25"
               fill="grey"
             />
 
