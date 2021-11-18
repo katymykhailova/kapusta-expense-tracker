@@ -133,9 +133,9 @@ export default function ReportTabs() {
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o" />}
+              {isDesctop && <Summary reportType="o" year={year} />}
             </div>
-            {isTablet && <Summary reportType="o" />}
+            {isTablet && <Summary reportType="o" year={year} />}
           </TabPanel>
           <TabPanel>
             {isMobile && (
@@ -159,9 +159,9 @@ export default function ReportTabs() {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="i" />}
+              {isDesctop && <Summary reportType="i" year={year} />}
             </div>
-            {isTablet && <Summary reportType="i" />}
+            {isTablet && <Summary reportType="i" year={year} />}
           </TabPanel>
         </div>
       </Tabs>

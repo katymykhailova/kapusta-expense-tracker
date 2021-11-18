@@ -6,19 +6,19 @@ import * as selectors from 'redux/report/reportSelectors';
 import * as reportOperations from 'redux/report/reportOperations';
 import arrMonths from '../../utils/dataMonth.json';
 import SmallSpinner from '../Spinner/SmallSpinner';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
-export default function Summary({ reportType }) {
+export default function Summary({ reportType, year }) {
   const dispatch = useDispatch();
   const reportArr = useSelector(selectors.getReports);
   const isLoading = useSelector(getLoading);
 
   useEffect(() => {
-    const date = new Date();
-    const year = date.getFullYear();
     if (year > 0 && reportType) {
       dispatch(reportOperations.getReportList({ reportType, year }));
     }
-  }, [reportType, dispatch]);
+  }, [reportType, year, dispatch]);
 
   const amountArr = [];
   for (let i = 0; i < reportArr.length; i++) {
@@ -33,22 +33,24 @@ export default function Summary({ reportType }) {
   return (
     <>
       <div className={s.summaryContainer}>
-        <h4 className={s.summaryTitle}>Сводка</h4>
+        <h4 className={s.summaryTitle}>{`Сводка за ${year} год`}</h4>
         {isLoading ? (
           <SmallSpinner />
         ) : (
-          <ul className={s.summaryList}>
-            {amountSummarrySixMonth.map(({ month, value }, idx) => (
-              <li key={idx} className={s.summaryItem}>
-                <p className={s.summaryDescription}>
-                  {arrMonths.find(item => item.id === String(month)).name}
-                </p>
-                <p className={s.summaryDescription}>
-                  {reportType === 'i' ? `${value}.00` : `- ${value}.00`}
-                </p>
-              </li>
-            ))}
-          </ul>
+          <SimpleBar style={{ maxHeight: 360 }}>
+            <ul className={s.summaryList}>
+              {amountSummarrySixMonth.map(({ month, value }, idx) => (
+                <li key={idx} className={s.summaryItem}>
+                  <p className={s.summaryDescription}>
+                    {arrMonths.find(item => item.id === String(month)).name}
+                  </p>
+                  <p className={s.summaryDescription}>
+                    {reportType === 'i' ? `${value}.00` : `- ${value}.00`}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </SimpleBar>
         )}
       </div>
     </>
