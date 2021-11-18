@@ -5,7 +5,7 @@ import { getLoading } from 'redux/transactions/transactionsSelectors';
 import * as selectors from 'redux/report/reportSelectors';
 import * as reportOperations from 'redux/report/reportOperations';
 import arrMonths from '../../utils/dataMonth.json';
-import LoadingSpiner from 'components/Spinner/LoadingSpinner';
+import SmallSpinner from '../Spinner/SmallSpinner';
 
 export default function Summary({ reportType }) {
   const dispatch = useDispatch();
@@ -32,11 +32,11 @@ export default function Summary({ reportType }) {
 
   return (
     <>
-      {isLoading ? (
-        <LoadingSpiner />
-      ) : (
-        <div className={s.summaryContainer}>
-          <h4 className={s.summaryTitle}>Сводка</h4>
+      <div className={s.summaryContainer}>
+        <h4 className={s.summaryTitle}>Сводка</h4>
+        {isLoading ? (
+          <SmallSpinner />
+        ) : (
           <ul className={s.summaryList}>
             {amountSummarrySixMonth.map(({ month, value }, idx) => (
               <li key={idx} className={s.summaryItem}>
@@ -49,8 +49,8 @@ export default function Summary({ reportType }) {
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
