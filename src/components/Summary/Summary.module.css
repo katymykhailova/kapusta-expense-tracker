@@ -36,7 +36,7 @@
     border: 1px solid var(--white-color);
   }
   .summaryItem:last-child {
-    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
   .summaryItem:first-child {
     border-top: none;
