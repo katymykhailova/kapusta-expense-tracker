@@ -89,14 +89,14 @@ export default function BarChartReport({
           >
             <LabelList
               dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
-              position="insideBottomRight"
-              offset="25"
+              position="bottom"
+              //offset="25"
               fill="grey"
             />
             <LabelList
               dataKey={chartsCategoryId ? 'description' : 'category.name'}
-              position="insideBottomLeft"
-              offset="25"
+              position="top"
+              //offset="25"
               fill="grey"
             />
 
