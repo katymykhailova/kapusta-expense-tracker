@@ -6,6 +6,7 @@ import calculator from '../../images/calculator.svg';
 import calendar from '../../images/calendar.svg';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
+import { getUserBalance } from '../../redux/balance';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
 import { getCategories } from '../../redux/categories/categoriesSelectors';
 import { useState, useRef, useEffect } from 'react';
@@ -13,10 +14,11 @@ import DropDownCategory from '../DropDownCategory/DropDownCategory';
 import ButtonBlock from '../ButtonBlock/ButtonBlock';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
+import { getReportList } from '../../redux/report';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
-export default function FormDescription({ typeForm }) {
+export default function FormDescription({ typeForm, dateFinder }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { register, handleSubmit, reset, setValue } = useForm();
   const [open, setOpen] = useState(false);
@@ -28,7 +30,15 @@ export default function FormDescription({ typeForm }) {
   const dispatch = useDispatch();
   // console.log('typeForm', typeForm);
 
-  const onSubmit = data => {
+  function updateReportList(type) {
+    let reportType;
+    type === true ? (reportType = 'i') : (reportType = 'o');
+    dispatch(
+      getReportList({ reportType: reportType, year: new Date().getFullYear() }),
+    );
+  }
+
+  const onSubmit = async data => {
     const { date, name, sum } = data;
     const newData = {
       type: typeForm,
@@ -38,15 +48,20 @@ export default function FormDescription({ typeForm }) {
       amount: +sum,
     };
     // console.log('newData', newData);
-    dispatch(addTransaction(newData));
+
+    await dispatch(addTransaction(newData));
+    // dispatch(addTransaction(newData));
+
+    // dispatch(getCurrentUser());
+    updateReportList(typeForm);
     setPlaceholderCategories('');
+    dispatch(getUserBalance());
     reset({
       name: '',
       categories: '',
       sum: '',
     });
   };
-
   useEffect(() => {
     const checkClickOutside = e => {
       // if (open && ref.current && !ref.current.contains(e.target)) {
@@ -73,8 +88,14 @@ export default function FormDescription({ typeForm }) {
   }, [placeholderCategories, setValue]);
 
   useEffect(() => {
+    // console.log('selectedDate', selectedDate);
+    // findDate(selectedDate);
+
+    dateFinder(selectedDate);
+
+    // console.log('findDate', dateFinder);
     setValue('date', selectedDate);
-  }, [selectedDate, setValue]);
+  }, [selectedDate, setValue, dateFinder]);
 
   return (
     <div>
@@ -125,6 +146,7 @@ export default function FormDescription({ typeForm }) {
             <input
               {...register('sum')}
               className={s.inputValueProduct}
+              onFocus={e => (e.target.placeholder = '')}
               placeholder="0,00"
             />
             <div className={s.calculatorPos}>
@@ -163,4 +185,5 @@ export default function FormDescription({ typeForm }) {
 
 FormDescription.propTypes = {
   typeForm: PropTypes.bool,
+  dateFinder: PropTypes.func,
 };

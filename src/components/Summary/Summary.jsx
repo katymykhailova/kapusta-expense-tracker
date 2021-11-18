@@ -10,6 +10,7 @@ import 'simplebar/dist/simplebar.min.css';
 export default function Summary({ reportType }) {
   const dispatch = useDispatch();
   const reportArr = useSelector(selectors.getReports);
+
   useEffect(() => {
     const date = new Date();
     const year = date.getFullYear();

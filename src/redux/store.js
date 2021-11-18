@@ -6,6 +6,7 @@ import authReduser from './auth/authSlices';
 import transactionsReducer from './transactions/transactionsSlices';
 import categoriesReducer from './categories/categoriesSlices';
 import reportReducer from './report/reportSlices';
+import balanceReducer from './balance/balanceSlices';
 
 const persistConfig = {
   key: 'auth',
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   transactions: transactionsReducer,
   categories: categoriesReducer,
   report: reportReducer,
+  userBalance: balanceReducer,
 });
 
 export const store = configureStore({

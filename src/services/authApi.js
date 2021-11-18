@@ -1,5 +1,4 @@
 import axios from 'axios';
-// axios.defaults.baseURL = `http://localhost:3000/api`;
 axios.defaults.baseURL = `https://kapusta-api-project.herokuapp.com/api`;
 
 const token = {
@@ -27,13 +26,6 @@ export async function logInUser(credentials) {
   return data.data.user;
 }
 
-export async function googleAuth() {
-  const data = await axios.get('/auth/google');
-  window.location = data.request.responseURL;
-
-  console.log(data);
-}
-
 export async function logOutUser() {
   await axios.get(`/auth/logout`);
   token.unset();
@@ -47,5 +39,10 @@ export async function fetchCurrentUser(savedToken) {
 
 export async function updateBalance(balance) {
   const { data } = await axios.put(`/auth/balance`, balance);
+  return data;
+}
+
+export async function getUserBalance() {
+  const { data } = await axios.get(`/auth/balance`);
   return data;
 }

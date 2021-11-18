@@ -18,11 +18,11 @@
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   body {
     overflow: hidden;
   }
-}
+} */
 
 body {
   margin: 0;
@@ -71,4 +71,13 @@ button {
   transform: none;
   opacity: 1;
   transition: none;
+}
+
+.react-datepicker__day--selected {
+  background-color: var(--accent-color-primary);
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: #f0f0f0;
+  color: #000000;
 }
