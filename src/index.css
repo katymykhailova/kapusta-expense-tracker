@@ -72,3 +72,12 @@ button {
   opacity: 1;
   transition: none;
 }
+
+.react-datepicker__day--selected {
+  background-color: var(--accent-color-primary);
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: #f0f0f0;
+  color: #000000;
+}
