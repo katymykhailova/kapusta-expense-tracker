@@ -10,7 +10,7 @@ import Modal from 'components/Modal/Modal';
 import Summary from 'components/Summary/Summary';
 import FormDescription from 'components/FormDescription/FormDescription';
 import { getCategoriesList } from '../../redux/categories';
-import { getCurrentUser } from '../../redux/balance';
+import { getUserBalance } from '../../redux/balance';
 import {
   getTransactionsByMonts,
   getTransactionsList,
@@ -92,7 +92,7 @@ export default function ReportTabs({ onClick }) {
     const getUser = async () => {
       await dispatch(removeTransaction(currentTransaction));
       updateReportList(transType);
-      dispatch(getCurrentUser());
+      dispatch(getUserBalance());
     };
     getUser();
     setShowModal(false);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './Balance.module.css';
-import { getUserBalance, updateUserBalance } from '../../redux/balance';
+import { getBalance, updateUserBalance } from '../../redux/balance';
 import BalanceReport from './BalanceReport';
 
 export default function BalanceInput() {
@@ -9,7 +9,7 @@ export default function BalanceInput() {
 
   const dispatch = useDispatch();
 
-  const currentBalance = useSelector(getUserBalance);
+  const currentBalance = useSelector(getBalance);
   const currentValue = currentBalance === null ? '00' : currentBalance;
 
   const handleChange = e => {

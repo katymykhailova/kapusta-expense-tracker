@@ -1,16 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from '../../services/authApi';
 
-const getCurrentUser = createAsyncThunk(
-  'auth/getCurrentUser',
-  async (_, { getState, rejectWithValue }) => {
-    const state = getState();
-    const savedToken = state.auth.token;
-    if (savedToken === null) return rejectWithValue();
-    const data = await authApi.fetchCurrentUser(savedToken);
-    return data;
-  },
-);
+const getUserBalance = createAsyncThunk('auth/getUserBalance', async () => {
+  const balance = await authApi.getUserBalance();
+  return balance.data.result;
+});
 
 const updateUserBalance = createAsyncThunk(
   'auth/updateUserBalance',
@@ -20,4 +14,4 @@ const updateUserBalance = createAsyncThunk(
   },
 );
 
-export { getCurrentUser, updateUserBalance };
+export { updateUserBalance, getUserBalance };
