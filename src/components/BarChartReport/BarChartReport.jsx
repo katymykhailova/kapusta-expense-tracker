@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import s from './BarChartReport.module.css';
+import { PureComponent } from 'react';
 
 export default function BarChartReport({
   transactions,
@@ -17,6 +18,40 @@ export default function BarChartReport({
   chartsCategoryId,
 }) {
   const data = chartsCategoryId ? transactions : categories;
+  class CustomizedTick extends PureComponent {
+    render() {
+      const { x, y, payload } = this.props;
+
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <text
+            x={70}
+            y={-15}
+            dy={-10}
+            textAnchor="end"
+            fill="grey"
+            transform="rotate(-90)"
+          >
+            {payload.value}
+          </text>
+        </g>
+      );
+    }
+  }
+
+  const renderCustomizedLabel = props => {
+    const { x, y, width, height, value } = props;
+
+    return (
+      <g>
+        {/* <text x={-50} y={0} dy={350} fill="grey" transform="rotate(-90)"></text> */}
+        <text fill="grey" transform="rotate(-90)">
+          {value}
+        </text>
+      </g>
+    );
+  };
+
   return (
     <>
       <div className={s.wrap}>
@@ -35,6 +70,8 @@ export default function BarChartReport({
               dataKey={chartsCategoryId ? 'description' : 'category.name'}
               padding={{ left: 77, right: 77 }}
               tickLine={false}
+              axisLine={false}
+              tick={<CustomizedTick />}
             />
             {/* <Tooltip /> */}
             <Bar
@@ -45,10 +82,14 @@ export default function BarChartReport({
             >
               <LabelList
                 dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
-                position="top"
+                position="inside"
+                //margin={5}
                 fill="grey"
-              />
+                angle="-90"
 
+                //content={renderCustomizedLabel}
+              />
+              />
               {data.map((_, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -77,6 +118,7 @@ export default function BarChartReport({
             type="category"
             dataKey={chartsCategoryId ? 'description' : 'category.name'}
             hide
+            mirror
           />
           <CartesianGrid vertical={false} horizontal={false} />
           <Bar
