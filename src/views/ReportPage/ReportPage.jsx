@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTransactionsByMonts } from '../../redux/transactions';
 import { getTransactionsSums } from '../../redux/transactions/transactionsSelectors';
+import { getCategories } from '../../redux/categories';
 import s from './ReportPage.module.css';
 import HeaderReport from '../../components/Reports/HeaderReport';
 import CurrentMonthReport from '../../components/Reports/CurrentMonthReport';
@@ -11,6 +12,7 @@ import BarChartReport from 'components/BarChartReport/BarChartReport';
 export default function ReportPage() {
   const dispatch = useDispatch();
   const transactions = useSelector(getTransactionsSums);
+  const categories = useSelector(getCategories);
 
   const date = new Date();
   const [month, setMonth] = useState(date.getMonth() + 1);
@@ -54,6 +56,17 @@ export default function ReportPage() {
     setChartsCategoryId(id);
   };
 
+  const categoriesWithSumms = Object.values(
+    transactions.reduce((acc, { group, total_amounts }) => {
+      const category = categories.find(i => i._id === group.category);
+      if (!acc[category.name]) {
+        acc[category.name] = { category, total_amounts: 0 };
+      }
+      acc[category.name].total_amounts += total_amounts;
+      return acc;
+    }, {}),
+  );
+
   const filtredTransactions = (transType, categoryId) => {
     return transactions
       .filter(
@@ -64,6 +77,12 @@ export default function ReportPage() {
       .map(tr => {
         return { description: tr.group.description, amount: tr.total_amounts };
       });
+  };
+
+  const filtredCategories = transType => {
+    return categoriesWithSumms.filter(
+      transaction => transaction.category.type === transType,
+    );
   };
 
   return (
@@ -82,11 +101,12 @@ export default function ReportPage() {
         transactionsCurrentMonth={transactions}
         handleClickGetChart={handleClickGetChart}
       />
-      {chartsCategoryId && (
-        <BarChartReport
-          transactions={filtredTransactions(type, chartsCategoryId)}
-        />
-      )}
+
+      <BarChartReport
+        transactions={filtredTransactions(type, chartsCategoryId)}
+        categories={filtredCategories(type)}
+        chartsCategoryId={chartsCategoryId}
+      />
     </div>
   );
 }
