@@ -21,7 +21,8 @@ import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
 const FormSchema = Yup.object().shape({
-  sum: Yup.number().min(0.01).required().positive().required('Required'),
+  // sum: Yup.number().min(0.01).required().positive().required('Required'),
+  sum: Yup.number().min(1).positive().integer().required('Required'),
   name: Yup.string().required(),
   categories: Yup.string().required(),
   // sum: Yup.number().required('Required'),
@@ -177,7 +178,7 @@ export default function FormDescription({ typeForm, dateFinder }) {
                 type="sum"
                 className={s.inputValueProduct}
                 onFocus={e => (e.target.placeholder = '')}
-                placeholder="0,00"
+                placeholder="0"
               />
               {errors.sum && <p className={s.errors}>Required</p>}
             </div>
