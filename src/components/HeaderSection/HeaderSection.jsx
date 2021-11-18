@@ -37,7 +37,6 @@ export default function HeaderSection({
               <ArrowBackIcon
                 style={{ color: '#FF751D', cursor: 'pointer' }}
                 fontSize="small"
-                //   onClick={onHandleChangeType}
               />
               <span className={`${s.linkTitle} ${s.report}`}>
                 Вернутся на главную
@@ -46,7 +45,6 @@ export default function HeaderSection({
           </Navigation>
           <div className={s.headData}>
             <BalanceInput />
-            {/* <BalanceReport balance={55000} /> */}
             <NavigationMonth
               month={month}
               year={year}

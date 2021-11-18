@@ -16,7 +16,7 @@
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #000000;
+  color: var(--black-color);
 }
 .navigationMonthTab {
   width: 150px;
