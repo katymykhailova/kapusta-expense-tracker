@@ -33,7 +33,7 @@ const CustomTab = ({ className, selectedClassName, ...props }) => (
 
 CustomTab.tabsRole = 'Tab';
 
-export default function ReportTabs({ onClick }) {
+export default function ReportTabs() {
   const [showModal, setShowModal] = useState(false);
   const [remove, setRemove] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState(null);

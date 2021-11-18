@@ -6,35 +6,32 @@ import s from './ReportTable.module.css';
 import Report from './Report';
 import formatDate from 'utils/formatingDate';
 import { getLoading } from '../../redux/transactions/transactionsSelectors';
-import LoadingSpiner from '../Spinner/LoadingSpinner';
+import SmallSpinner from '../Spinner/SmallSpinner';
 
 function ReportTable({ transactions, handleDelete, type }) {
   const isLoading = useSelector(getLoading);
   return (
     <>
-      {isLoading ? (
-        <LoadingSpiner />
-      ) : (
-        <div className={s.tableWrap}>
-          <ul className={s.tableHead}>
-            <li key={v4()} className={`${s.tableHeadName} ${s.tableDate}`}>
-              Дата
-            </li>
-            <li key={v4()} className={`${s.tableHeadName} ${s.tableDesc}`}>
-              Описание
-            </li>
-            <li key={v4()} className={`${s.tableHeadName} ${s.tableCat}`}>
-              Категория
-            </li>
-            <li key={v4()} className={`${s.tableHeadName} ${s.tableSum}`}>
-              Сумма
-            </li>
-            <li
-              key={v4()}
-              className={`${s.tableHeadName} ${s.tableDelet}`}
-            ></li>
-          </ul>
-
+      {/* {isLoading ? (        <LoadingSpiner />      ) : ( */}
+      <div className={s.tableWrap}>
+        <ul className={s.tableHead}>
+          <li key={v4()} className={`${s.tableHeadName} ${s.tableDate}`}>
+            Дата
+          </li>
+          <li key={v4()} className={`${s.tableHeadName} ${s.tableDesc}`}>
+            Описание
+          </li>
+          <li key={v4()} className={`${s.tableHeadName} ${s.tableCat}`}>
+            Категория
+          </li>
+          <li key={v4()} className={`${s.tableHeadName} ${s.tableSum}`}>
+            Сумма
+          </li>
+          <li key={v4()} className={`${s.tableHeadName} ${s.tableDelet}`}></li>
+        </ul>
+        {isLoading ? (
+          <SmallSpinner />
+        ) : (
           <SimpleBar style={{ maxHeight: 360 }}>
             <div className={s.scrollWrap}>
               <ul>
@@ -53,8 +50,9 @@ function ReportTable({ transactions, handleDelete, type }) {
               </ul>
             </div>
           </SimpleBar>
-        </div>
-      )}
+        )}
+      </div>
+      {/* )} */}
     </>
   );
 }
