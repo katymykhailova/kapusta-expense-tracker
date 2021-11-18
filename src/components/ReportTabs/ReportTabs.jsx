@@ -65,6 +65,10 @@ export default function ReportTabs({ onClick }) {
   };
 
   useEffect(() => {
+    document.body.style.overflow = showModal ? 'hidden' : 'auto';
+  }, [showModal]);
+
+  useEffect(() => {
     dispatch(getCategoriesList());
     dispatch(getTransactionsByMonts(date));
   }, [calendar, date, dispatch, transType]);
