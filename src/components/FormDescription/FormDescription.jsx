@@ -5,6 +5,8 @@ import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
 import calendar from '../../images/calendar.svg';
 import moment from 'moment';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserBalance } from '../../redux/balance';
 import { addTransaction } from '../../redux/transactions/transactionsOperations';
@@ -18,11 +20,31 @@ import { getReportList } from '../../redux/report';
 import ru from 'date-fns/locale/ru'; // the locale you want
 registerLocale('ru', ru); // register it with the name you want
 
+const FormSchema = Yup.object().shape({
+  // sum: Yup.number().min(0.01).required().positive().required('Required'),
+  sum: Yup.number().min(1).positive().integer().required('Required'),
+  name: Yup.string().required(),
+  categories: Yup.string().required(),
+  // sum: Yup.number().required('Required'),
+  // password: Yup.string()
+  //   .min(6, 'Password is too short - should be 7 chars minimum.')
+  //   .required('Required'),
+});
+
 export default function FormDescription({ typeForm, dateFinder }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(FormSchema),
+  });
   const [open, setOpen] = useState(false);
   const [placeholderCategories, setPlaceholderCategories] = useState('');
+  // console.log('placeholderCategories', placeholderCategories);
 
   const categoriesState = useSelector(getCategories);
   // console.log('categoriesState', categoriesState);
@@ -78,8 +100,8 @@ export default function FormDescription({ typeForm, dateFinder }) {
   }, [open]);
 
   const changerPlaceholder = (data, id) => {
+    // console.log(data, id);
     setPlaceholderCategories({ data, id });
-    // console.log('++');
     setOpen(false);
   };
 
@@ -121,11 +143,14 @@ export default function FormDescription({ typeForm, dateFinder }) {
             </div>
           </div>
           <div className={s.productPosition}>
-            <input
-              {...register('name')}
-              className={s.inputProductName}
-              placeholder={typeForm ? 'Описание дохода' : 'Описание товара'}
-            />
+            <div>
+              <input
+                {...register('name')}
+                className={s.inputProductName}
+                placeholder={typeForm ? 'Описание дохода' : 'Описание товара'}
+              />
+              {errors.name && <p className={s.errors}>Required</p>}
+            </div>
             <div className={s.DropDownPos}>
               <input
                 autoComplete="off"
@@ -135,6 +160,10 @@ export default function FormDescription({ typeForm, dateFinder }) {
                 onClick={() => setOpen(!open)}
                 readOnly
               />
+              {placeholderCategories === '' && errors.categories && (
+                <p className={s.errors}>Required</p>
+              )}
+              {/* {errors.categories && <p className={s.errors}>Required</p>} */}
               {open && (
                 <DropDownCategory
                   changerDescription={changerPlaceholder}
@@ -143,12 +172,16 @@ export default function FormDescription({ typeForm, dateFinder }) {
                 />
               )}
             </div>
-            <input
-              {...register('sum')}
-              className={s.inputValueProduct}
-              onFocus={e => (e.target.placeholder = '')}
-              placeholder="0,00"
-            />
+            <div className={s.inputValueProductPostion}>
+              <input
+                {...register('sum')}
+                type="sum"
+                className={s.inputValueProduct}
+                onFocus={e => (e.target.placeholder = '')}
+                placeholder="0"
+              />
+              {errors.sum && <p className={s.errors}>Required</p>}
+            </div>
             <div className={s.calculatorPos}>
               <img src={calculator} alt="Calculator" />
             </div>

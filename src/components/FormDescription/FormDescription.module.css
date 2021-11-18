@@ -33,6 +33,17 @@
   appearance: none;
 } */
 
+.errors {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 0.85;
+  letter-spacing: 0.04em;
+  margin-top: 5px;
+  color: var(--accent-color-primary);
+
+  position: absolute;
+}
+
 .inputСategoryName {
   padding: 13px;
   outline: none;
@@ -89,12 +100,18 @@
 
   .inputValueProduct {
     width: 185px;
-    margin-top: 30px;
-    margin-bottom: 83px;
+    /* margin-top: 30px;
+    margin-bottom: 83px; */
     text-align: center;
     border-radius: 16px;
     border: 2px solid #ffffff;
     background: none;
+  }
+
+  .inputValueProductPostion {
+    margin-top: 30px;
+    margin-bottom: 80px;
+    position: relative;
   }
 
   .dateProduct {
@@ -141,6 +158,11 @@
   }
   .inputProductDate {
     background: none;
+  }
+  .errors {
+    position: absolute;
+    left: 17px;
+    top: 0;
   }
 }
 

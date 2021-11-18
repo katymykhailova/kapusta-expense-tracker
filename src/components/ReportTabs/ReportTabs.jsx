@@ -33,7 +33,7 @@ const CustomTab = ({ className, selectedClassName, ...props }) => (
 
 CustomTab.tabsRole = 'Tab';
 
-export default function ReportTabs({ onClick }) {
+export default function ReportTabs() {
   const [showModal, setShowModal] = useState(false);
   const [remove, setRemove] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState(null);
@@ -99,7 +99,13 @@ export default function ReportTabs({ onClick }) {
     setRemove(false);
   }, [currentTransaction, dispatch, remove, transType]);
 
+  const hidden = () => {
+    const body = document.querySelector('body');
+    body.style.overflow = isVisible ? 'auto' : 'hidden';
+  };
+
   const toggleModal = () => {
+    hidden();
     return isVisible ? setIsVisible(false) : setIsVisible(true);
   };
 
@@ -133,9 +139,9 @@ export default function ReportTabs({ onClick }) {
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o" />}
+              {isDesctop && <Summary reportType="o" year={year} />}
             </div>
-            {isTablet && <Summary reportType="o" />}
+            {isTablet && <Summary reportType="o" year={year} />}
           </TabPanel>
           <TabPanel>
             {isMobile && (
@@ -159,9 +165,9 @@ export default function ReportTabs({ onClick }) {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="i" />}
+              {isDesctop && <Summary reportType="i" year={year} />}
             </div>
-            {isTablet && <Summary reportType="i" />}
+            {isTablet && <Summary reportType="i" year={year} />}
           </TabPanel>
         </div>
       </Tabs>

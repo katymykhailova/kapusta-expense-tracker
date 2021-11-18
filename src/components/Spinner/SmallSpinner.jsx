@@ -1,18 +1,18 @@
 import Loader from 'react-loader-spinner';
-import s from './Spinner.module.css';
+import s from './SmallSpinner.module.css';
 
-function LoadingSpiner() {
+function SmallSpinner() {
   return (
     <div className={s.containerList}>
       <Loader
         type="ThreeDots"
         color="var(--accent-color-primary)"
-        height={120}
-        width={120}
+        height={60}
+        width={60}
         // timeout={3000}
       />
     </div>
   );
 }
 
-export default LoadingSpiner;
+export default SmallSpinner;
