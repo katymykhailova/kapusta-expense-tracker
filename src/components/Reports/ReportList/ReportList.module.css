@@ -25,11 +25,11 @@
 }
 .transItem:hover .svgContainer,
 .transItem:focus .svgContainer {
-  background: rgb(255, 218, 192);
+  background: var(--accent-color-light);
 }
 .transItem:hover .icon,
 .transItem:focus .icon {
-  fill: #ff751d;
+  fill: var(--accent-color-primary);
 }
 .itemValue {
   font-weight: normal;
@@ -37,7 +37,7 @@
   line-height: 1.17;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #52555f;
+  color: var(--text-color-main);
   margin-bottom: 20px;
 }
 .titleItem {
@@ -47,21 +47,21 @@
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #52555f;
+  color: var(--text-color-main);
   margin-top: 5px;
 }
 .svgContainer {
   width: 59px;
   height: 46px;
   position: relative;
-  background-color: #f5f6fb;
+  background-color: var;
   border-radius: 20px;
 }
 .svgContainerActive {
   width: 59px;
   height: 46px;
   position: relative;
-  background-color: rgb(255, 218, 192);
+  background-color: var(--accent-color-light);
   border-radius: 20px;
   margin-bottom: 7px;
 }
@@ -70,16 +70,14 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
-  fill: #071f41;
+  fill: var(--icons-color);
 }
 .iconActive {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  fill: #ff751d;
-  z-index: 10;
+  fill: var(--accent-color-primary);
 }
 
 @media screen and (max-width: 767px) {

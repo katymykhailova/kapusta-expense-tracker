@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import LoadingSpiner from 'components/Spinner/LoadingSpinner';
 import s from './ReportList.module.css';
 import sprite from '../../../images/sprite.svg';
 import { getCategories } from 'redux/categories';
-import Spinner from '../../Spinner/Spinner';
 import { getLoading } from 'redux/transactions/transactionsSelectors';
 
 export default function ReportList({ trans, handleClick }) {
@@ -24,7 +24,7 @@ export default function ReportList({ trans, handleClick }) {
   return (
     <>
       {isLoading ? (
-        <Spinner />
+        <LoadingSpiner />
       ) : (
         <div className={s.reportData}>
           <ul className={s.reportList}>

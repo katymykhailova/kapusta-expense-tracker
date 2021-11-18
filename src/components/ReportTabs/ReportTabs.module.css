@@ -60,7 +60,7 @@
 
     padding: 10px 0;
     cursor: pointer;
-    background: #fafbfd;
+    background: var(--bg-color);
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
   }
@@ -70,7 +70,7 @@
   .commonTab.isSelected {
     border-width: 0;
     background: #fefefe;
-    color: #ff751d;
+    color: var(--accent-color-primary);
   }
   .tabsList {
     justify-content: flex-start;
@@ -83,7 +83,7 @@
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    box-shadow: 0px 10px 60px 0px rgba(170, 178, 197, 0.2);
+    box-shadow: 0px 10px 60px 0px var(--main-shadow);
   }
   .wrapper {
     margin-top: 48px;

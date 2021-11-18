@@ -17,7 +17,7 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: rgba(82, 85, 95, 0.7);
-  border: 2px solid #ffffff;
+  border: 2px solid var(--white-color);
   box-sizing: border-box;
   border-radius: 16px;
   background-color: transparent;
@@ -25,15 +25,15 @@
 }
 .balanceSubmit:hover,
 .balanceSubmit:focus {
-  background-color: #ff751d;
-  color: #ffffff;
+  background-color: var(--accent-color-primary);
+  color: var(--white-color);
 }
 
 .balanceBox {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000000;
+  color: var(--black-color);
 }
 input[type='number'] {
   -moz-appearance: textfield;
@@ -54,10 +54,10 @@ input::-webkit-inner-spin-button {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-align: start;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--white-color);
   box-sizing: border-box;
   border-radius: 16px;
-  color: #000000;
+  color: var(--black-color);
   background-color: transparent;
   outline: none;
 }
@@ -65,7 +65,7 @@ input::-webkit-inner-spin-button {
 .label {
   position: relative;
   left: 115px;
-  color: #000000;
+  color: var(--black-color);
   font-weight: 700;
 }
 
@@ -74,10 +74,10 @@ input::-webkit-inner-spin-button {
 }
 
 .balanceInput::placeholder {
-  color: #000000;
+  color: var(--black-color);
 }
 .balanceInput:focus {
-  border: 2px solid #ffffff;
+  border: 2px solid var(--white-color);
 }
 
 @media screen and (max-width: 767px) {

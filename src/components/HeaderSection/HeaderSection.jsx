@@ -4,6 +4,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Navigation from '../Navigation/Navigation';
 import NavigationMonth from '../Navigation/NavigationMonth';
 import BalanceInput from '../Balance/BalanceInput';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
 
 export default function HeaderSection({
   typePage,
@@ -11,14 +13,34 @@ export default function HeaderSection({
   year,
   handleChangeMonthLeft,
   handleChangeMonthRight,
-  onClick,
 }) {
+  const routerState = useRef(null);
+
+  const location = useLocation();
+  const history = useHistory();
+  useEffect(() => {
+    if (routerState.current) return;
+    routerState.current = location.state;
+  }, [location.state]);
+
+  const handleChangeLocation = location => {
+    history.push({
+      ...location,
+    });
+  };
+
+  console.log(location);
   return (
     <>
       {typePage === 'home' && (
         <div className={s.headerTab}>
           <div className={s.navHome}>
-            <Navigation router="/report">
+            <Navigation
+              router="/report"
+              handleClick={() => {
+                handleChangeLocation(location);
+              }}
+            >
               <span className={s.linkTitle}>Перейти к отчетам</span>
               <img
                 className={s.linkIcon}
@@ -32,12 +54,16 @@ export default function HeaderSection({
       )}
       {typePage === 'report' && (
         <div className={s.headerTabReport}>
-          <Navigation router="/home">
+          <Navigation
+            router="/home"
+            handleClick={() => {
+              handleChangeLocation(location);
+            }}
+          >
             <div className={s.linkBox}>
               <ArrowBackIcon
                 style={{ color: '#FF751D', cursor: 'pointer' }}
                 fontSize="small"
-                //   onClick={onHandleChangeType}
               />
               <span className={`${s.linkTitle} ${s.report}`}>
                 Вернутся на главную
