@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import { getUserName, getUserAvatar } from '../../redux/auth';
 import { logOut } from '../../redux/auth';
-import Modal from 'components/Modal/Modal';
-import ButtonBlock from 'components/ButtonBlock/ButtonBlock';
+import Modal from 'components/Modal';
+
+import ButtonBlock from 'components/ButtonBlock';
+import './styles.css';
 import s from './UserNav.module.css';
 import logout from '../../images/logout.svg';
 
@@ -13,9 +17,12 @@ function UserNav() {
   const avatar = useSelector(getUserAvatar);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }, [isOpen]);
+
   return (
     <>
-      {' '}
       <div className={s.userAuth}>
         <div className={s.userAvatarWrap}>
           <img
@@ -38,25 +45,28 @@ function UserNav() {
             height="16px"
             className={s.logoutIcon}
           />
-
           <p className={s.logoutText}>Выйти</p>
         </button>
       </div>
-      {isOpen && (
-        <Modal
-          onClose={() => setIsOpen(false)}
-          text="Вы уверены, что хотите закрыть приложение?"
-        >
-          <ButtonBlock
-            firstButtonText={'Да'}
-            secondButtonText={'Нет'}
-            firstButtonHandler={() => dispatch(logOut())}
-            secondButtonHandler={() => setIsOpen(false)}
-            firstButtonType={'button'}
-            secondButtonType={'button'}
-          />
-        </Modal>
-      )}
+      <TransitionGroup>
+        {isOpen && (
+          <CSSTransition classNames="option" timeout={1000}>
+            <Modal
+              onClose={() => setIsOpen(false)}
+              text="Вы уверены, что хотите закрыть приложение?"
+            >
+              <ButtonBlock
+                firstButtonText={'Да'}
+                secondButtonText={'Нет'}
+                firstButtonHandler={() => dispatch(logOut())}
+                secondButtonHandler={() => setIsOpen(false)}
+                firstButtonType={'button'}
+                secondButtonType={'button'}
+              />
+            </Modal>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
     </>
   );
 }
