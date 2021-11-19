@@ -82,6 +82,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  pointer-events: none;
 }
 
 .arrowPosDown {
@@ -89,6 +90,7 @@
   top: 20px;
   right: 20px;
   transform: rotate(180deg);
+  pointer-events: none;
 }
 
 @media screen and (max-width: 767px) {
