@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   items: [],
-  sums: null,
+  sums: [],
   error: null,
   isLoading: false,
 };
