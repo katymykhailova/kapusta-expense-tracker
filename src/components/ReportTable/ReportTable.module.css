@@ -4,7 +4,7 @@
   }
   .scrollWrap {
     display: flex;
-    max-height: 180px;
+    max-height: 150px;
     max-width: 282px;
     overflow-y: scroll;
     position: fixed;
