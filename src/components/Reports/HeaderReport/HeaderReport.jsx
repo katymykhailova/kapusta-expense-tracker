@@ -17,13 +17,13 @@ export default function HeaderReport({ transactionsMonth }) {
         <p className={s.itemReport}>Расходы:</p>
         <span className={`${s.dataReport} ${s.expenses}`}>{`- ${getTotalSum(
           false,
-        )}.00 грн.`}</span>
+        )} грн.`}</span>
       </div>
       <div className={s.nameReport}>
         <p className={s.itemReport}>Доходы:</p>
         <span className={`${s.dataReport} ${s.incomes}`}>{`+ ${getTotalSum(
           true,
-        )}.00 грн.`}</span>
+        )} грн.`}</span>
       </div>
     </div>
   );
