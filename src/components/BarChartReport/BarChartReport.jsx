@@ -5,7 +5,7 @@ import {
   YAxis,
   Cell,
   CartesianGrid,
-  // Tooltip,
+  Tooltip,
   LabelList,
   ResponsiveContainer,
 } from 'recharts';
@@ -38,7 +38,8 @@ export default function BarChartReport({
               tickLine={false}
               axisLine={false}
             />
-            {/* <Tooltip /> */}
+            <YAxis hide={true} tickCount={9} />
+            <Tooltip />
             <Bar
               dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
               fill={'var(--accent-color-primary)'}
@@ -50,7 +51,6 @@ export default function BarChartReport({
                 position="top"
                 fill="grey"
               />
-
               {data.map((_, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -67,51 +67,47 @@ export default function BarChartReport({
       </div>
 
       <div className={s.wrapMobile}>
-        <BarChart
-          width={282}
-          height={521}
-          data={data}
-          layout="vertical"
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <XAxis type="number" hide />
-          <YAxis
-            type="category"
-            dataKey={chartsCategoryId ? 'description' : 'category.name'}
-            hide
-          />
-          <CartesianGrid vertical={false} horizontal={false} />
-          <Bar
-            dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
-            fill={'var(--accent-color-primary)'}
-            barSize={18}
-            radius={[0, 10, 10, 0]}
-          >
-            <LabelList
-              dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
-              position="bottom"
-              //offset="25"
-              fill="grey"
-            />
-            <LabelList
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={data} layout="vertical">
+            <YAxis
+              type={'category'}
               dataKey={chartsCategoryId ? 'description' : 'category.name'}
-              position="top"
-              //offset="25"
-              fill="grey"
+              hide={true}
             />
-
-            {data.map((_, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={
-                  index % 2 !== 0
-                    ? 'var(--accent-color-light)'
-                    : 'var(--accent-color-primary)'
-                }
+            <XAxis hide={true} scale="auto" width="50%" />
+            <CartesianGrid vertical={false} horizontal={false} />
+            <Bar
+              dataKey={chartsCategoryId ? 'description' : 'category.name'}
+              fill="white"
+              barSize={10}
+            >
+              <LabelList position="insideLeft" fill="grey" />
+              <LabelList
+                dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
+                position="right"
+                offset="100"
+                fill="grey"
               />
-            ))}
-          </Bar>
-        </BarChart>
+            </Bar>
+            <Bar
+              dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
+              fill={'var(--accent-color-primary)'}
+              barSize={15}
+              radius={[0, 10, 10, 0]}
+            >
+              {data.map((_, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={
+                    index % 2 !== 0
+                      ? 'var(--accent-color-light)'
+                      : 'var(--accent-color-primary)'
+                  }
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </>
   );
