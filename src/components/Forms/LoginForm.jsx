@@ -82,7 +82,7 @@ export default function LoginForm() {
           <ButtonBlock
             firstButtonText={'Войти'}
             secondButtonText={'Регистрация'}
-            firstButtonHandler={() => console.log('firstButtonHandler')}
+            //firstButtonHandler={() => console.log('firstButtonHandler')}
             secondButtonHandler={onSignUpBtnClick}
             firstButtonType={'submit'}
             secondButtonType={'button'}
