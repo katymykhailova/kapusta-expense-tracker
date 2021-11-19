@@ -4,9 +4,11 @@
   }
   .scrollWrap {
     display: flex;
-    max-height: 155px;
+    max-height: 180px;
     max-width: 282px;
     overflow-y: scroll;
+    position: fixed;
+    bottom: 40px;
   }
 }
 
