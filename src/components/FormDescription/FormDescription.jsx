@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import s from './FormDescription.module.css';
 import calculator from '../../images/calculator.svg';
 import calendar from '../../images/calendar.svg';
+import arrow from '../../images/arrow.svg';
 import moment from 'moment';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -140,6 +141,15 @@ export default function FormDescription({ typeForm, dateFinder }) {
                 onClick={() => setOpen(!open)}
                 readOnly
               />
+              {open ? (
+                <div className={s.arrowPos}>
+                  <img src={arrow} alt="arrow" />
+                </div>
+              ) : (
+                <div className={s.arrowPosDown}>
+                  <img src={arrow} alt="arrow" />
+                </div>
+              )}
               {placeholderCategories === '' && errors.categories && (
                 <p className={s.errors}>Required</p>
               )}

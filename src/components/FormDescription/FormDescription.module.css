@@ -78,6 +78,19 @@
   position: relative;
 }
 
+.arrowPos {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrowPosDown {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transform: rotate(180deg);
+}
+
 @media screen and (max-width: 767px) {
   .formStyles {
     display: flex;
