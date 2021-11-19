@@ -102,6 +102,9 @@ input::-webkit-inner-spin-button {
   .balanceInput.report {
     border-radius: 20px;
   }
+  .balaneCur {
+    top: 37px;
+  }
 }
 
 .balance {
