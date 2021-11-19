@@ -96,7 +96,7 @@ export default function RegisterForm() {
           <ButtonBlock
             firstButtonText={'Регистрация'}
             secondButtonText={'Войти'}
-            firstButtonHandler={() => console.log('firstButtonHandler')}
+            //firstButtonHandler={() => console.log('firstButtonHandler')}
             secondButtonHandler={onLogInBtnClick}
             firstButtonType={'submit'}
             secondButtonType={'button'}
