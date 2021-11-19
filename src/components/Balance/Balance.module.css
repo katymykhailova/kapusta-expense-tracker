@@ -81,6 +81,11 @@ input::-webkit-inner-spin-button {
 }
 
 .balanceInput.report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0 15px 0px;
   border-radius: 16px;
 }
 
