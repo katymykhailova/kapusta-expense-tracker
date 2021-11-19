@@ -42,8 +42,10 @@ export default function Summary({ reportType, year }) {
                   <p className={s.summaryDescription}>
                     {arrMonths.find(item => item.id === String(month)).name}
                   </p>
-                  <p className={s.summaryDescription}>
-                    {reportType === 'i' ? `${value}.00` : `- ${value}.00`}
+                  <p
+                    className={`${s.summaryDescription} ${s.summaryDescriptionCar}`}
+                  >
+                    {reportType === 'i' ? `${value} грн.` : `- ${value} грн.`}
                   </p>
                 </li>
               ))}

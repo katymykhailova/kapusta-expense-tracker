@@ -14,7 +14,7 @@ function Report({ date, category, amount, descr, id, handleDelete, type }) {
       <div className={`${s.tableTd}, ${s.tableCat}`}>{category}</div>
       <div
         className={type === true ? s.tableSumI : s.tableSumO}
-      >{`${amountType}.00 грн.`}</div>
+      >{`${amountType} грн.`}</div>
       <div className={`${s.tableTd}, ${s.tableDelet}`}>
         <button
           type="button"
