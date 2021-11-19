@@ -7,8 +7,6 @@ export default function DropDownCategory({
   typeForm,
 }) {
   const typeFormFilter = categoriesList.filter(el => el.type === typeForm);
-  // console.log('categoriesList', categoriesList);
-  // console.log('typeFormFilter', typeFormFilter);
   return (
     <div className={s.categoryPosition}>
       <ul>
