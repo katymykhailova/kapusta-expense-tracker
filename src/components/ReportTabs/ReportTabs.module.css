@@ -46,7 +46,9 @@
     background-color: var(--accent-color-primary);
     cursor: pointer;
     padding: 0;
-    margin: 40px auto;
+    position: relative;
+    top: -250px;
+    left: 50%;
   }
   .tabsList {
     position: fixed;
