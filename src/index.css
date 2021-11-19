@@ -73,7 +73,8 @@ button {
   transition: none;
 }
 
-.react-datepicker__day--selected {
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
   background-color: var(--accent-color-primary);
 }
 
