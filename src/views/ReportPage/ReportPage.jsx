@@ -76,13 +76,14 @@ export default function ReportPage() {
       )
       .map(tr => {
         return { description: tr.group.description, amount: tr.total_amounts };
-      });
+      })
+      .sort((a, b) => b.amount - a.amount);
   };
 
   const filtredCategories = transType => {
-    return categoriesWithSumms.filter(
-      transaction => transaction.category.type === transType,
-    );
+    return categoriesWithSumms
+      .filter(transaction => transaction.category.type === transType)
+      .sort((a, b) => b.total_amounts - a.total_amounts);
   };
 
   return (
