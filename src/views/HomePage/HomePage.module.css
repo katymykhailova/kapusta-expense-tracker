@@ -3,9 +3,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100vh - 56px);
-  }
-  body {
-    /* overflow: hidden; */
+    height: calc(100vh - 96px);
   }
 }

@@ -23,15 +23,9 @@
   border-radius: 16px 0 0 0;
   border-right: none;
   outline: none;
-  border: 2px solid#f5f6fb;
-  color: #52555f;
+  border: 2px solid var(--bg-color);
+  color: var(--text-color-main);
 }
-
-/* select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-} */
 
 .errors {
   font-weight: 400;
@@ -47,31 +41,31 @@
 .inputСategoryName {
   padding: 13px;
   outline: none;
-  border: 2px solid#f5f6fb;
-  background: #ffffff;
-  /* color: #52555f; */
-  color: #c7ccdc;
+  border: 2px solid var(--bg-color);
+  background: var(--white-color);
+  color: var(--text-color-light);
+  cursor: pointer;
 }
 
 .inputValueProduct {
   padding: 13px;
   border-radius: 0 16px 16px 0;
   outline: none;
-  border: 2px solid#f5f6fb;
+  border: 2px solid var(--bg-color);
   text-align: right;
-  color: #52555f;
+  color: var(--text-color-main);
 }
 .inputProductName::placeholder {
-  color: #c7ccdc;
+  color: var(--text-color-light);
 }
 
 .inputСategoryName::placeholder {
-  color: #c7ccdc;
+  color: var(--text-color-light);
 }
 
 .inputProductDate {
   border: none;
-  color: #52555f;
+  color: var(--text-color-main);
   font-weight: 900;
   width: 74px;
   height: 40px;
@@ -82,6 +76,21 @@
 
 .DropDownPos {
   position: relative;
+}
+
+.arrowPos {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  pointer-events: none;
+}
+
+.arrowPosDown {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transform: rotate(180deg);
+  pointer-events: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -100,11 +109,9 @@
 
   .inputValueProduct {
     width: 185px;
-    /* margin-top: 30px;
-    margin-bottom: 83px; */
     text-align: center;
     border-radius: 16px;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--white-color);
     background: none;
   }
 
@@ -120,17 +127,16 @@
 
   .inputProductName {
     width: 282px;
-    /* margin-top: 54px; */
     border-bottom: none;
     border-top-right-radius: 16px;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--white-color);
     background: none;
   }
 
   .inputСategoryName {
     width: 282px;
     border-bottom-right-radius: 16px;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--white-color);
     background: none;
   }
 
@@ -139,8 +145,7 @@
     top: 113px;
     right: 53px;
     padding: 12px;
-    /* border-left: 2px solid#f5f6fb; */
-    border-left: 2px solid #ffffff;
+    border-left: 2px solid var(--white-color);
   }
 
   .calendarPos {
@@ -149,8 +154,6 @@
     left: 29%;
   }
   .datePosition {
-    /* margin-left: 25px;
-    margin-right: 23px; */
     margin-left: auto;
     margin-right: auto;
     width: 104px;
@@ -240,14 +243,6 @@
   .productInfo {
     margin-bottom: 0;
   }
-  /* .calculatorPos {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-  }
-  .productPosition {
-    position: relative;
-  } */
 
   .calendarPos {
     position: absolute;

@@ -48,6 +48,12 @@
     padding: 0;
     margin: 40px auto;
   }
+  .tabsList {
+    position: fixed;
+
+    left: 0;
+    bottom: 0;
+  }
 }
 
 @media screen and (min-width: 768px) {
