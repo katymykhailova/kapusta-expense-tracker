@@ -29,7 +29,7 @@ export default function BalanceInput() {
         <div className={s.balance}>
           <p className={s.title}>Баланс:</p>
           <div className={s.balanceBox}>
-            <label className={s.label}>UAH</label>
+            <label className={s.label}>ГРН</label>
             <input
               id="balanceInput"
               className={s.balanceInput}
