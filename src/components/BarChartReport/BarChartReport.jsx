@@ -21,20 +21,12 @@ export default function BarChartReport({
   return (
     <>
       <div className={s.wrap}>
-        <ResponsiveContainer width="100%" height={328}>
-          <BarChart
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
+        <ResponsiveContainer width="100%" height={422}>
+          <BarChart data={data}>
             <CartesianGrid strokeDasharray="1" vertical={false} />
             <XAxis
               dataKey={chartsCategoryId ? 'description' : 'category.name'}
-              padding={{ left: 77, right: 77 }}
+              padding={{ left: 15, right: 15 }}
               tickLine={false}
               axisLine={false}
             />
@@ -50,6 +42,7 @@ export default function BarChartReport({
                 dataKey={chartsCategoryId ? 'amount' : 'total_amounts'}
                 position="top"
                 fill="grey"
+                offset="10"
               />
               {data.map((_, index) => (
                 <Cell
