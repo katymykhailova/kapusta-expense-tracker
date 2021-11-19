@@ -142,10 +142,10 @@
 
   .calculatorPos {
     position: absolute;
-    top: 113px;
-    right: 53px;
-    padding: 12px;
-    border-left: 2px solid var(--white-color);
+    top: 128px;
+    right: 67px;
+    /* padding: 10px; */
+    /* border-left: 2px solid var(--white-color); */
   }
 
   .calendarPos {
