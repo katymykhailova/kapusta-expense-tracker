@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { updateUserBalance, getUserBalance } from './index';
 
 const initialState = {
-  balance: null,
+  balance: 0,
   isLoading: false,
 };
 

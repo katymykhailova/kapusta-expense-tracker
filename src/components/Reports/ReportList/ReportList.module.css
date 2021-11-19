@@ -30,6 +30,7 @@
 .transItem:hover .icon,
 .transItem:focus .icon {
   fill: var(--accent-color-primary);
+  transition: transform scale(1.1);
 }
 .itemValue {
   font-weight: normal;
@@ -69,6 +70,7 @@
   position: absolute;
   bottom: 0;
   left: 50%;
+  transition: transform scale(0.9);
   transform: translateX(-50%);
   fill: var(--icons-color);
 }
@@ -76,7 +78,9 @@
   position: absolute;
   bottom: 0;
   left: 50%;
+  scale: 1.1;
   transform: translateX(-50%);
+  transition: transform scale(1);
   fill: var(--accent-color-primary);
 }
 
