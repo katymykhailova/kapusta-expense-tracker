@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import 'react-tabs/style/react-tabs.css';
 import s from './ReportTabs.module.css';
 import { useMediaQuery } from 'react-responsive';
@@ -169,23 +171,27 @@ export default function ReportTabs({ onClick }) {
           </TabPanel>
         </div>
       </Tabs>
-      {showModal && (
-        <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
-          <ButtonBlock
-            firstButtonText="Да"
-            secondButtonText="Нет"
-            firstButtonHandler={() => {
-              setRemove(true);
-            }}
-            secondButtonHandler={() => {
-              setRemove(false);
-              setShowModal(false);
-            }}
-            firstButtonType="button"
-            secondButtonType="button"
-          ></ButtonBlock>
-        </Modal>
-      )}
+      <TransitionGroup>
+        {showModal && (
+          <CSSTransition classNames="option" timeout={1000}>
+            <Modal text="Вы уверены?" onClose={() => setShowModal(false)}>
+              <ButtonBlock
+                firstButtonText="Да"
+                secondButtonText="Нет"
+                firstButtonHandler={() => {
+                  setRemove(true);
+                }}
+                secondButtonHandler={() => {
+                  setRemove(false);
+                  setShowModal(false);
+                }}
+                firstButtonType="button"
+                secondButtonType="button"
+              ></ButtonBlock>
+            </Modal>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
     </>
   );
 }
