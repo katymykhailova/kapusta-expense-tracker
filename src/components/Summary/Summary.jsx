@@ -9,7 +9,7 @@ import SmallSpinner from '../Spinner/SmallSpinner';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
-export default function Summary({ reportType, year }) {
+export default function Summary({ reportType, year, onSummaryClick }) {
   const dispatch = useDispatch();
   const reportArr = useSelector(selectors.getReports);
   const isLoading = useSelector(getLoading);
@@ -28,6 +28,14 @@ export default function Summary({ reportType, year }) {
   const amountArrReversed = amountArr.sort((a, b) => b.month - a.month);
   const amountSummarryMonth = amountArrReversed.filter(el => el.value > 0);
 
+  const fetchTransactions = (year, month) => {
+    if (month < 10) {
+      month = '0' + month;
+    }
+    const date = `${year}${month}`;
+    onSummaryClick(date);
+  };
+
   return (
     <>
       <div className={s.summaryContainer}>
@@ -39,14 +47,19 @@ export default function Summary({ reportType, year }) {
             <ul className={s.summaryList}>
               {amountSummarryMonth.map(({ month, value }, idx) => (
                 <li key={idx} className={s.summaryItem}>
-                  <p className={s.summaryDescription}>
-                    {arrMonths.find(item => item.id === String(month)).name}
-                  </p>
-                  <p
-                    className={`${s.summaryDescription} ${s.summaryDescriptionCar}`}
+                  <button
+                    className={s.summaryBtn}
+                    onClick={() => fetchTransactions(year, month)}
                   >
-                    {reportType === 'i' ? `${value} грн.` : `- ${value} грн.`}
-                  </p>
+                    <span className={s.summaryDescription}>
+                      {arrMonths.find(item => item.id === String(month)).name}
+                    </span>
+                    <span
+                      className={`${s.summaryDescription} ${s.summaryDescriptionCar}`}
+                    >
+                      {reportType === 'i' ? `${value} грн.` : `- ${value} грн.`}
+                    </span>
+                  </button>
                 </li>
               ))}
             </ul>
