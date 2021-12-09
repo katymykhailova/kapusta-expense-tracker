@@ -42,7 +42,7 @@ export default function ReportTabs() {
   const [isVisible, setIsVisible] = useState(false);
   const [calendar, setCalendar] = useState(new Date());
   const [transType, setTransType] = useState(false);
-
+  const [queryDate, setQueryDate] = useState('');
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesctop = useMediaQuery({ minWidth: 1280 });
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -65,6 +65,13 @@ export default function ReportTabs() {
   const getDate = newdata => {
     setCalendar(newdata);
   };
+  const onSummaryClick = date => {
+    setQueryDate(date);
+  };
+
+  useEffect(() => {
+    dispatch(getTransactionsByMonts(queryDate));
+  }, [dispatch, queryDate]);
 
   useEffect(() => {
     document.body.style.overflow = showModal ? 'hidden' : 'auto';
@@ -145,9 +152,21 @@ export default function ReportTabs() {
                 transactions={outcome}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="o" year={year} />}
+              {isDesctop && (
+                <Summary
+                  reportType="o"
+                  year={year}
+                  onSummaryClick={onSummaryClick}
+                />
+              )}
             </div>
-            {isTablet && <Summary reportType="o" year={year} />}
+            {isTablet && (
+              <Summary
+                reportType="o"
+                year={year}
+                onSummaryClick={onSummaryClick}
+              />
+            )}
           </TabPanel>
           <TabPanel>
             {isMobile && (
@@ -171,9 +190,21 @@ export default function ReportTabs() {
                 transactions={income}
                 handleDelete={handleDelete}
               ></ReportTable>
-              {isDesctop && <Summary reportType="i" year={year} />}
+              {isDesctop && (
+                <Summary
+                  reportType="i"
+                  year={year}
+                  onSummaryClick={onSummaryClick}
+                />
+              )}
             </div>
-            {isTablet && <Summary reportType="i" year={year} />}
+            {isTablet && (
+              <Summary
+                reportType="i"
+                year={year}
+                onSummaryClick={onSummaryClick}
+              />
+            )}
           </TabPanel>
         </div>
       </Tabs>
